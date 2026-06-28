@@ -1,6 +1,472 @@
 {
   "tracks": [
     {
+      "name": "All Camp Activities",
+      "banner": "Some programs require advance sign-up and may have limited spots including Archery and Sonora Taqueria! These programs are noted on the schedule, so sign-up early and don't miss out!",
+      "events": [
+        {
+          "id": "c0d1a434-c4e3-52d7-bf45-367d73e9a4e0",
+          "startTime": "2026-06-20T15:00:00-07:00",
+          "endTime": "2026-06-20T18:00:00-07:00",
+          "title": "Welcome Campers!",
+          "location": "Volleyball Court",
+          "description": "Come check-in and get your welcome packet at the Volleyball Court. Late arrivals can check in at the store during extended hours."
+        },
+        {
+          "id": "cce26081-322a-567c-8359-70b186448776",
+          "startTime": "2026-06-20T17:00:00-07:00",
+          "endTime": "2026-06-20T17:15:00-07:00",
+          "title": "New Camper Tour",
+          "location": "Volleyball Court",
+          "description": "Meet at the volleyball court for a tour of camp. All ages welcome."
+        },
+        {
+          "id": "a1c1bd4a-24b5-5a14-b143-3af97e2583a4",
+          "startTime": "2026-06-20T17:00:00-07:00",
+          "endTime": "2026-06-20T18:00:00-07:00",
+          "title": "Manager's Welcome Mixer & Kids' Prison Ball",
+          "location": "Volleyball Court / Lair Lodge",
+          "description": "Drop off the kids at the volleyball court for some prison ball and head to the Lair Lodge for the **Manager's Welcome Mixer** with your Oski Manager, Jonathan, and your Program Director, Ellie. We'll bring the kids over to dinner."
+        },
+        {
+          "id": "08167ef1-b8a0-50a5-b366-1e378d897039",
+          "startTime": "2026-06-20T20:15:00-07:00",
+          "endTime": "2026-06-20T21:15:00-07:00",
+          "title": "Welcome Campfire!",
+          "location": "Stage",
+          "description": "Meet your 2026 Camp Oski Staff at the Stage for some laughs and information about your week at our introductory show."
+        },
+        {
+          "id": "4d69d8af-5c28-5e84-ab93-28ffa33fc08c",
+          "startTime": "2026-06-21T10:30:00-07:00",
+          "endTime": "2026-06-21T11:30:00-07:00",
+          "title": "Creekside Readings & Music",
+          "location": "Creek (below D Circle)",
+          "description": "Come join the Music Director, Izzy, for relaxing music and inspirational readings. Stroll to a quiet grove just below D Circle by the creek. It's a great way to start the week. Camper participation is encouraged."
+        },
+        {
+          "id": "d29283ab-1dbc-5d24-b7e6-ea6459c882e9",
+          "startTime": "2026-06-21T14:00:00-07:00",
+          "endTime": "2026-06-21T14:30:00-07:00",
+          "title": "Wacky Sunday Pool Show!",
+          "location": "Pool",
+          "description": "Bring the whole family to the pool for some silliness, pool games, and root beer floats."
+        },
+        {
+          "id": "7a112b9f-b89a-560c-b33a-39e22b60800d",
+          "startTime": "2026-06-21T14:30:00-07:00",
+          "endTime": "2026-06-21T15:00:00-07:00",
+          "title": "Inner Tube Water Polo Match",
+          "location": "Pool",
+          "description": "Campers vs. Staffers at the pool. C'mon campers, show off your athleticism. 18 and over please."
+        },
+        {
+          "id": "096e5987-6e4e-52c9-9122-7c56a502a0bf",
+          "startTime": "2026-06-21T20:00:00-07:00",
+          "endTime": "2026-06-21T21:15:00-07:00",
+          "title": "Guest Speaker: Thomas M. Philip",
+          "location": "Gold Stage",
+          "description": "Guest Speaker **Thomas M. Philip**, Professor of Education at UC Berkeley, will speak on \u201cTechnology, Learning, and Justice.\u201d Come think about how technology is reshaping learning and its implications for schools and society, especially issues of educational equity and racial justice. Bring a flashlight or headlamp to illuminate your puzzling! Meet near the Gaga Pit by the bridge at 8pm to walk to the Gold Stage by 8:15."
+        },
+        {
+          "id": "ae0b7168-5678-5f27-afe5-2479c444fb44",
+          "startTime": "2026-06-22T18:00:00-07:00",
+          "endTime": "2026-06-22T19:30:00-07:00",
+          "title": "Sonora Taqueria Pop Up at the Vista Lounge",
+          "location": "Vista Lounge",
+          "description": "Join us for an adults-only street taco night at the Vista Lodge! Complete with beer, wine, and margaritas. Sign up and pay in advance at the store. **Spots are limited.**"
+        },
+        {
+          "id": "28dcf9bb-38e4-51d5-9201-bea2a9a0bfb9",
+          "startTime": "2026-06-22T20:15:00-07:00",
+          "endTime": "2026-06-22T21:15:00-07:00",
+          "title": "Family Disco Bingo in the Dining Hall",
+          "location": "Dining Hall",
+          "description": "Wear disco clothes or any silly clothes, and bring 50 cents for a card. Oh, and be prepared to boogie down!!"
+        },
+        {
+          "id": "28fc8bec-3c61-5ba6-bc18-08bc97e78879",
+          "startTime": "2026-06-22T21:30:00-07:00",
+          "endTime": null,
+          "title": "Star Party with UC Berkeley Astronomy Professor Alex Filippenko!",
+          "location": "Gold Softball Field",
+          "description": "Join Alex after Disco Bingo, and enjoy some incredible night sky viewing with his high-powered telescopes. Dress warmly."
+        },
+        {
+          "id": "938e75a8-1f33-50da-972d-db405afe7c0f",
+          "startTime": "2026-06-23T10:00:00-07:00",
+          "endTime": "2026-06-23T11:00:00-07:00",
+          "title": "Preparing for College",
+          "location": "Teen Lodge",
+          "description": "For teens and parents of teens, come to the Teen Lodge and hear personal experiences from our veteran staffers and learn how they got into college. The Teen Lodge is located between Camps Gold and Blue."
+        },
+        {
+          "id": "c57f876a-c837-515b-b8b6-819cc377dac0",
+          "startTime": "2026-06-23T11:45:00-07:00",
+          "endTime": "2026-06-23T12:15:00-07:00",
+          "title": "Walk Together to Lunch at the Lake!",
+          "location": "Gaga Pit",
+          "description": "Meet at the Gaga Pit to walk over to Lunch at the Lake."
+        },
+        {
+          "id": "91e896a0-68f4-5f26-ad49-5f745ec82cee",
+          "startTime": "2026-06-23T18:00:00-07:00",
+          "endTime": null,
+          "title": "Vista Lounge Prime Rib Dinner",
+          "location": "Vista Lodge",
+          "description": "Join us for a gourmet prime rib dinner with all the trimmings at Vista Lodge. Arrive at 6:00 PM for wine and appetizers; dinner is served at 6:30 PM. Sign up and pay in advance at the store. **Seating is limited.**"
+        },
+        {
+          "id": "79809069-8bf6-5458-bd47-0b7ccf9e32f1",
+          "startTime": "2026-06-23T20:00:00-07:00",
+          "endTime": "2026-06-23T21:15:00-07:00",
+          "title": "Guest Speaker: Alex Filippenko",
+          "location": "Gold Stage",
+          "description": "Guest Speaker **Alex Filippenko**, voted by Cal students as the \"best professor\" a record 9 times, presents \"The North Pole Marathon and Sights from the Arctic.\" Last July, Alex was the principal speaker on a cruise to the geographic North Pole, where he completed the North Pole Marathon (running 26.2 miles on the frozen ocean). He will share photographs and stories about the midnight Sun, atmospheric phenomena, stunning landscapes and seascapes, and numerous kinds of animals including polar bears and blue whales. Meet near the Gaga Pit by the bridge at 8pm to walk to the Gold Stage by 8:15."
+        },
+        {
+          "id": "f3b56af4-e96b-54aa-9074-1448b9db7a19",
+          "startTime": "2026-06-23T20:15:00-07:00",
+          "endTime": null,
+          "title": "Family Sing-along!",
+          "location": "Stage",
+          "description": "B.Y.O. voice and instrument to the Stage for a fun evening."
+        },
+        {
+          "id": "07f6fb61-9ca2-5efe-8b8c-89494570faf5",
+          "startTime": "2026-06-24T18:00:00-07:00",
+          "endTime": null,
+          "title": "Vista Lounge Dinner!",
+          "location": "Vista Lodge",
+          "description": "Join us for an adults-only, gourmet prime rib dinner with all the trimmings at Vista Lodge. Arrive at 6:00 PM for wine and appetizers; dinner is served at 6:30 PM. Sign up and pay in advance at the store. **Seating is limited.**"
+        },
+        {
+          "id": "8830c4d7-3a53-58ab-aeaf-76bd71ef7e7c",
+          "startTime": "2026-06-24T20:15:00-07:00",
+          "endTime": "2026-06-24T21:15:00-07:00",
+          "title": "Oski Revue!",
+          "location": "Stage",
+          "description": "Join the Music Director, Izzy, at the Stage for our camper talent show!"
+        },
+        {
+          "id": "710d780e-2b70-5341-a509-96fc486d4089",
+          "startTime": "2026-06-24T21:30:00-07:00",
+          "endTime": "2026-06-24T22:30:00-07:00",
+          "title": "Stargazing at Camp Gold",
+          "location": "Mike Koll Softball Field (Camp Gold)",
+          "description": "Stargazing at the Mike Koll Softball Field at Camp Gold with your Nature Directors. Dress warmly!"
+        },
+        {
+          "id": "edade816-ea21-53da-a471-39cbcab9f26e",
+          "startTime": "2026-06-24T21:30:00-07:00",
+          "endTime": "2026-06-24T23:30:00-07:00",
+          "title": "ADULT DANCE at Vista Lodge!",
+          "location": "Vista Lodge",
+          "description": "Mix, mingle and boogie with your fellow campers from Blue, Gold, and Oski. Beer and wine provided -- **21+ only.**"
+        },
+        {
+          "id": "15f83bce-8e10-566f-8e9f-d7ff52f7a12a",
+          "startTime": "2026-06-25T20:00:00-07:00",
+          "endTime": null,
+          "title": "Pinecone Contest",
+          "location": "Oski Stage",
+          "description": "Pinecone Contest at the Oski Stage, right before the Hoot!"
+        },
+        {
+          "id": "1ddd21ed-45b6-512f-8966-2644c01fd5c5",
+          "startTime": "2026-06-25T20:15:00-07:00",
+          "endTime": "2026-06-25T21:15:00-07:00",
+          "title": "The Legendary Hootenanny",
+          "location": "Oski Stage",
+          "description": "The Legendary Hootenanny at the Oski Stage! Yeehaww!"
+        },
+        {
+          "id": "2fcbb70b-2b17-549e-acbf-23402f3befd7",
+          "startTime": "2026-06-26T15:00:00-07:00",
+          "endTime": "2026-06-26T16:30:00-07:00",
+          "title": "Adult Camper vs. Staff Softball",
+          "location": "Mike Koll Softball Field (Camp Gold)",
+          "description": "Adult Camper vs. Staff Softball at the Mike Koll Softball Field at Camp Gold, including a break for the Oski kids' inning. Some gloves available. Beverages provided."
+        },
+        {
+          "id": "f3cf5c8d-c5e1-5260-8a87-3cb9d628ad1c",
+          "startTime": "2026-06-26T19:45:00-07:00",
+          "endTime": null,
+          "title": "Athletic Awards and Tie Dye Runway Show",
+          "location": "Stage",
+          "description": "Athletic Awards and Tie Dye Runway Show - at the stage right before the Friday Night Show"
+        },
+        {
+          "id": "84a18277-b0e5-54f5-8e6e-eb0827eb0ac9",
+          "startTime": "2026-06-26T20:15:00-07:00",
+          "endTime": null,
+          "title": "The World Famous Friday Night Campfire Show",
+          "location": "Stage",
+          "description": "The World Famous Friday Night Campfire Show at the Stage!"
+        },
+        {
+          "id": "f1d9e987-626c-52d6-9bb4-9abbd0f5cedf",
+          "startTime": "2026-06-27T10:00:00-07:00",
+          "endTime": null,
+          "title": "Check Out",
+          "location": "Camp Gate",
+          "description": "We'll be closing our gate at 10:00 AM to prepare for next week's campers. Drive carefully and we'll see you next year! Don't forget to post and share your photos using #lairofthegoldenbear"
+        }
+      ]
+    },
+    {
+      "name": "Burger Shack",
+      "banner": null,
+      "events": [
+        {
+          "id": "189ed9d8-6d68-56d2-980a-1a834db3934e",
+          "startTime": "2026-06-21T19:00:00-07:00",
+          "endTime": "2026-06-21T22:00:00-07:00",
+          "title": "Burger Shack Open",
+          "location": "Camp Lodges",
+          "description": "Open each evening for burgers, fries, and other late night snacks. Available at the Camp Gold, Camp Blue, and Camp Oski Lodges.\n\n*Closed during shows Saturday, Thursday, and Friday.*"
+        },
+        {
+          "id": "fc565381-7638-5077-9e19-28e0eaddbe58",
+          "startTime": "2026-06-22T19:00:00-07:00",
+          "endTime": "2026-06-22T22:00:00-07:00",
+          "title": "Burger Shack Open",
+          "location": "Camp Lodges",
+          "description": "Open each evening for burgers, fries, and other late night snacks. Available at the Camp Gold, Camp Blue, and Camp Oski Lodges.\n\n*Closed during shows Saturday, Thursday, and Friday.*"
+        },
+        {
+          "id": "87a5dcb7-020b-5f49-b758-fdab2ed1a055",
+          "startTime": "2026-06-23T19:00:00-07:00",
+          "endTime": "2026-06-23T22:00:00-07:00",
+          "title": "Burger Shack Open",
+          "location": "Camp Lodges",
+          "description": "Open each evening for burgers, fries, and other late night snacks. Available at the Camp Gold, Camp Blue, and Camp Oski Lodges.\n\n*Closed during shows Saturday, Thursday, and Friday.*"
+        },
+        {
+          "id": "37fe066c-c665-5bb6-9aaa-06e4d8bedc20",
+          "startTime": "2026-06-24T19:00:00-07:00",
+          "endTime": "2026-06-24T22:00:00-07:00",
+          "title": "Burger Shack Open",
+          "location": "Camp Lodges",
+          "description": "Open each evening for burgers, fries, and other late night snacks. Available at the Camp Gold, Camp Blue, and Camp Oski Lodges.\n\n*Closed during shows Saturday, Thursday, and Friday.*"
+        }
+      ]
+    },
+    {
+      "name": "Pool",
+      "banner": "Adult Swim is the last 15 minutes of every hour.",
+      "events": [
+        {
+          "id": "15f09f51-6515-5fba-a37c-4b1bfd0e0d06",
+          "startTime": "2026-06-20T15:00:00-07:00",
+          "endTime": "2026-06-20T17:00:00-07:00",
+          "title": "Pool Open: Free Swim",
+          "location": null,
+          "description": "Pool is open! Free Swim and pool time"
+        },
+        {
+          "id": "64e487aa-3c62-5a44-8d3c-29a84f2f1bdf",
+          "startTime": "2026-06-21T10:00:00-07:00",
+          "endTime": "2026-06-21T12:00:00-07:00",
+          "title": "Pool Open: Free Swim",
+          "location": null,
+          "description": "Pool is open! Free Swim and pool time"
+        },
+        {
+          "id": "5a0604b5-14b7-5d74-b327-4bb729841339",
+          "startTime": "2026-06-21T13:30:00-07:00",
+          "endTime": "2026-06-21T14:00:00-07:00",
+          "title": "Pool Open: Free Swim",
+          "location": null,
+          "description": "Pool is open! Free Swim and pool time"
+        },
+        {
+          "id": "acd2fa60-0934-5276-a369-f5f82d80d36d",
+          "startTime": "2026-06-21T15:00:00-07:00",
+          "endTime": "2026-06-21T17:00:00-07:00",
+          "title": "Pool Open: Free Swim",
+          "location": null,
+          "description": "Pool is open! Free Swim and pool time"
+        },
+        {
+          "id": "f936df02-81e5-59d7-8f6d-91b761d922db",
+          "startTime": "2026-06-21T14:00:00-07:00",
+          "endTime": "2026-06-21T14:30:00-07:00",
+          "title": "Wacky Sunday Pool Show!",
+          "location": null,
+          "description": "Bring the whole family to the pool for some silliness, pool games, and root beer floats."
+        },
+        {
+          "id": "8730a78e-c6aa-5174-b960-dd5a61f08f1b",
+          "startTime": "2026-06-21T14:30:00-07:00",
+          "endTime": "2026-06-21T15:00:00-07:00",
+          "title": "Innertube Water Polo Match",
+          "location": null,
+          "description": "Campers vs. Staffers at the pool. C'mon campers, first chance to show off your athleticism. 18 and over please."
+        },
+        {
+          "id": "6e18beda-3cd8-59bc-8dde-bd6ce9d86c30",
+          "startTime": "2026-06-22T07:30:00-07:00",
+          "endTime": "2026-06-22T08:15:00-07:00",
+          "title": "Lap Swim",
+          "location": null,
+          "description": "Lap Swim"
+        },
+        {
+          "id": "0d9034d0-3c53-5d64-a433-bd3a4c741d9f",
+          "startTime": "2026-06-22T09:30:00-07:00",
+          "endTime": "2026-06-22T10:30:00-07:00",
+          "title": "Water Aerobics",
+          "location": null,
+          "description": "Join one of your lifeguards for a fun workout in the water."
+        },
+        {
+          "id": "7c5db1a0-2b3f-5ebc-963c-d0e6b2210128",
+          "startTime": "2026-06-22T10:30:00-07:00",
+          "endTime": "2026-06-22T12:00:00-07:00",
+          "title": "Pool Open: Free Swim",
+          "location": null,
+          "description": "Pool is open for free swim."
+        },
+        {
+          "id": "deb0e025-bf2a-55f1-aacd-8f37bc754ede",
+          "startTime": "2026-06-22T13:30:00-07:00",
+          "endTime": "2026-06-22T17:00:00-07:00",
+          "title": "Pool Open: Free Swim",
+          "location": null,
+          "description": "Pool is open for free swim."
+        },
+        {
+          "id": "ee22200f-96bd-507d-9a8a-878fb3d210b2",
+          "startTime": "2026-06-23T07:30:00-07:00",
+          "endTime": "2026-06-23T08:15:00-07:00",
+          "title": "Lap Swim",
+          "location": null,
+          "description": "Lap Swim"
+        },
+        {
+          "id": "8a48bca6-6c64-573d-9f97-42a59237d3d6",
+          "startTime": "2026-06-23T09:30:00-07:00",
+          "endTime": "2026-06-23T10:30:00-07:00",
+          "title": "Water Aerobics",
+          "location": null,
+          "description": "Join one of your lifeguards for a fun workout in the water."
+        },
+        {
+          "id": "d504901a-2984-5a8e-a0b3-c7619fe8fd15",
+          "startTime": "2026-06-23T10:30:00-07:00",
+          "endTime": "2026-06-23T12:00:00-07:00",
+          "title": "Pool Open: Free Swim",
+          "location": null,
+          "description": "Pool is open for free swim."
+        },
+        {
+          "id": "5565f394-7e43-5893-8307-7921ba61c45e",
+          "startTime": "2026-06-23T13:30:00-07:00",
+          "endTime": "2026-06-23T17:00:00-07:00",
+          "title": "Pool Open: Free Swim",
+          "location": null,
+          "description": "Pool is open for free swim."
+        },
+        {
+          "id": "85f19fb0-dfe7-5d15-9782-b8e623745d86",
+          "startTime": "2026-06-24T07:30:00-07:00",
+          "endTime": "2026-06-24T08:15:00-07:00",
+          "title": "Lap Swim",
+          "location": null,
+          "description": "Lap Swim"
+        },
+        {
+          "id": "24b5ceb8-5d2a-511d-b124-6f0be3c6ad07",
+          "startTime": "2026-06-24T09:30:00-07:00",
+          "endTime": "2026-06-24T10:30:00-07:00",
+          "title": "Water Aerobics",
+          "location": null,
+          "description": "Join one of your lifeguards for a fun workout in the water."
+        },
+        {
+          "id": "e9c4f74a-49fb-51d9-8f05-03cbd03cc9f2",
+          "startTime": "2026-06-24T10:30:00-07:00",
+          "endTime": "2026-06-24T12:00:00-07:00",
+          "title": "Pool Open: Free Swim",
+          "location": null,
+          "description": "Pool is open for free swim."
+        },
+        {
+          "id": "97b18e6b-9d71-53ff-b82d-ecfe19cfc48b",
+          "startTime": "2026-06-24T13:30:00-07:00",
+          "endTime": "2026-06-24T17:00:00-07:00",
+          "title": "Pool Open: Free Swim",
+          "location": null,
+          "description": "Pool is open for free swim."
+        },
+        {
+          "id": "b4b8b450-0708-5b15-ba20-00f17940a313",
+          "startTime": "2026-06-25T07:30:00-07:00",
+          "endTime": "2026-06-25T08:15:00-07:00",
+          "title": "Lap Swim",
+          "location": null,
+          "description": "Lap Swim"
+        },
+        {
+          "id": "3b9644ae-fe95-58d7-9034-6d05b153c967",
+          "startTime": "2026-06-25T09:30:00-07:00",
+          "endTime": "2026-06-25T10:30:00-07:00",
+          "title": "Water Aerobics",
+          "location": null,
+          "description": "Join one of your lifeguards for a fun workout in the water."
+        },
+        {
+          "id": "b4e50fee-6c53-5085-a87d-fc27b436b4c3",
+          "startTime": "2026-06-25T10:30:00-07:00",
+          "endTime": "2026-06-25T12:00:00-07:00",
+          "title": "Pool Open: Free Swim",
+          "location": null,
+          "description": "Pool is open for free swim."
+        },
+        {
+          "id": "25914562-349a-563d-8be9-c845297c4474",
+          "startTime": "2026-06-25T13:30:00-07:00",
+          "endTime": "2026-06-25T17:00:00-07:00",
+          "title": "Pool Open: Free Swim",
+          "location": null,
+          "description": "Pool is open for free swim."
+        },
+        {
+          "id": "be1a988b-d3e9-548f-b225-cfdef7a549d8",
+          "startTime": "2026-06-26T07:30:00-07:00",
+          "endTime": "2026-06-26T08:15:00-07:00",
+          "title": "Lap Swim",
+          "location": null,
+          "description": "Lap Swim"
+        },
+        {
+          "id": "ef550399-b99d-572c-bd27-7c9c298c9466",
+          "startTime": "2026-06-26T09:30:00-07:00",
+          "endTime": "2026-06-26T10:30:00-07:00",
+          "title": "Water Aerobics",
+          "location": null,
+          "description": "Join one of your lifeguards for a fun workout in the water."
+        },
+        {
+          "id": "644d95dd-3138-5247-b07e-7e02952a1168",
+          "startTime": "2026-06-26T10:30:00-07:00",
+          "endTime": "2026-06-26T12:00:00-07:00",
+          "title": "Pool Open: Free Swim",
+          "location": null,
+          "description": "Pool is open for free swim."
+        },
+        {
+          "id": "6ad0b0dc-2a84-5a76-9ac2-b65109b3d2b1",
+          "startTime": "2026-06-26T13:30:00-07:00",
+          "endTime": "2026-06-26T17:00:00-07:00",
+          "title": "Pool Open: Free Swim",
+          "location": null,
+          "description": "Pool is open for free swim."
+        }
+      ]
+    },
+    {
       "name": "Meals",
       "banner": null,
       "events": [
@@ -227,44 +693,6 @@
           "title": "Breakfast Buffet",
           "location": "Dining Hall",
           "description": "Breakfast Buffet. Hiker bar available at breakfast to make lunches for hikes."
-        }
-      ]
-    },
-    {
-      "name": "Burger Shack",
-      "banner": null,
-      "events": [
-        {
-          "id": "189ed9d8-6d68-56d2-980a-1a834db3934e",
-          "startTime": "2026-06-21T19:00:00-07:00",
-          "endTime": "2026-06-21T22:00:00-07:00",
-          "title": "Burger Shack Open",
-          "location": "Camp Lodges",
-          "description": "Open each evening for burgers, fries, and other late night snacks. Available at the Camp Gold, Camp Blue, and Camp Oski Lodges.\n\n*Closed during shows Saturday, Thursday, and Friday.*"
-        },
-        {
-          "id": "fc565381-7638-5077-9e19-28e0eaddbe58",
-          "startTime": "2026-06-22T19:00:00-07:00",
-          "endTime": "2026-06-22T22:00:00-07:00",
-          "title": "Burger Shack Open",
-          "location": "Camp Lodges",
-          "description": "Open each evening for burgers, fries, and other late night snacks. Available at the Camp Gold, Camp Blue, and Camp Oski Lodges.\n\n*Closed during shows Saturday, Thursday, and Friday.*"
-        },
-        {
-          "id": "87a5dcb7-020b-5f49-b758-fdab2ed1a055",
-          "startTime": "2026-06-23T19:00:00-07:00",
-          "endTime": "2026-06-23T22:00:00-07:00",
-          "title": "Burger Shack Open",
-          "location": "Camp Lodges",
-          "description": "Open each evening for burgers, fries, and other late night snacks. Available at the Camp Gold, Camp Blue, and Camp Oski Lodges.\n\n*Closed during shows Saturday, Thursday, and Friday.*"
-        },
-        {
-          "id": "37fe066c-c665-5bb6-9aaa-06e4d8bedc20",
-          "startTime": "2026-06-24T19:00:00-07:00",
-          "endTime": "2026-06-24T22:00:00-07:00",
-          "title": "Burger Shack Open",
-          "location": "Camp Lodges",
-          "description": "Open each evening for burgers, fries, and other late night snacks. Available at the Camp Gold, Camp Blue, and Camp Oski Lodges.\n\n*Closed during shows Saturday, Thursday, and Friday.*"
         }
       ]
     },
@@ -615,678 +1043,6 @@
       ]
     },
     {
-      "name": "Pool",
-      "banner": "Adult Swim is the last 15 minutes of every hour.",
-      "events": [
-        {
-          "id": "15f09f51-6515-5fba-a37c-4b1bfd0e0d06",
-          "startTime": "2026-06-20T15:00:00-07:00",
-          "endTime": "2026-06-20T17:00:00-07:00",
-          "title": "Pool Open: Free Swim",
-          "location": null,
-          "description": "Pool is open! Free Swim and pool time"
-        },
-        {
-          "id": "64e487aa-3c62-5a44-8d3c-29a84f2f1bdf",
-          "startTime": "2026-06-21T10:00:00-07:00",
-          "endTime": "2026-06-21T12:00:00-07:00",
-          "title": "Pool Open: Free Swim",
-          "location": null,
-          "description": "Pool is open! Free Swim and pool time"
-        },
-        {
-          "id": "5a0604b5-14b7-5d74-b327-4bb729841339",
-          "startTime": "2026-06-21T13:30:00-07:00",
-          "endTime": "2026-06-21T14:00:00-07:00",
-          "title": "Pool Open: Free Swim",
-          "location": null,
-          "description": "Pool is open! Free Swim and pool time"
-        },
-        {
-          "id": "acd2fa60-0934-5276-a369-f5f82d80d36d",
-          "startTime": "2026-06-21T15:00:00-07:00",
-          "endTime": "2026-06-21T17:00:00-07:00",
-          "title": "Pool Open: Free Swim",
-          "location": null,
-          "description": "Pool is open! Free Swim and pool time"
-        },
-        {
-          "id": "f936df02-81e5-59d7-8f6d-91b761d922db",
-          "startTime": "2026-06-21T14:00:00-07:00",
-          "endTime": "2026-06-21T14:30:00-07:00",
-          "title": "Wacky Sunday Pool Show!",
-          "location": null,
-          "description": "Bring the whole family to the pool for some silliness, pool games, and root beer floats."
-        },
-        {
-          "id": "8730a78e-c6aa-5174-b960-dd5a61f08f1b",
-          "startTime": "2026-06-21T14:30:00-07:00",
-          "endTime": "2026-06-21T15:00:00-07:00",
-          "title": "Innertube Water Polo Match",
-          "location": null,
-          "description": "Campers vs. Staffers at the pool. C'mon campers, first chance to show off your athleticism. 18 and over please."
-        },
-        {
-          "id": "6e18beda-3cd8-59bc-8dde-bd6ce9d86c30",
-          "startTime": "2026-06-22T07:30:00-07:00",
-          "endTime": "2026-06-22T08:15:00-07:00",
-          "title": "Lap Swim",
-          "location": null,
-          "description": "Lap Swim"
-        },
-        {
-          "id": "0d9034d0-3c53-5d64-a433-bd3a4c741d9f",
-          "startTime": "2026-06-22T09:30:00-07:00",
-          "endTime": "2026-06-22T10:30:00-07:00",
-          "title": "Water Aerobics",
-          "location": null,
-          "description": "Join one of your lifeguards for a fun workout in the water."
-        },
-        {
-          "id": "7c5db1a0-2b3f-5ebc-963c-d0e6b2210128",
-          "startTime": "2026-06-22T10:30:00-07:00",
-          "endTime": "2026-06-22T12:00:00-07:00",
-          "title": "Pool Open: Free Swim",
-          "location": null,
-          "description": "Pool is open for free swim."
-        },
-        {
-          "id": "deb0e025-bf2a-55f1-aacd-8f37bc754ede",
-          "startTime": "2026-06-22T13:30:00-07:00",
-          "endTime": "2026-06-22T17:00:00-07:00",
-          "title": "Pool Open: Free Swim",
-          "location": null,
-          "description": "Pool is open for free swim."
-        },
-        {
-          "id": "ee22200f-96bd-507d-9a8a-878fb3d210b2",
-          "startTime": "2026-06-23T07:30:00-07:00",
-          "endTime": "2026-06-23T08:15:00-07:00",
-          "title": "Lap Swim",
-          "location": null,
-          "description": "Lap Swim"
-        },
-        {
-          "id": "8a48bca6-6c64-573d-9f97-42a59237d3d6",
-          "startTime": "2026-06-23T09:30:00-07:00",
-          "endTime": "2026-06-23T10:30:00-07:00",
-          "title": "Water Aerobics",
-          "location": null,
-          "description": "Join one of your lifeguards for a fun workout in the water."
-        },
-        {
-          "id": "d504901a-2984-5a8e-a0b3-c7619fe8fd15",
-          "startTime": "2026-06-23T10:30:00-07:00",
-          "endTime": "2026-06-23T12:00:00-07:00",
-          "title": "Pool Open: Free Swim",
-          "location": null,
-          "description": "Pool is open for free swim."
-        },
-        {
-          "id": "5565f394-7e43-5893-8307-7921ba61c45e",
-          "startTime": "2026-06-23T13:30:00-07:00",
-          "endTime": "2026-06-23T17:00:00-07:00",
-          "title": "Pool Open: Free Swim",
-          "location": null,
-          "description": "Pool is open for free swim."
-        },
-        {
-          "id": "85f19fb0-dfe7-5d15-9782-b8e623745d86",
-          "startTime": "2026-06-24T07:30:00-07:00",
-          "endTime": "2026-06-24T08:15:00-07:00",
-          "title": "Lap Swim",
-          "location": null,
-          "description": "Lap Swim"
-        },
-        {
-          "id": "24b5ceb8-5d2a-511d-b124-6f0be3c6ad07",
-          "startTime": "2026-06-24T09:30:00-07:00",
-          "endTime": "2026-06-24T10:30:00-07:00",
-          "title": "Water Aerobics",
-          "location": null,
-          "description": "Join one of your lifeguards for a fun workout in the water."
-        },
-        {
-          "id": "e9c4f74a-49fb-51d9-8f05-03cbd03cc9f2",
-          "startTime": "2026-06-24T10:30:00-07:00",
-          "endTime": "2026-06-24T12:00:00-07:00",
-          "title": "Pool Open: Free Swim",
-          "location": null,
-          "description": "Pool is open for free swim."
-        },
-        {
-          "id": "97b18e6b-9d71-53ff-b82d-ecfe19cfc48b",
-          "startTime": "2026-06-24T13:30:00-07:00",
-          "endTime": "2026-06-24T17:00:00-07:00",
-          "title": "Pool Open: Free Swim",
-          "location": null,
-          "description": "Pool is open for free swim."
-        },
-        {
-          "id": "b4b8b450-0708-5b15-ba20-00f17940a313",
-          "startTime": "2026-06-25T07:30:00-07:00",
-          "endTime": "2026-06-25T08:15:00-07:00",
-          "title": "Lap Swim",
-          "location": null,
-          "description": "Lap Swim"
-        },
-        {
-          "id": "3b9644ae-fe95-58d7-9034-6d05b153c967",
-          "startTime": "2026-06-25T09:30:00-07:00",
-          "endTime": "2026-06-25T10:30:00-07:00",
-          "title": "Water Aerobics",
-          "location": null,
-          "description": "Join one of your lifeguards for a fun workout in the water."
-        },
-        {
-          "id": "b4e50fee-6c53-5085-a87d-fc27b436b4c3",
-          "startTime": "2026-06-25T10:30:00-07:00",
-          "endTime": "2026-06-25T12:00:00-07:00",
-          "title": "Pool Open: Free Swim",
-          "location": null,
-          "description": "Pool is open for free swim."
-        },
-        {
-          "id": "25914562-349a-563d-8be9-c845297c4474",
-          "startTime": "2026-06-25T13:30:00-07:00",
-          "endTime": "2026-06-25T17:00:00-07:00",
-          "title": "Pool Open: Free Swim",
-          "location": null,
-          "description": "Pool is open for free swim."
-        },
-        {
-          "id": "be1a988b-d3e9-548f-b225-cfdef7a549d8",
-          "startTime": "2026-06-26T07:30:00-07:00",
-          "endTime": "2026-06-26T08:15:00-07:00",
-          "title": "Lap Swim",
-          "location": null,
-          "description": "Lap Swim"
-        },
-        {
-          "id": "ef550399-b99d-572c-bd27-7c9c298c9466",
-          "startTime": "2026-06-26T09:30:00-07:00",
-          "endTime": "2026-06-26T10:30:00-07:00",
-          "title": "Water Aerobics",
-          "location": null,
-          "description": "Join one of your lifeguards for a fun workout in the water."
-        },
-        {
-          "id": "644d95dd-3138-5247-b07e-7e02952a1168",
-          "startTime": "2026-06-26T10:30:00-07:00",
-          "endTime": "2026-06-26T12:00:00-07:00",
-          "title": "Pool Open: Free Swim",
-          "location": null,
-          "description": "Pool is open for free swim."
-        },
-        {
-          "id": "6ad0b0dc-2a84-5a76-9ac2-b65109b3d2b1",
-          "startTime": "2026-06-26T13:30:00-07:00",
-          "endTime": "2026-06-26T17:00:00-07:00",
-          "title": "Pool Open: Free Swim",
-          "location": null,
-          "description": "Pool is open for free swim."
-        }
-      ]
-    },
-    {
-      "name": "Archery",
-      "banner": null,
-      "events": [
-        {
-          "id": "e9a75603-09c1-5200-80f4-b200c1817005",
-          "startTime": "2026-06-22T10:00:00-07:00",
-          "endTime": "2026-06-22T11:00:00-07:00",
-          "title": "Archery Lessons",
-          "location": "Archery Range",
-          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
-        },
-        {
-          "id": "47b09114-72d4-5074-aa21-d0b67ca8b764",
-          "startTime": "2026-06-22T15:00:00-07:00",
-          "endTime": "2026-06-22T16:00:00-07:00",
-          "title": "Archery Lessons",
-          "location": "Archery Range",
-          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
-        },
-        {
-          "id": "ae06c29e-91c1-5460-a5d0-d5d32268b9a5",
-          "startTime": "2026-06-23T10:00:00-07:00",
-          "endTime": "2026-06-23T11:00:00-07:00",
-          "title": "Archery Lessons",
-          "location": "Archery Range",
-          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
-        },
-        {
-          "id": "daaa467f-00cf-5d66-8074-bc969e6ba77d",
-          "startTime": "2026-06-23T15:00:00-07:00",
-          "endTime": "2026-06-23T16:00:00-07:00",
-          "title": "Archery Lessons",
-          "location": "Archery Range",
-          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
-        },
-        {
-          "id": "3956fec2-d282-53f7-9d72-d314019a493e",
-          "startTime": "2026-06-24T10:00:00-07:00",
-          "endTime": "2026-06-24T11:00:00-07:00",
-          "title": "Archery Lessons",
-          "location": "Archery Range",
-          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
-        },
-        {
-          "id": "c47fc837-43a3-51da-b8dd-71c9f90e8c37",
-          "startTime": "2026-06-24T15:00:00-07:00",
-          "endTime": "2026-06-24T16:00:00-07:00",
-          "title": "Archery Lessons",
-          "location": "Archery Range",
-          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
-        },
-        {
-          "id": "2c3fa368-37a8-53a2-be76-e5f0b9639528",
-          "startTime": "2026-06-25T10:00:00-07:00",
-          "endTime": "2026-06-25T11:00:00-07:00",
-          "title": "Archery Lessons",
-          "location": "Archery Range",
-          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
-        },
-        {
-          "id": "6ce11eef-f22e-59a5-b20f-5233ba678e98",
-          "startTime": "2026-06-25T15:00:00-07:00",
-          "endTime": "2026-06-25T16:00:00-07:00",
-          "title": "Archery Lessons",
-          "location": "Archery Range",
-          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
-        },
-        {
-          "id": "7028d861-7f8a-5672-96c5-50c130e4d73d",
-          "startTime": "2026-06-26T10:00:00-07:00",
-          "endTime": "2026-06-26T11:00:00-07:00",
-          "title": "Archery Lessons",
-          "location": "Archery Range",
-          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
-        },
-        {
-          "id": "6269d604-3a41-53ee-a3f1-325b806f1068",
-          "startTime": "2026-06-26T15:00:00-07:00",
-          "endTime": "2026-06-26T16:00:00-07:00",
-          "title": "Archery Lessons",
-          "location": "Archery Range",
-          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
-        }
-      ]
-    },
-    {
-      "name": "Lair Yoga",
-      "banner": "Lair yoga classes are led by professionally licensed instructors. These classes are free, no sign-ups needed -- just show up! All classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!",
-      "events": [
-        {
-          "id": "1389780c-dd91-5e44-84c1-6375db4f43da",
-          "startTime": "2026-06-21T07:15:00-07:00",
-          "endTime": "2026-06-21T08:00:00-07:00",
-          "title": "Yoga Fitness Class",
-          "location": "Yoga Tent (next to Vista Lodge)",
-          "description": "Workout with the General Manager! Join Cathy as she leads a 45 minute class set to music that combines yoga poses with strength-building exercises and cardio.\n\n*Instructor: Cathy (General Manager)*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
-        },
-        {
-          "id": "d6dd837b-561d-5df9-9594-260605121f18",
-          "startTime": "2026-06-21T10:10:00-07:00",
-          "endTime": "2026-06-21T11:00:00-07:00",
-          "title": "Yoga For All",
-          "location": "Yoga Tent (next to Vista Lodge)",
-          "description": "Basic Hatha Yoga including dynamic and static poses to gain awareness, strength, flexibility, and balance.\n\n*Instructor: Kim*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
-        },
-        {
-          "id": "266524b7-d0ee-54e2-bedb-b989bfe3d8bb",
-          "startTime": "2026-06-21T11:15:00-07:00",
-          "endTime": "2026-06-21T12:00:00-07:00",
-          "title": "Gentle Yoga",
-          "location": "Yoga Tent (next to Vista Lodge)",
-          "description": "A relaxing class to improve strength and mobility while enjoying the fresh outdoor air.\n\n*Instructor: Kim*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
-        },
-        {
-          "id": "a6d04ccb-c691-5231-bf53-81d6feb67c3a",
-          "startTime": "2026-06-22T07:15:00-07:00",
-          "endTime": "2026-06-22T08:00:00-07:00",
-          "title": "Yoga Fitness Class",
-          "location": "Yoga Tent (next to Vista Lodge)",
-          "description": "Workout with the General Manager! Join Cathy as she leads a 45 minute class set to music that combines yoga poses with strength-building exercises and cardio.\n\n*Instructor: Cathy (General Manager)*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
-        },
-        {
-          "id": "86c9a51a-6244-5746-a8c5-ab074917b885",
-          "startTime": "2026-06-22T10:10:00-07:00",
-          "endTime": "2026-06-22T11:00:00-07:00",
-          "title": "Yoga For All",
-          "location": "Yoga Tent (next to Vista Lodge)",
-          "description": "Basic Hatha Yoga including dynamic and static poses to gain awareness, strength, flexibility, and balance.\n\n*Instructor: Dorothy*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
-        },
-        {
-          "id": "e357e659-0585-53b1-93cd-d52141dd771d",
-          "startTime": "2026-06-22T11:15:00-07:00",
-          "endTime": "2026-06-22T12:00:00-07:00",
-          "title": "Gentle Yoga",
-          "location": "Yoga Tent (next to Vista Lodge)",
-          "description": "A relaxing class to improve strength and mobility while enjoying the fresh outdoor air.\n\n*Instructor: Dorothy*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
-        },
-        {
-          "id": "28f33e9f-08a1-51ac-a8db-8d8cbb7a5340",
-          "startTime": "2026-06-26T07:15:00-07:00",
-          "endTime": "2026-06-26T08:00:00-07:00",
-          "title": "Yoga Fitness Class",
-          "location": "Yoga Tent (next to Vista Lodge)",
-          "description": "Workout with the General Manager! Join Cathy as she leads a 45 minute class set to music that combines yoga poses with strength-building exercises and cardio.\n\n*Instructor: Cathy (General Manager)*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
-        },
-        {
-          "id": "f759cb7f-6d86-58a6-89da-93c62251df13",
-          "startTime": "2026-06-26T10:10:00-07:00",
-          "endTime": "2026-06-26T11:00:00-07:00",
-          "title": "Yoga For All",
-          "location": "Yoga Tent (next to Vista Lodge)",
-          "description": "Basic Hatha Yoga including dynamic and static poses to gain awareness, strength, flexibility, and balance.\n\n*Instructor: Karl*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
-        },
-        {
-          "id": "0ae9a66c-141c-5f0c-b36c-15d653f03a18",
-          "startTime": "2026-06-26T11:15:00-07:00",
-          "endTime": "2026-06-26T12:00:00-07:00",
-          "title": "Gentle Yoga",
-          "location": "Yoga Tent (next to Vista Lodge)",
-          "description": "A relaxing class to improve strength and mobility while enjoying the fresh outdoor air.\n\n*Instructor: Karl*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
-        },
-        {
-          "id": "4d0e87ae-82ac-50e3-b838-b6893fbd4775",
-          "startTime": "2026-06-22T13:15:00-07:00",
-          "endTime": "2026-06-22T14:00:00-07:00",
-          "title": "Mindful Meditation",
-          "location": "Yoga Tent (next to Vista Lodge)",
-          "description": "Come relax and learn meditation skills. When you heal the mind you heal the body. This session will take place at Vista Yoga Tent.\n\n*Instructor: Dorothy*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
-        },
-        {
-          "id": "bdffb307-b686-5fd3-b071-445184e29d55",
-          "startTime": "2026-06-23T07:30:00-07:00",
-          "endTime": "2026-06-23T08:15:00-07:00",
-          "title": "Sunrise Yoga",
-          "location": "Yoga Tent (next to Vista Lodge)",
-          "description": "Wake up your body and your mind with gentle yoga poses.\n\n*Instructor: Kim or Sherrie*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
-        },
-        {
-          "id": "dcc0a840-3b69-5985-a872-6d9a1e07d4bf",
-          "startTime": "2026-06-23T10:10:00-07:00",
-          "endTime": "2026-06-23T11:00:00-07:00",
-          "title": "Yoga For All",
-          "location": "Yoga Tent (next to Vista Lodge)",
-          "description": "Basic Hatha Yoga including dynamic and static poses to gain awareness, strength, flexibility, and balance.\n\n*Instructor: Kim or Sherrie*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
-        },
-        {
-          "id": "67cd4135-b8fa-584e-bac4-20dfdf02b022",
-          "startTime": "2026-06-23T11:15:00-07:00",
-          "endTime": "2026-06-23T12:00:00-07:00",
-          "title": "Pilates",
-          "location": "Yoga Tent (next to Vista Lodge)",
-          "description": "You will do the basic Pilates mat techniques to strengthen and tone your entire body.\n\n*Instructor: Kim or Sherrie*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
-        },
-        {
-          "id": "2c3a0d98-5bed-5e34-b3a7-628166cf7c73",
-          "startTime": "2026-06-24T07:30:00-07:00",
-          "endTime": "2026-06-24T08:15:00-07:00",
-          "title": "Sunrise Yoga",
-          "location": "Yoga Tent (next to Vista Lodge)",
-          "description": "Wake up your body and your mind with gentle yoga poses.\n\n*Instructor: Sherie*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
-        },
-        {
-          "id": "4403519a-ffcb-5b9a-9ed7-2b34e6d2bab8",
-          "startTime": "2026-06-24T10:10:00-07:00",
-          "endTime": "2026-06-24T11:00:00-07:00",
-          "title": "Yoga For All",
-          "location": "Yoga Tent (next to Vista Lodge)",
-          "description": "Basic Hatha Yoga including dynamic and static poses to gain awareness, strength, flexibility, and balance.\n\n*Instructor: Sherie*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
-        },
-        {
-          "id": "271ea0bf-0692-5b9c-b08e-7e27ba365af1",
-          "startTime": "2026-06-24T11:15:00-07:00",
-          "endTime": "2026-06-24T12:00:00-07:00",
-          "title": "Pilates",
-          "location": "Yoga Tent (next to Vista Lodge)",
-          "description": "You will do the basic Pilates mat techniques to strengthen and tone your entire body.\n\n*Instructor: Sherie*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
-        },
-        {
-          "id": "e9ab2f23-f317-5b6d-835a-41f0177e989c",
-          "startTime": "2026-06-24T13:30:00-07:00",
-          "endTime": "2026-06-24T14:20:00-07:00",
-          "title": "Intermediate/Advanced Yoga",
-          "location": "Yoga Tent (next to Vista Lodge)",
-          "description": "*Intermediate/Advanced Yoga* This class is for more experienced yoga practitioners who would like a challenge.\n\n*Instructor: Sherie*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
-        },
-        {
-          "id": "ce992160-bc5b-5d4d-96e7-f2643196b6bd",
-          "startTime": "2026-06-25T10:10:00-07:00",
-          "endTime": "2026-06-25T11:00:00-07:00",
-          "title": "Yoga For All",
-          "location": "Yoga Tent (next to Vista Lodge)",
-          "description": "Basic Hatha Yoga including dynamic and static poses to gain awareness, strength, flexibility, and balance.\n\n*Instructor: Dorothy*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
-        },
-        {
-          "id": "58448708-681e-5e0b-8369-eb8274222862",
-          "startTime": "2026-06-25T11:15:00-07:00",
-          "endTime": "2026-06-25T12:00:00-07:00",
-          "title": "Gentle Yoga",
-          "location": "Yoga Tent (next to Vista Lodge)",
-          "description": "A relaxing class to improve strength and mobility while enjoying the fresh outdoor air.\n\n*Instructor: Dorothy*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
-        }
-      ]
-    },
-    {
-      "name": "All Camp Activities",
-      "banner": "Some programs require advance sign-up and may have limited spots including Archery and Sonora Taqueria! These programs are noted on the schedule, so sign-up early and don't miss out!",
-      "events": [
-        {
-          "id": "c0d1a434-c4e3-52d7-bf45-367d73e9a4e0",
-          "startTime": "2026-06-20T15:00:00-07:00",
-          "endTime": "2026-06-20T18:00:00-07:00",
-          "title": "Welcome Campers!",
-          "location": "Volleyball Court",
-          "description": "Come check-in and get your welcome packet at the Volleyball Court. Late arrivals can check in at the store during extended hours."
-        },
-        {
-          "id": "cce26081-322a-567c-8359-70b186448776",
-          "startTime": "2026-06-20T17:00:00-07:00",
-          "endTime": "2026-06-20T17:15:00-07:00",
-          "title": "New Camper Tour",
-          "location": "Volleyball Court",
-          "description": "Meet at the volleyball court for a tour of camp. All ages welcome."
-        },
-        {
-          "id": "a1c1bd4a-24b5-5a14-b143-3af97e2583a4",
-          "startTime": "2026-06-20T17:00:00-07:00",
-          "endTime": "2026-06-20T18:00:00-07:00",
-          "title": "Manager's Welcome Mixer & Kids' Prison Ball",
-          "location": "Volleyball Court / Lair Lodge",
-          "description": "Drop off the kids at the volleyball court for some prison ball and head to the Lair Lodge for the **Manager's Welcome Mixer** with your Oski Manager, Jonathan, and your Program Director, Ellie. We'll bring the kids over to dinner."
-        },
-        {
-          "id": "08167ef1-b8a0-50a5-b366-1e378d897039",
-          "startTime": "2026-06-20T20:15:00-07:00",
-          "endTime": "2026-06-20T21:15:00-07:00",
-          "title": "Welcome Campfire!",
-          "location": "Stage",
-          "description": "Meet your 2026 Camp Oski Staff at the Stage for some laughs and information about your week at our introductory show."
-        },
-        {
-          "id": "4d69d8af-5c28-5e84-ab93-28ffa33fc08c",
-          "startTime": "2026-06-21T10:30:00-07:00",
-          "endTime": "2026-06-21T11:30:00-07:00",
-          "title": "Creekside Readings & Music",
-          "location": "Creek (below D Circle)",
-          "description": "Come join the Music Director, Izzy, for relaxing music and inspirational readings. Stroll to a quiet grove just below D Circle by the creek. It's a great way to start the week. Camper participation is encouraged."
-        },
-        {
-          "id": "d29283ab-1dbc-5d24-b7e6-ea6459c882e9",
-          "startTime": "2026-06-21T14:00:00-07:00",
-          "endTime": "2026-06-21T14:30:00-07:00",
-          "title": "Wacky Sunday Pool Show!",
-          "location": "Pool",
-          "description": "Bring the whole family to the pool for some silliness, pool games, and root beer floats."
-        },
-        {
-          "id": "7a112b9f-b89a-560c-b33a-39e22b60800d",
-          "startTime": "2026-06-21T14:30:00-07:00",
-          "endTime": "2026-06-21T15:00:00-07:00",
-          "title": "Inner Tube Water Polo Match",
-          "location": "Pool",
-          "description": "Campers vs. Staffers at the pool. C'mon campers, show off your athleticism. 18 and over please."
-        },
-        {
-          "id": "096e5987-6e4e-52c9-9122-7c56a502a0bf",
-          "startTime": "2026-06-21T20:00:00-07:00",
-          "endTime": "2026-06-21T21:15:00-07:00",
-          "title": "Guest Speaker: Thomas M. Philip",
-          "location": "Gold Stage",
-          "description": "Guest Speaker **Thomas M. Philip**, Professor of Education at UC Berkeley, will speak on \u201cTechnology, Learning, and Justice.\u201d Come think about how technology is reshaping learning and its implications for schools and society, especially issues of educational equity and racial justice. Bring a flashlight or headlamp to illuminate your puzzling! Meet near the Gaga Pit by the bridge at 8pm to walk to the Gold Stage by 8:15."
-        },
-        {
-          "id": "ae0b7168-5678-5f27-afe5-2479c444fb44",
-          "startTime": "2026-06-22T18:00:00-07:00",
-          "endTime": "2026-06-22T19:30:00-07:00",
-          "title": "Sonora Taqueria Pop Up at the Vista Lounge",
-          "location": "Vista Lounge",
-          "description": "Join us for an adults-only street taco night at the Vista Lodge! Complete with beer, wine, and margaritas. Sign up and pay in advance at the store. **Spots are limited.**"
-        },
-        {
-          "id": "28dcf9bb-38e4-51d5-9201-bea2a9a0bfb9",
-          "startTime": "2026-06-22T20:15:00-07:00",
-          "endTime": "2026-06-22T21:15:00-07:00",
-          "title": "Family Disco Bingo in the Dining Hall",
-          "location": "Dining Hall",
-          "description": "Wear disco clothes or any silly clothes, and bring 50 cents for a card. Oh, and be prepared to boogie down!!"
-        },
-        {
-          "id": "28fc8bec-3c61-5ba6-bc18-08bc97e78879",
-          "startTime": "2026-06-22T21:30:00-07:00",
-          "endTime": null,
-          "title": "Star Party with UC Berkeley Astronomy Professor Alex Filippenko!",
-          "location": "Gold Softball Field",
-          "description": "Join Alex after Disco Bingo, and enjoy some incredible night sky viewing with his high-powered telescopes. Dress warmly."
-        },
-        {
-          "id": "938e75a8-1f33-50da-972d-db405afe7c0f",
-          "startTime": "2026-06-23T10:00:00-07:00",
-          "endTime": "2026-06-23T11:00:00-07:00",
-          "title": "Preparing for College",
-          "location": "Teen Lodge",
-          "description": "For teens and parents of teens, come to the Teen Lodge and hear personal experiences from our veteran staffers and learn how they got into college. The Teen Lodge is located between Camps Gold and Blue."
-        },
-        {
-          "id": "c57f876a-c837-515b-b8b6-819cc377dac0",
-          "startTime": "2026-06-23T11:45:00-07:00",
-          "endTime": "2026-06-23T12:15:00-07:00",
-          "title": "Walk Together to Lunch at the Lake!",
-          "location": "Gaga Pit",
-          "description": "Meet at the Gaga Pit to walk over to Lunch at the Lake."
-        },
-        {
-          "id": "91e896a0-68f4-5f26-ad49-5f745ec82cee",
-          "startTime": "2026-06-23T18:00:00-07:00",
-          "endTime": null,
-          "title": "Vista Lounge Prime Rib Dinner",
-          "location": "Vista Lodge",
-          "description": "Join us for a gourmet prime rib dinner with all the trimmings at Vista Lodge. Arrive at 6:00 PM for wine and appetizers; dinner is served at 6:30 PM. Sign up and pay in advance at the store. **Seating is limited.**"
-        },
-        {
-          "id": "79809069-8bf6-5458-bd47-0b7ccf9e32f1",
-          "startTime": "2026-06-23T20:00:00-07:00",
-          "endTime": "2026-06-23T21:15:00-07:00",
-          "title": "Guest Speaker: Alex Filippenko",
-          "location": "Gold Stage",
-          "description": "Guest Speaker **Alex Filippenko**, voted by Cal students as the \"best professor\" a record 9 times, presents \"The North Pole Marathon and Sights from the Arctic.\" Last July, Alex was the principal speaker on a cruise to the geographic North Pole, where he completed the North Pole Marathon (running 26.2 miles on the frozen ocean). He will share photographs and stories about the midnight Sun, atmospheric phenomena, stunning landscapes and seascapes, and numerous kinds of animals including polar bears and blue whales. Meet near the Gaga Pit by the bridge at 8pm to walk to the Gold Stage by 8:15."
-        },
-        {
-          "id": "f3b56af4-e96b-54aa-9074-1448b9db7a19",
-          "startTime": "2026-06-23T20:15:00-07:00",
-          "endTime": null,
-          "title": "Family Sing-along!",
-          "location": "Stage",
-          "description": "B.Y.O. voice and instrument to the Stage for a fun evening."
-        },
-        {
-          "id": "07f6fb61-9ca2-5efe-8b8c-89494570faf5",
-          "startTime": "2026-06-24T18:00:00-07:00",
-          "endTime": null,
-          "title": "Vista Lounge Dinner!",
-          "location": "Vista Lodge",
-          "description": "Join us for an adults-only, gourmet prime rib dinner with all the trimmings at Vista Lodge. Arrive at 6:00 PM for wine and appetizers; dinner is served at 6:30 PM. Sign up and pay in advance at the store. **Seating is limited.**"
-        },
-        {
-          "id": "8830c4d7-3a53-58ab-aeaf-76bd71ef7e7c",
-          "startTime": "2026-06-24T20:15:00-07:00",
-          "endTime": "2026-06-24T21:15:00-07:00",
-          "title": "Oski Revue!",
-          "location": "Stage",
-          "description": "Join the Music Director, Izzy, at the Stage for our camper talent show!"
-        },
-        {
-          "id": "710d780e-2b70-5341-a509-96fc486d4089",
-          "startTime": "2026-06-24T21:30:00-07:00",
-          "endTime": "2026-06-24T22:30:00-07:00",
-          "title": "Stargazing at Camp Gold",
-          "location": "Mike Koll Softball Field (Camp Gold)",
-          "description": "Stargazing at the Mike Koll Softball Field at Camp Gold with your Nature Directors. Dress warmly!"
-        },
-        {
-          "id": "edade816-ea21-53da-a471-39cbcab9f26e",
-          "startTime": "2026-06-24T21:30:00-07:00",
-          "endTime": "2026-06-24T23:30:00-07:00",
-          "title": "ADULT DANCE at Vista Lodge!",
-          "location": "Vista Lodge",
-          "description": "Mix, mingle and boogie with your fellow campers from Blue, Gold, and Oski. Beer and wine provided -- **21+ only.**"
-        },
-        {
-          "id": "15f83bce-8e10-566f-8e9f-d7ff52f7a12a",
-          "startTime": "2026-06-25T20:00:00-07:00",
-          "endTime": null,
-          "title": "Pinecone Contest",
-          "location": "Oski Stage",
-          "description": "Pinecone Contest at the Oski Stage, right before the Hoot!"
-        },
-        {
-          "id": "1ddd21ed-45b6-512f-8966-2644c01fd5c5",
-          "startTime": "2026-06-25T20:15:00-07:00",
-          "endTime": "2026-06-25T21:15:00-07:00",
-          "title": "The Legendary Hootenanny",
-          "location": "Oski Stage",
-          "description": "The Legendary Hootenanny at the Oski Stage! Yeehaww!"
-        },
-        {
-          "id": "2fcbb70b-2b17-549e-acbf-23402f3befd7",
-          "startTime": "2026-06-26T15:00:00-07:00",
-          "endTime": "2026-06-26T16:30:00-07:00",
-          "title": "Adult Camper vs. Staff Softball",
-          "location": "Mike Koll Softball Field (Camp Gold)",
-          "description": "Adult Camper vs. Staff Softball at the Mike Koll Softball Field at Camp Gold, including a break for the Oski kids' inning. Some gloves available. Beverages provided."
-        },
-        {
-          "id": "f3cf5c8d-c5e1-5260-8a87-3cb9d628ad1c",
-          "startTime": "2026-06-26T19:45:00-07:00",
-          "endTime": null,
-          "title": "Athletic Awards and Tie Dye Runway Show",
-          "location": "Stage",
-          "description": "Athletic Awards and Tie Dye Runway Show - at the stage right before the Friday Night Show"
-        },
-        {
-          "id": "84a18277-b0e5-54f5-8e6e-eb0827eb0ac9",
-          "startTime": "2026-06-26T20:15:00-07:00",
-          "endTime": null,
-          "title": "The World Famous Friday Night Campfire Show",
-          "location": "Stage",
-          "description": "The World Famous Friday Night Campfire Show at the Stage!"
-        },
-        {
-          "id": "f1d9e987-626c-52d6-9bb4-9abbd0f5cedf",
-          "startTime": "2026-06-27T10:00:00-07:00",
-          "endTime": null,
-          "title": "Check Out",
-          "location": "Camp Gate",
-          "description": "We'll be closing our gate at 10:00 AM to prepare for next week's campers. Drive carefully and we'll see you next year! Don't forget to post and share your photos using #lairofthegoldenbear"
-        }
-      ]
-    },
-    {
       "name": "Athletics",
       "banner": "Check out the full schedule to view activities and programs that combine nature, adventure and sports!",
       "events": [
@@ -1377,6 +1133,92 @@
           "title": "Adult Ping-Pong Tournament!",
           "location": "Tables near the Cub Corral",
           "description": "Adult Ping-Pong Tournament! Meet at the tables near the Cub Corral."
+        }
+      ]
+    },
+    {
+      "name": "Archery",
+      "banner": null,
+      "events": [
+        {
+          "id": "e9a75603-09c1-5200-80f4-b200c1817005",
+          "startTime": "2026-06-22T10:00:00-07:00",
+          "endTime": "2026-06-22T11:00:00-07:00",
+          "title": "Archery Lessons",
+          "location": "Archery Range",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
+        },
+        {
+          "id": "47b09114-72d4-5074-aa21-d0b67ca8b764",
+          "startTime": "2026-06-22T15:00:00-07:00",
+          "endTime": "2026-06-22T16:00:00-07:00",
+          "title": "Archery Lessons",
+          "location": "Archery Range",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
+        },
+        {
+          "id": "ae06c29e-91c1-5460-a5d0-d5d32268b9a5",
+          "startTime": "2026-06-23T10:00:00-07:00",
+          "endTime": "2026-06-23T11:00:00-07:00",
+          "title": "Archery Lessons",
+          "location": "Archery Range",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
+        },
+        {
+          "id": "daaa467f-00cf-5d66-8074-bc969e6ba77d",
+          "startTime": "2026-06-23T15:00:00-07:00",
+          "endTime": "2026-06-23T16:00:00-07:00",
+          "title": "Archery Lessons",
+          "location": "Archery Range",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
+        },
+        {
+          "id": "3956fec2-d282-53f7-9d72-d314019a493e",
+          "startTime": "2026-06-24T10:00:00-07:00",
+          "endTime": "2026-06-24T11:00:00-07:00",
+          "title": "Archery Lessons",
+          "location": "Archery Range",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
+        },
+        {
+          "id": "c47fc837-43a3-51da-b8dd-71c9f90e8c37",
+          "startTime": "2026-06-24T15:00:00-07:00",
+          "endTime": "2026-06-24T16:00:00-07:00",
+          "title": "Archery Lessons",
+          "location": "Archery Range",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
+        },
+        {
+          "id": "2c3fa368-37a8-53a2-be76-e5f0b9639528",
+          "startTime": "2026-06-25T10:00:00-07:00",
+          "endTime": "2026-06-25T11:00:00-07:00",
+          "title": "Archery Lessons",
+          "location": "Archery Range",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
+        },
+        {
+          "id": "6ce11eef-f22e-59a5-b20f-5233ba678e98",
+          "startTime": "2026-06-25T15:00:00-07:00",
+          "endTime": "2026-06-25T16:00:00-07:00",
+          "title": "Archery Lessons",
+          "location": "Archery Range",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
+        },
+        {
+          "id": "7028d861-7f8a-5672-96c5-50c130e4d73d",
+          "startTime": "2026-06-26T10:00:00-07:00",
+          "endTime": "2026-06-26T11:00:00-07:00",
+          "title": "Archery Lessons",
+          "location": "Archery Range",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
+        },
+        {
+          "id": "6269d604-3a41-53ee-a3f1-325b806f1068",
+          "startTime": "2026-06-26T15:00:00-07:00",
+          "endTime": "2026-06-26T16:00:00-07:00",
+          "title": "Archery Lessons",
+          "location": "Archery Range",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
         }
       ]
     },
@@ -1809,6 +1651,164 @@
           "title": "Sweep the Forest!",
           "location": "Cub Corral",
           "description": "SWEEP THE FOREST! Help keep our Lair beautiful. Meet at the Cub Corral to pick up litter in exchange for prizes!\n\n**The Cub Corral is for two to five year old diaper-graduates. Sign-in and sign-out is required. Also be sure to check the rest of this schedule so you don't miss the other good stuff going on for families!**"
+        }
+      ]
+    },
+    {
+      "name": "Lair Yoga",
+      "banner": "Lair yoga classes are led by professionally licensed instructors. These classes are free, no sign-ups needed -- just show up! All classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!",
+      "events": [
+        {
+          "id": "1389780c-dd91-5e44-84c1-6375db4f43da",
+          "startTime": "2026-06-21T07:15:00-07:00",
+          "endTime": "2026-06-21T08:00:00-07:00",
+          "title": "Yoga Fitness Class",
+          "location": "Yoga Tent (next to Vista Lodge)",
+          "description": "Workout with the General Manager! Join Cathy as she leads a 45 minute class set to music that combines yoga poses with strength-building exercises and cardio.\n\n*Instructor: Cathy (General Manager)*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
+        },
+        {
+          "id": "d6dd837b-561d-5df9-9594-260605121f18",
+          "startTime": "2026-06-21T10:10:00-07:00",
+          "endTime": "2026-06-21T11:00:00-07:00",
+          "title": "Yoga For All",
+          "location": "Yoga Tent (next to Vista Lodge)",
+          "description": "Basic Hatha Yoga including dynamic and static poses to gain awareness, strength, flexibility, and balance.\n\n*Instructor: Kim*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
+        },
+        {
+          "id": "266524b7-d0ee-54e2-bedb-b989bfe3d8bb",
+          "startTime": "2026-06-21T11:15:00-07:00",
+          "endTime": "2026-06-21T12:00:00-07:00",
+          "title": "Gentle Yoga",
+          "location": "Yoga Tent (next to Vista Lodge)",
+          "description": "A relaxing class to improve strength and mobility while enjoying the fresh outdoor air.\n\n*Instructor: Kim*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
+        },
+        {
+          "id": "a6d04ccb-c691-5231-bf53-81d6feb67c3a",
+          "startTime": "2026-06-22T07:15:00-07:00",
+          "endTime": "2026-06-22T08:00:00-07:00",
+          "title": "Yoga Fitness Class",
+          "location": "Yoga Tent (next to Vista Lodge)",
+          "description": "Workout with the General Manager! Join Cathy as she leads a 45 minute class set to music that combines yoga poses with strength-building exercises and cardio.\n\n*Instructor: Cathy (General Manager)*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
+        },
+        {
+          "id": "86c9a51a-6244-5746-a8c5-ab074917b885",
+          "startTime": "2026-06-22T10:10:00-07:00",
+          "endTime": "2026-06-22T11:00:00-07:00",
+          "title": "Yoga For All",
+          "location": "Yoga Tent (next to Vista Lodge)",
+          "description": "Basic Hatha Yoga including dynamic and static poses to gain awareness, strength, flexibility, and balance.\n\n*Instructor: Dorothy*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
+        },
+        {
+          "id": "e357e659-0585-53b1-93cd-d52141dd771d",
+          "startTime": "2026-06-22T11:15:00-07:00",
+          "endTime": "2026-06-22T12:00:00-07:00",
+          "title": "Gentle Yoga",
+          "location": "Yoga Tent (next to Vista Lodge)",
+          "description": "A relaxing class to improve strength and mobility while enjoying the fresh outdoor air.\n\n*Instructor: Dorothy*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
+        },
+        {
+          "id": "28f33e9f-08a1-51ac-a8db-8d8cbb7a5340",
+          "startTime": "2026-06-26T07:15:00-07:00",
+          "endTime": "2026-06-26T08:00:00-07:00",
+          "title": "Yoga Fitness Class",
+          "location": "Yoga Tent (next to Vista Lodge)",
+          "description": "Workout with the General Manager! Join Cathy as she leads a 45 minute class set to music that combines yoga poses with strength-building exercises and cardio.\n\n*Instructor: Cathy (General Manager)*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
+        },
+        {
+          "id": "f759cb7f-6d86-58a6-89da-93c62251df13",
+          "startTime": "2026-06-26T10:10:00-07:00",
+          "endTime": "2026-06-26T11:00:00-07:00",
+          "title": "Yoga For All",
+          "location": "Yoga Tent (next to Vista Lodge)",
+          "description": "Basic Hatha Yoga including dynamic and static poses to gain awareness, strength, flexibility, and balance.\n\n*Instructor: Karl*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
+        },
+        {
+          "id": "0ae9a66c-141c-5f0c-b36c-15d653f03a18",
+          "startTime": "2026-06-26T11:15:00-07:00",
+          "endTime": "2026-06-26T12:00:00-07:00",
+          "title": "Gentle Yoga",
+          "location": "Yoga Tent (next to Vista Lodge)",
+          "description": "A relaxing class to improve strength and mobility while enjoying the fresh outdoor air.\n\n*Instructor: Karl*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
+        },
+        {
+          "id": "4d0e87ae-82ac-50e3-b838-b6893fbd4775",
+          "startTime": "2026-06-22T13:15:00-07:00",
+          "endTime": "2026-06-22T14:00:00-07:00",
+          "title": "Mindful Meditation",
+          "location": "Yoga Tent (next to Vista Lodge)",
+          "description": "Come relax and learn meditation skills. When you heal the mind you heal the body. This session will take place at Vista Yoga Tent.\n\n*Instructor: Dorothy*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
+        },
+        {
+          "id": "bdffb307-b686-5fd3-b071-445184e29d55",
+          "startTime": "2026-06-23T07:30:00-07:00",
+          "endTime": "2026-06-23T08:15:00-07:00",
+          "title": "Sunrise Yoga",
+          "location": "Yoga Tent (next to Vista Lodge)",
+          "description": "Wake up your body and your mind with gentle yoga poses.\n\n*Instructor: Kim or Sherrie*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
+        },
+        {
+          "id": "dcc0a840-3b69-5985-a872-6d9a1e07d4bf",
+          "startTime": "2026-06-23T10:10:00-07:00",
+          "endTime": "2026-06-23T11:00:00-07:00",
+          "title": "Yoga For All",
+          "location": "Yoga Tent (next to Vista Lodge)",
+          "description": "Basic Hatha Yoga including dynamic and static poses to gain awareness, strength, flexibility, and balance.\n\n*Instructor: Kim or Sherrie*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
+        },
+        {
+          "id": "67cd4135-b8fa-584e-bac4-20dfdf02b022",
+          "startTime": "2026-06-23T11:15:00-07:00",
+          "endTime": "2026-06-23T12:00:00-07:00",
+          "title": "Pilates",
+          "location": "Yoga Tent (next to Vista Lodge)",
+          "description": "You will do the basic Pilates mat techniques to strengthen and tone your entire body.\n\n*Instructor: Kim or Sherrie*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
+        },
+        {
+          "id": "2c3a0d98-5bed-5e34-b3a7-628166cf7c73",
+          "startTime": "2026-06-24T07:30:00-07:00",
+          "endTime": "2026-06-24T08:15:00-07:00",
+          "title": "Sunrise Yoga",
+          "location": "Yoga Tent (next to Vista Lodge)",
+          "description": "Wake up your body and your mind with gentle yoga poses.\n\n*Instructor: Sherie*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
+        },
+        {
+          "id": "4403519a-ffcb-5b9a-9ed7-2b34e6d2bab8",
+          "startTime": "2026-06-24T10:10:00-07:00",
+          "endTime": "2026-06-24T11:00:00-07:00",
+          "title": "Yoga For All",
+          "location": "Yoga Tent (next to Vista Lodge)",
+          "description": "Basic Hatha Yoga including dynamic and static poses to gain awareness, strength, flexibility, and balance.\n\n*Instructor: Sherie*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
+        },
+        {
+          "id": "271ea0bf-0692-5b9c-b08e-7e27ba365af1",
+          "startTime": "2026-06-24T11:15:00-07:00",
+          "endTime": "2026-06-24T12:00:00-07:00",
+          "title": "Pilates",
+          "location": "Yoga Tent (next to Vista Lodge)",
+          "description": "You will do the basic Pilates mat techniques to strengthen and tone your entire body.\n\n*Instructor: Sherie*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
+        },
+        {
+          "id": "e9ab2f23-f317-5b6d-835a-41f0177e989c",
+          "startTime": "2026-06-24T13:30:00-07:00",
+          "endTime": "2026-06-24T14:20:00-07:00",
+          "title": "Intermediate/Advanced Yoga",
+          "location": "Yoga Tent (next to Vista Lodge)",
+          "description": "*Intermediate/Advanced Yoga* This class is for more experienced yoga practitioners who would like a challenge.\n\n*Instructor: Sherie*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
+        },
+        {
+          "id": "ce992160-bc5b-5d4d-96e7-f2643196b6bd",
+          "startTime": "2026-06-25T10:10:00-07:00",
+          "endTime": "2026-06-25T11:00:00-07:00",
+          "title": "Yoga For All",
+          "location": "Yoga Tent (next to Vista Lodge)",
+          "description": "Basic Hatha Yoga including dynamic and static poses to gain awareness, strength, flexibility, and balance.\n\n*Instructor: Dorothy*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
+        },
+        {
+          "id": "58448708-681e-5e0b-8369-eb8274222862",
+          "startTime": "2026-06-25T11:15:00-07:00",
+          "endTime": "2026-06-25T12:00:00-07:00",
+          "title": "Gentle Yoga",
+          "location": "Yoga Tent (next to Vista Lodge)",
+          "description": "A relaxing class to improve strength and mobility while enjoying the fresh outdoor air.\n\n*Instructor: Dorothy*\n\nAll classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!"
         }
       ]
     },
