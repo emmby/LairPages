@@ -1,0 +1,34 @@
+name: Validate Schedules
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout LairPages
+        uses: actions/checkout@v4
+        with:
+          path: LairPages
+
+      - name: Checkout Lair (dependency)
+        uses: actions/checkout@v4
+        with:
+          repository: emmby/Lair
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: Lair
+
+      - name: Set up Dart
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Run Tests
+        run: |
+          cd LairPages
+          dart pub get
+          dart test
