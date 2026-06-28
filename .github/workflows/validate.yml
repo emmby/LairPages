@@ -15,11 +15,11 @@ jobs:
         with:
           path: LairPages
 
-      - name: Checkout Lair (dependency)
+      - name: Checkout Lair (dependency using PAT)
         uses: actions/checkout@v4
         with:
           repository: emmby/Lair
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.LAIR_REPO_PAT }}
           path: Lair
 
       - name: Set up Dart
