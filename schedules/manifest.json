@@ -1,0 +1,25 @@
+{
+  "camps": [
+    {
+      "id": "blue",
+      "name": "Blue Camp"
+    },
+    {
+      "id": "gold",
+      "name": "Gold Camp"
+    },
+    {
+      "id": "oski",
+      "name": "Oski Camp"
+    }
+  ],
+  "schedules": [
+    {
+      "year": 2026,
+      "camp": "oski",
+      "week": 3,
+      "file": "2026/oski/week_03.json",
+      "version": "4bb2f1c7"
+    }
+  ]
+}
