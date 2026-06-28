@@ -19,26 +19,31 @@ void main() {
         final content = file.readAsStringSync();
         
         // 1. Verify it parses successfully into the app's models
-        final List<CampEvent> events = CampEvent.fromRawJson(content);
-        expect(events, isNotEmpty);
+        final schedule = ScheduleData.fromRawJson(content);
+        expect(schedule.tracks, isNotEmpty);
 
-        for (final event in events) {
-          // 2. Verify startTime offset is PDT (-07:00)
-          if (!event.isAllDay) {
-            expect(
-              event.startTime,
-              endsWith('-07:00'),
-              reason: 'Event "${event.title}" (ID: ${event.id}) has invalid startTime offset.',
-            );
-          }
+        for (final track in schedule.tracks) {
+          expect(track.name, isNotEmpty);
+          for (final event in track.events) {
+            expect(event.trackName, equals(track.name));
 
-          // 3. Verify endTime offset is PDT (-07:00)
-          if (event.endTime != null) {
-            expect(
-              event.endTime,
-              endsWith('-07:00'),
-              reason: 'Event "${event.title}" (ID: ${event.id}) has invalid endTime offset.',
-            );
+            // 2. Verify startTime offset is PDT (-07:00)
+            if (!event.isAllDay) {
+              expect(
+                event.startTime,
+                endsWith('-07:00'),
+                reason: 'Event "${event.title}" (ID: ${event.id}) has invalid startTime offset.',
+              );
+            }
+
+            // 3. Verify endTime offset is PDT (-07:00)
+            if (event.endTime != null) {
+              expect(
+                event.endTime,
+                endsWith('-07:00'),
+                reason: 'Event "${event.title}" (ID: ${event.id}) has invalid endTime offset.',
+              );
+            }
           }
         }
       });
