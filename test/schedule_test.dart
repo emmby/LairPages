@@ -24,8 +24,21 @@ void main() {
 
         for (final track in schedule.tracks) {
           expect(track.name, isNotEmpty);
+
+          DateTime? previousTime;
           for (final event in track.events) {
             expect(event.trackName, equals(track.name));
+
+            // Verify chronological order
+            final currentTime = DateTime.parse(event.startTime);
+            if (previousTime != null) {
+              expect(
+                currentTime.isAfter(previousTime) || currentTime.isAtSameMomentAs(previousTime),
+                true,
+                reason: 'Event "${event.title}" (startTime: ${event.startTime}) is out of chronological order in track "${track.name}".',
+              );
+            }
+            previousTime = currentTime;
 
             // 2. Verify startTime offset is PDT (-07:00)
             if (!event.isAllDay) {
