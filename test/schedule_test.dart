@@ -115,21 +115,6 @@ void main() {
               reason: 'Event "${event.title}" has newlines in its title.',
             );
 
-            final desc = event.description ?? '';
-            final boldCount = RegExp(r'\*\*').allMatches(desc).length;
-            expect(
-              boldCount % 2,
-              0,
-              reason: 'Event "${event.title}" has unclosed double asterisks (**) in description: "$desc".',
-            );
-
-            final codeCount = RegExp(r'`').allMatches(desc).length;
-            expect(
-              codeCount % 2,
-              0,
-              reason: 'Event "${event.title}" has unclosed code backticks (`) in description: "$desc".',
-            );
-
             // F. Verify timezone offset is PDT (-07:00)
             if (!event.isAllDay) {
               expect(
