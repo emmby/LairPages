@@ -1,0 +1,2584 @@
+{
+  "tracks": [
+    {
+      "name": "All-camp Activities",
+      "banner": "Some programs require advance sign-up and may have limited spots, including Archery and Sonora Taqueria! These programs are noted on the schedule, so sign-up early and don't miss out!",
+      "events": [
+        {
+          "id": "773c210d-6776-50eb-9380-857d87fe142d",
+          "startTime": "2026-06-27T15:00:00-07:00",
+          "endTime": "2026-06-27T18:00:00-07:00",
+          "title": "Welcome Campers!",
+          "location": null,
+          "description": "Come check-in and get your welcome packet. Late arrivals can check in at the store during the bonus hour 7:00-8:00PM."
+        },
+        {
+          "id": "1ae083c4-b75c-5bc3-bb00-636361c20c53",
+          "startTime": "2026-06-27T17:00:00-07:00",
+          "endTime": "2026-06-27T17:15:00-07:00",
+          "title": "New Camper Tour",
+          "location": "[Kiddie Campfire](maplocation://blue/kiddie_campfire)",
+          "description": "Meet at the Kiddie Campfire. All ages welcome."
+        },
+        {
+          "id": "8b2e930f-7787-5e7b-85e8-fcae124d6186",
+          "startTime": "2026-06-27T17:00:00-07:00",
+          "endTime": "2026-06-27T18:00:00-07:00",
+          "title": "Welcome Mixer",
+          "location": "[Lodge](maplocation://blue/lodge) deck",
+          "description": "Welcome Mixer with Camp Blue Manager, James Meyersieck, and Program Director, Phoebe, on the Lodge deck. Get acquainted over beverages and hors'd'oeuvres before dinner."
+        },
+        {
+          "id": "971dd85b-7c9f-5e6e-a6d2-e6a0c3022d32",
+          "startTime": "2026-06-27T20:15:00-07:00",
+          "endTime": "2026-06-27T21:15:00-07:00",
+          "title": "Saturday Night Show!",
+          "location": "[Stage](maplocation://blue/stage)",
+          "description": "Meet your 2026 Camp Blue Staff at the Stage for some laughs and information about your week at our introductory show."
+        },
+        {
+          "id": "0bd2e47c-55f5-5f90-bc66-b0b13994af24",
+          "startTime": "2026-06-28T09:15:00-07:00",
+          "endTime": "2026-06-28T10:00:00-07:00",
+          "title": "Allergy and Dietary Needs Meeting",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Meet with our Kitchen team in the Dining Hall to discuss any special dietary needs."
+        },
+        {
+          "id": "f016b96e-5791-55c3-be96-a06899f2e8c5",
+          "startTime": "2026-06-28T10:30:00-07:00",
+          "endTime": "2026-06-28T11:30:00-07:00",
+          "title": "Creekside",
+          "location": "[Creekside](maplocation://blue/creekside)",
+          "description": "Come join the Music Director, Alison, for relaxing music and inspirational readings by the creek. Camper participation encouraged!"
+        },
+        {
+          "id": "b37f23f5-76d1-57c5-83a2-e2049dcfbe72",
+          "startTime": "2026-06-28T14:00:00-07:00",
+          "endTime": "2026-06-28T15:00:00-07:00",
+          "title": "Wacky Sunday Pool Show, followed by Inner Tube Water Polo Match",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": "**Campers vs. Staffers at the pool!** Bring the whole family for some silliness, pool games, and root beer floats. Inner Tube Water Polo - C'mon campers, show off your athleticism. 18 and over please."
+        },
+        {
+          "id": "bbee2529-22ae-594b-8854-cc490b727bad",
+          "startTime": "2026-06-28T20:15:00-07:00",
+          "endTime": "2026-06-28T21:15:00-07:00",
+          "title": "Guest Speaker Emiliana Simon-Thomas",
+          "location": "[Stage](maplocation://blue/stage)",
+          "description": "Emiliana Simon-Thomas, Science Director, Greater Good Science Center, UC Berkeley, will be speaking on The Science of Happiness: How social connection, positivity, and resilience improve health and wellbeing. At the Stage."
+        },
+        {
+          "id": "08e1e0b5-cc88-5cd7-a832-eeb6ee887cc6",
+          "startTime": "2026-06-29T18:00:00-07:00",
+          "endTime": "2026-06-29T19:30:00-07:00",
+          "title": "Sonora Taqueria Pop Up at the Vista Lounge",
+          "location": "[Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "Join us for an adults-only street taco night at the Vista Lodge! Complete with beer, wine, and margaritas. Sign up and pay at the store. **Spots are limited.**"
+        },
+        {
+          "id": "a7b3e400-31f6-5f5b-943e-6f9683d1e44a",
+          "startTime": "2026-06-29T20:15:00-07:00",
+          "endTime": "2026-06-29T21:15:00-07:00",
+          "title": "Family Disco Bingo",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Wear disco clothes (or any funky clothes) and bring 50 cents for a card. Oh, and be prepared to boogie down!!!"
+        },
+        {
+          "id": "3df30c9f-6081-5bce-99f5-36633ea94dbc",
+          "startTime": "2026-06-30T10:00:00-07:00",
+          "endTime": "2026-06-30T10:45:00-07:00",
+          "title": "Preparing for College and How to Become a Staffer Q&A",
+          "location": "[Teen Lodge](maplocation://gold/teen_lodge)",
+          "description": "For parents of teens and any interested teens. Join your Grizzly Bear Directors at the Teen Lodge to hear about personal experiences of some of our veteran staffers on how they got into college and joined the Lair Staff."
+        },
+        {
+          "id": "1de8df1d-5ee3-5b7d-b292-9487a6379812",
+          "startTime": "2026-06-30T18:00:00-07:00",
+          "endTime": null,
+          "title": "Vista Lounge Dinner!",
+          "location": "[Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "Join us for an adults-only, gourmet prime rib dinner with all the trimmings at Vista Lodge. Arrive at 6:00 PM for wine and appetizers; dinner is served at 6:30 PM. Sign up and pay in advance at the store. **Seating is limited.**"
+        },
+        {
+          "id": "9052fb32-cec1-59eb-83fb-36178b3041bd",
+          "startTime": "2026-06-30T20:15:00-07:00",
+          "endTime": "2026-06-30T21:15:00-07:00",
+          "title": "Guest Speaker Alexei Yurchak",
+          "location": "[Stage](maplocation://blue/stage)",
+          "description": "Join Guest Speaker Alexei Yurchak, UC Berkeley Professor of Anthropology, for a fascinating talk: \"When Laughter Becomes Resistance.\" Explore the surprising ways people in restrictive political contexts \u2014 from the Soviet Union to post-Soviet Russia, Ukraine, Belarus and Georgia, to China and the former Yugoslavia, and also to the United States \u2014 used irony, absurdist humor, and creative performance to resist political control. At the Stage."
+        },
+        {
+          "id": "81e941ff-a0d8-5f44-9918-033062cfa706",
+          "startTime": "2026-07-01T18:00:00-07:00",
+          "endTime": null,
+          "title": "Vista Lounge Dinner!",
+          "location": "[Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "Join us for an adults-only, gourmet prime rib dinner with all the trimmings at Vista Lodge. Arrive at 6:00 PM for wine and appetizers; dinner is served at 6:30 PM. Sign up and pay in advance at the store. **Seating is limited.**"
+        },
+        {
+          "id": "7d841c22-a04f-5514-ad8e-8eda1f1ffa64",
+          "startTime": "2026-07-01T20:15:00-07:00",
+          "endTime": "2026-07-01T21:00:00-07:00",
+          "title": "Blue Revue!",
+          "location": "[Stage](maplocation://blue/stage)",
+          "description": "Join Music Director, Alison, and other camp celebrities at the stage for our camper talent show."
+        },
+        {
+          "id": "914a13e4-581a-5ada-8edb-0ce12cd45030",
+          "startTime": "2026-07-01T21:30:00-07:00",
+          "endTime": "2026-07-01T23:30:00-07:00",
+          "title": "ADULT DANCE",
+          "location": "[Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "ADULT DANCE at Vista Lodge! Mix, mingle and boogie with your fellow campers from Blue, Gold, and Oski. Beer and wine provided -- 21+ only."
+        },
+        {
+          "id": "fa659c90-2d75-56ec-8d72-a9128fef3879",
+          "startTime": "2026-07-01T21:30:00-07:00",
+          "endTime": "2026-07-01T22:30:00-07:00",
+          "title": "Stargazing",
+          "location": "[Sports Courts](maplocation://blue/sports_courts)",
+          "description": "Stargazing at the Blue tennis courts. Dress warmly."
+        },
+        {
+          "id": "2865cbf8-5263-581e-b509-a97e987c29f6",
+          "startTime": "2026-07-02T20:00:00-07:00",
+          "endTime": null,
+          "title": "Pinecone Contest",
+          "location": "[Stage](maplocation://blue/stage)",
+          "description": "Pinecone Contest - at the Stage, right before the Hoot!"
+        },
+        {
+          "id": "9be6e8e6-3b36-52c4-b33f-6a1885f4b752",
+          "startTime": "2026-07-02T20:15:00-07:00",
+          "endTime": "2026-07-02T21:15:00-07:00",
+          "title": "The Legendary Hootenanny",
+          "location": "[Stage](maplocation://blue/stage)",
+          "description": "The Legendary Hootenanny at the Stage. Yee-haw!"
+        },
+        {
+          "id": "5fff4f67-99e5-5199-9424-11b4c53532e2",
+          "startTime": "2026-07-03T10:00:00-07:00",
+          "endTime": "2026-07-03T11:30:00-07:00",
+          "title": "Women's Softball Big Game",
+          "location": "Mike Koll Softball Field at Camp Gold",
+          "description": "Gold vs. Blue at the Mike Koll Softball Field at Camp Gold."
+        },
+        {
+          "id": "36ba2908-edc2-52ab-97c2-431429da4ab5",
+          "startTime": "2026-07-03T13:30:00-07:00",
+          "endTime": "2026-07-03T15:00:00-07:00",
+          "title": "Men's Softball Big Game",
+          "location": "Mike Koll Softball Field at Camp Gold",
+          "description": "Gold vs. Blue at the Mike Koll Softball Field at Camp Gold."
+        },
+        {
+          "id": "41a8c3b1-b1e7-59b9-b39b-9e4a6dd15a80",
+          "startTime": "2026-07-03T20:00:00-07:00",
+          "endTime": null,
+          "title": "Athletic Awards and Tie Dye Runway Show",
+          "location": "[Stage](maplocation://blue/stage)",
+          "description": "At the stage right before the Friday Night Show"
+        },
+        {
+          "id": "a83116b9-8694-54b4-abc5-6b72c173b4f3",
+          "startTime": "2026-07-03T20:15:00-07:00",
+          "endTime": null,
+          "title": "The World Famous Friday Night Campfire Show",
+          "location": "[Stage](maplocation://blue/stage)",
+          "description": "The World Famous Friday Night Campfire Show at the Stage!"
+        },
+        {
+          "id": "f6099665-662f-5072-96ae-acdbb2b0650a",
+          "startTime": "2026-07-04T10:00:00-07:00",
+          "endTime": null,
+          "title": "Check Out",
+          "location": null,
+          "description": "We'll be closing our gate at 10:00 AM to prepare for next week's campers. Drive carefully and we'll see you next year! Don't forget to post and share your photos using #lairofthegoldenbear"
+        }
+      ]
+    },
+    {
+      "name": "Meals",
+      "banner": null,
+      "events": [
+        {
+          "id": "c3688166-956b-5173-bce6-9ec23eeff3c2",
+          "startTime": "2026-06-27T18:00:00-07:00",
+          "endTime": null,
+          "title": "Family Style Dinner",
+          "location": null,
+          "description": "Family Style Dinner"
+        },
+        {
+          "id": "cb8a97b3-bc1d-5b5d-8b16-d4f3ed83e4ef",
+          "startTime": "2026-06-28T07:15:00-07:00",
+          "endTime": null,
+          "title": "Early Risers!",
+          "location": "[Lodge](maplocation://blue/lodge)",
+          "description": "We've got freshly brewed hot coffee, tea, and cocoa at the Blue Lodge."
+        },
+        {
+          "id": "2d960d4b-ab58-5ddd-8b7b-0c355e75292d",
+          "startTime": "2026-06-28T07:30:00-07:00",
+          "endTime": null,
+          "title": "Hiking Table",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Hiking Table in the Dining Hall opens for making lunches."
+        },
+        {
+          "id": "e3d4ff07-9ded-5e41-a0c5-63270382478d",
+          "startTime": "2026-06-28T08:00:00-07:00",
+          "endTime": "2026-06-28T09:00:00-07:00",
+          "title": "Breakfast Buffet",
+          "location": null,
+          "description": "Breakfast Buffet"
+        },
+        {
+          "id": "a23588d8-684c-50af-aa0e-55a14a589211",
+          "startTime": "2026-06-28T09:15:00-07:00",
+          "endTime": "2026-06-28T10:00:00-07:00",
+          "title": "Allergy and Dietary Needs Meeting",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Meet with our Kitchen team in the Dining Hall to discuss any special dietary needs."
+        },
+        {
+          "id": "b3ddfc58-6f5b-5c6f-9789-b1f61c5523a2",
+          "startTime": "2026-06-28T12:15:00-07:00",
+          "endTime": "2026-06-28T13:15:00-07:00",
+          "title": "Lunch Buffet",
+          "location": null,
+          "description": "Lunch Buffet"
+        },
+        {
+          "id": "adaec4d8-b36c-5f77-be58-4daa99563a47",
+          "startTime": "2026-06-28T18:00:00-07:00",
+          "endTime": null,
+          "title": "Family Style Dinner",
+          "location": null,
+          "description": "Family Style Dinner"
+        },
+        {
+          "id": "ab0fb9b9-b8b1-572b-8c18-d4518621d26b",
+          "startTime": "2026-06-29T07:15:00-07:00",
+          "endTime": null,
+          "title": "Early Risers!",
+          "location": "[Lodge](maplocation://blue/lodge)",
+          "description": "We've got freshly brewed hot coffee, tea, and cocoa at the Blue Lodge."
+        },
+        {
+          "id": "fd3a78f2-9a17-50be-a214-40b13ed1a895",
+          "startTime": "2026-06-29T07:30:00-07:00",
+          "endTime": null,
+          "title": "Hiking Table",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Hiking Table in the Dining Hall opens for making lunches."
+        },
+        {
+          "id": "6e9b199e-3d36-50dd-89c1-a7ab12df3545",
+          "startTime": "2026-06-29T08:00:00-07:00",
+          "endTime": "2026-06-29T09:00:00-07:00",
+          "title": "Breakfast Buffet",
+          "location": null,
+          "description": "Breakfast Buffet"
+        },
+        {
+          "id": "0c6f5cff-5553-5ee6-9059-9ad75e60afda",
+          "startTime": "2026-06-29T12:15:00-07:00",
+          "endTime": "2026-06-29T13:15:00-07:00",
+          "title": "Lunch Buffet",
+          "location": null,
+          "description": "Lunch Buffet"
+        },
+        {
+          "id": "d8635592-1453-5c7d-8337-68721ffcbaf4",
+          "startTime": "2026-06-29T18:00:00-07:00",
+          "endTime": null,
+          "title": "Family Style Dinner",
+          "location": null,
+          "description": "Family Style Dinner"
+        },
+        {
+          "id": "a0c175b3-6465-595f-bc3f-ad0ffce3b74c",
+          "startTime": "2026-06-30T07:15:00-07:00",
+          "endTime": null,
+          "title": "Early Risers!",
+          "location": "[Lodge](maplocation://blue/lodge)",
+          "description": "We've got freshly brewed hot coffee, tea, and cocoa at the Blue Lodge."
+        },
+        {
+          "id": "51378579-feb4-5e27-9359-5547e4130c1d",
+          "startTime": "2026-06-30T07:30:00-07:00",
+          "endTime": null,
+          "title": "Hiking Table",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Hiking Table in the Dining Hall opens for making lunches."
+        },
+        {
+          "id": "2f28f1fc-95f5-57d5-8d17-661a02ac8b66",
+          "startTime": "2026-06-30T08:00:00-07:00",
+          "endTime": "2026-06-30T09:00:00-07:00",
+          "title": "Breakfast Buffet",
+          "location": null,
+          "description": "Breakfast Buffet"
+        },
+        {
+          "id": "b305b5ad-4cac-52df-bd78-0e8415a24583",
+          "startTime": "2026-06-30T12:15:00-07:00",
+          "endTime": "2026-06-30T13:15:00-07:00",
+          "title": "Lunch Buffet",
+          "location": null,
+          "description": "Lunch Buffet"
+        },
+        {
+          "id": "420a091a-3e4f-58f8-b685-a5c157776e14",
+          "startTime": "2026-06-30T18:00:00-07:00",
+          "endTime": null,
+          "title": "Family Style Dinner",
+          "location": null,
+          "description": "Family Style Dinner"
+        },
+        {
+          "id": "5d8548fd-cfa3-5658-83e3-ff6ac43124a3",
+          "startTime": "2026-07-01T07:15:00-07:00",
+          "endTime": null,
+          "title": "Early Risers!",
+          "location": "[Lodge](maplocation://blue/lodge)",
+          "description": "We've got freshly brewed hot coffee, tea, and cocoa at the Blue Lodge."
+        },
+        {
+          "id": "c04df7b5-d52c-52f9-9c67-14ae5c00c74c",
+          "startTime": "2026-07-01T07:30:00-07:00",
+          "endTime": null,
+          "title": "Hiking Table",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Hiking Table in the Dining Hall opens for making lunches."
+        },
+        {
+          "id": "eeccf1ff-f034-55f2-b00d-d372a8032d2b",
+          "startTime": "2026-07-01T08:00:00-07:00",
+          "endTime": "2026-07-01T09:00:00-07:00",
+          "title": "Breakfast Buffet",
+          "location": null,
+          "description": "Breakfast Buffet"
+        },
+        {
+          "id": "3c08f0a1-76a3-5fb9-af1f-8a19196e49e7",
+          "startTime": "2026-07-01T12:15:00-07:00",
+          "endTime": "2026-07-01T13:15:00-07:00",
+          "title": "Lunch Buffet",
+          "location": null,
+          "description": "Lunch Buffet"
+        },
+        {
+          "id": "359b19fe-7228-5844-84b8-ed7326a2fd40",
+          "startTime": "2026-07-01T18:00:00-07:00",
+          "endTime": null,
+          "title": "Family Style Dinner",
+          "location": null,
+          "description": "Family Style Dinner"
+        },
+        {
+          "id": "92484929-3f6a-586c-9409-16eb62ebf89e",
+          "startTime": "2026-07-02T07:15:00-07:00",
+          "endTime": null,
+          "title": "Early Risers!",
+          "location": "[Lodge](maplocation://blue/lodge)",
+          "description": "We've got freshly brewed hot coffee, tea, and cocoa at the Blue Lodge."
+        },
+        {
+          "id": "ea2bfaed-e192-59ac-85df-4439f0d69d59",
+          "startTime": "2026-07-02T07:30:00-07:00",
+          "endTime": null,
+          "title": "Hiking Table",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Hiking Table in the Dining Hall opens for making lunches."
+        },
+        {
+          "id": "1d23729c-3067-56c9-b42d-02212656f638",
+          "startTime": "2026-07-02T08:00:00-07:00",
+          "endTime": "2026-07-02T09:00:00-07:00",
+          "title": "Breakfast Buffet",
+          "location": null,
+          "description": "Breakfast Buffet"
+        },
+        {
+          "id": "1ca83fd9-959a-5d84-ba5b-b12c7461c0f8",
+          "startTime": "2026-07-02T12:15:00-07:00",
+          "endTime": "2026-07-02T13:15:00-07:00",
+          "title": "Lunch Buffet",
+          "location": null,
+          "description": "Lunch Buffet"
+        },
+        {
+          "id": "79cf1bdf-3442-5776-9ed0-79984610e539",
+          "startTime": "2026-07-02T18:00:00-07:00",
+          "endTime": null,
+          "title": "Family Style Dinner",
+          "location": null,
+          "description": "Family Style Dinner"
+        },
+        {
+          "id": "5c8e3180-5237-5c6e-921d-fd0212c097cf",
+          "startTime": "2026-07-03T07:15:00-07:00",
+          "endTime": null,
+          "title": "Early Risers!",
+          "location": "[Lodge](maplocation://blue/lodge)",
+          "description": "We've got freshly brewed hot coffee, tea, and cocoa at the Blue Lodge."
+        },
+        {
+          "id": "c7e288c4-b54c-552b-8e52-97a04c377119",
+          "startTime": "2026-07-03T07:30:00-07:00",
+          "endTime": null,
+          "title": "Hiking Table",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Hiking Table in the Dining Hall opens for making lunches."
+        },
+        {
+          "id": "72cffe85-055d-5c88-806b-50edbb61b924",
+          "startTime": "2026-07-03T08:00:00-07:00",
+          "endTime": "2026-07-03T09:00:00-07:00",
+          "title": "Breakfast Buffet",
+          "location": null,
+          "description": "Breakfast Buffet"
+        },
+        {
+          "id": "53aefba7-aa1d-5f36-bd92-780b319d305d",
+          "startTime": "2026-07-03T12:15:00-07:00",
+          "endTime": "2026-07-03T13:15:00-07:00",
+          "title": "Lunch Buffet",
+          "location": null,
+          "description": "Lunch Buffet"
+        },
+        {
+          "id": "264f7215-339c-54bc-81f8-a0675c401be8",
+          "startTime": "2026-07-03T18:00:00-07:00",
+          "endTime": null,
+          "title": "Family Style Dinner",
+          "location": null,
+          "description": "Family Style Dinner"
+        },
+        {
+          "id": "93073c7b-6827-5a3d-9e06-7a16aead6689",
+          "startTime": "2026-07-04T07:15:00-07:00",
+          "endTime": null,
+          "title": "Early Risers!",
+          "location": "[Lodge](maplocation://blue/lodge)",
+          "description": "We've got freshly brewed hot coffee, tea, and cocoa at the Blue Lodge."
+        },
+        {
+          "id": "b1f73503-8b35-563e-90dc-50116c8f1e32",
+          "startTime": "2026-07-04T08:00:00-07:00",
+          "endTime": "2026-07-04T09:00:00-07:00",
+          "title": "Breakfast Buffet",
+          "location": null,
+          "description": "Breakfast Buffet"
+        }
+      ]
+    },
+    {
+      "name": "Burger Shack",
+      "banner": null,
+      "events": [
+        {
+          "id": "d506fc8d-2cdc-523a-bfc0-cc0c1914f7c2",
+          "startTime": "2026-06-27T19:00:00-07:00",
+          "endTime": "2026-06-27T22:00:00-07:00",
+          "title": "Burger Shack",
+          "location": null,
+          "description": "Open each evening for burgers, fries, and other late night snacks. \\*Closed during shows Saturday, Thursday, and Friday."
+        },
+        {
+          "id": "b0a74c51-23ef-5f45-9004-337d54127b70",
+          "startTime": "2026-06-28T19:00:00-07:00",
+          "endTime": "2026-06-28T22:00:00-07:00",
+          "title": "Burger Shack",
+          "location": null,
+          "description": "Open each evening for burgers, fries, and other late night snacks. \\*Closed during shows Saturday, Thursday, and Friday."
+        },
+        {
+          "id": "69ecb8f0-1c73-5703-ad00-2b862e764cc3",
+          "startTime": "2026-06-29T19:00:00-07:00",
+          "endTime": "2026-06-29T22:00:00-07:00",
+          "title": "Burger Shack",
+          "location": null,
+          "description": "Open each evening for burgers, fries, and other late night snacks. \\*Closed during shows Saturday, Thursday, and Friday."
+        },
+        {
+          "id": "f86f8252-a4e7-5d3a-beb8-ee2a4ba852af",
+          "startTime": "2026-06-30T19:00:00-07:00",
+          "endTime": "2026-06-30T22:00:00-07:00",
+          "title": "Burger Shack",
+          "location": null,
+          "description": "Open each evening for burgers, fries, and other late night snacks. \\*Closed during shows Saturday, Thursday, and Friday."
+        },
+        {
+          "id": "30bba8cd-f976-52de-9fb1-179860a5e598",
+          "startTime": "2026-07-01T19:00:00-07:00",
+          "endTime": "2026-07-01T22:00:00-07:00",
+          "title": "Burger Shack",
+          "location": null,
+          "description": "Open each evening for burgers, fries, and other late night snacks. \\*Closed during shows Saturday, Thursday, and Friday."
+        },
+        {
+          "id": "209bd549-3cac-526a-bcc1-603c3d319f24",
+          "startTime": "2026-07-02T19:00:00-07:00",
+          "endTime": "2026-07-02T22:00:00-07:00",
+          "title": "Burger Shack",
+          "location": null,
+          "description": "Open each evening for burgers, fries, and other late night snacks. \\*Closed during shows Saturday, Thursday, and Friday."
+        },
+        {
+          "id": "ccac0a86-d623-5893-b569-3042fe49e4ee",
+          "startTime": "2026-07-03T19:00:00-07:00",
+          "endTime": "2026-07-03T22:00:00-07:00",
+          "title": "Burger Shack",
+          "location": null,
+          "description": "Open each evening for burgers, fries, and other late night snacks. \\*Closed during shows Saturday, Thursday, and Friday."
+        }
+      ]
+    },
+    {
+      "name": "Store",
+      "banner": null,
+      "events": [
+        {
+          "id": "caa84346-f877-514f-9241-4eadb1ab7224",
+          "startTime": "2026-06-27T08:00:00-07:00",
+          "endTime": "2026-06-27T10:00:00-07:00",
+          "title": "Store Open (Extended Hours)",
+          "location": "[Store](maplocation://blue/store)",
+          "description": "Saturday extended hours. BONUS HOUR available to get a jump on paid program sign ups for the week including horseback riding (age 7 and up), archery (age 9 and up), Vista Lounge Dinner, Sonora Taqueria, and late arrival check-ins."
+        },
+        {
+          "id": "2b8eced5-1add-58ec-9ab0-77bc233a484b",
+          "startTime": "2026-06-27T15:00:00-07:00",
+          "endTime": "2026-06-27T18:00:00-07:00",
+          "title": "Store Open (Extended Hours)",
+          "location": "[Store](maplocation://blue/store)",
+          "description": "Saturday extended hours. BONUS HOUR available to get a jump on paid program sign ups for the week including horseback riding (age 7 and up), archery (age 9 and up), Vista Lounge Dinner, Sonora Taqueria, and late arrival check-ins."
+        },
+        {
+          "id": "12cd798d-61cb-515d-a45f-73f994450f7c",
+          "startTime": "2026-06-27T19:00:00-07:00",
+          "endTime": "2026-06-27T20:00:00-07:00",
+          "title": "Store Open (Bonus Hour)",
+          "location": "[Store](maplocation://blue/store)",
+          "description": "Saturday extended hours. BONUS HOUR available to get a jump on paid program sign ups for the week including horseback riding (age 7 and up), archery (age 9 and up), Vista Lounge Dinner, Sonora Taqueria, and late arrival check-ins."
+        },
+        {
+          "id": "90976ef8-8fbc-5d3f-8227-a71ea275fd4e",
+          "startTime": "2026-06-28T09:00:00-07:00",
+          "endTime": "2026-06-28T11:45:00-07:00",
+          "title": "Store Open",
+          "location": "[Store](maplocation://blue/store)",
+          "description": "The store will be open daily. Come on by to sign up for paid programs, shop our awesome new Lair wear, and grab a snack!"
+        },
+        {
+          "id": "d70a35f6-e9b8-5957-bf17-e1efee52d542",
+          "startTime": "2026-06-28T13:30:00-07:00",
+          "endTime": "2026-06-28T17:30:00-07:00",
+          "title": "Store Open",
+          "location": "[Store](maplocation://blue/store)",
+          "description": "The store will be open daily. Come on by to sign up for paid programs, shop our awesome new Lair wear, and grab a snack!"
+        },
+        {
+          "id": "65179273-8d96-5dd3-8b0d-c8df9decba29",
+          "startTime": "2026-06-29T09:00:00-07:00",
+          "endTime": "2026-06-29T11:45:00-07:00",
+          "title": "Store Open",
+          "location": "[Store](maplocation://blue/store)",
+          "description": "The store will be open daily. Come on by to sign up for paid programs, shop our awesome new Lair wear, and grab a snack!"
+        },
+        {
+          "id": "a392cf5f-d009-5f32-b262-9a50b95a9694",
+          "startTime": "2026-06-29T13:30:00-07:00",
+          "endTime": "2026-06-29T17:30:00-07:00",
+          "title": "Store Open",
+          "location": "[Store](maplocation://blue/store)",
+          "description": "The store will be open daily. Come on by to sign up for paid programs, shop our awesome new Lair wear, and grab a snack!"
+        },
+        {
+          "id": "ea61fcae-9159-5647-baf7-3c9aa0c28729",
+          "startTime": "2026-06-30T09:00:00-07:00",
+          "endTime": "2026-06-30T11:45:00-07:00",
+          "title": "Store Open",
+          "location": "[Store](maplocation://blue/store)",
+          "description": "The store will be open daily. Come on by to sign up for paid programs, shop our awesome new Lair wear, and grab a snack!"
+        },
+        {
+          "id": "f3381dc1-2dd1-50d5-98fe-e4e7b7942b0a",
+          "startTime": "2026-06-30T13:30:00-07:00",
+          "endTime": "2026-06-30T17:30:00-07:00",
+          "title": "Store Open",
+          "location": "[Store](maplocation://blue/store)",
+          "description": "The store will be open daily. Come on by to sign up for paid programs, shop our awesome new Lair wear, and grab a snack!"
+        },
+        {
+          "id": "93175696-c257-51d3-a136-a5b71092965b",
+          "startTime": "2026-07-01T09:00:00-07:00",
+          "endTime": "2026-07-01T11:45:00-07:00",
+          "title": "Store Open",
+          "location": "[Store](maplocation://blue/store)",
+          "description": "The store will be open daily. Come on by to sign up for paid programs, shop our awesome new Lair wear, and grab a snack!"
+        },
+        {
+          "id": "5aebc68e-6e51-5a3c-a995-6a32bc838585",
+          "startTime": "2026-07-01T13:30:00-07:00",
+          "endTime": "2026-07-01T17:30:00-07:00",
+          "title": "Store Open",
+          "location": "[Store](maplocation://blue/store)",
+          "description": "The store will be open daily. Come on by to sign up for paid programs, shop our awesome new Lair wear, and grab a snack!"
+        },
+        {
+          "id": "cad222b3-d38c-5214-ba39-ba6100da3b06",
+          "startTime": "2026-07-02T09:00:00-07:00",
+          "endTime": "2026-07-02T11:45:00-07:00",
+          "title": "Store Open",
+          "location": "[Store](maplocation://blue/store)",
+          "description": "The store will be open daily. Come on by to sign up for paid programs, shop our awesome new Lair wear, and grab a snack!"
+        },
+        {
+          "id": "18c91fa6-bdcf-57f5-abb2-4dfb1d38eae1",
+          "startTime": "2026-07-02T13:30:00-07:00",
+          "endTime": "2026-07-02T17:30:00-07:00",
+          "title": "Store Open",
+          "location": "[Store](maplocation://blue/store)",
+          "description": "The store will be open daily. Come on by to sign up for paid programs, shop our awesome new Lair wear, and grab a snack!"
+        },
+        {
+          "id": "7a5b5cf7-afd9-54f4-8b3e-b5bd2f86caba",
+          "startTime": "2026-07-03T09:00:00-07:00",
+          "endTime": "2026-07-03T11:45:00-07:00",
+          "title": "Store Open",
+          "location": "[Store](maplocation://blue/store)",
+          "description": "The store will be open daily. Come on by to sign up for paid programs, shop our awesome new Lair wear, and grab a snack!"
+        },
+        {
+          "id": "8211ebb8-02c3-5158-8638-089986f33f20",
+          "startTime": "2026-07-03T13:30:00-07:00",
+          "endTime": "2026-07-03T17:30:00-07:00",
+          "title": "Store Open",
+          "location": "[Store](maplocation://blue/store)",
+          "description": "The store will be open daily. Come on by to sign up for paid programs, shop our awesome new Lair wear, and grab a snack!"
+        }
+      ]
+    },
+    {
+      "name": "Wellness/Massage",
+      "banner": null,
+      "events": [
+        {
+          "id": "4ff8a70a-d61a-5af9-8a3b-40f37ce13a30",
+          "startTime": "2026-06-28T09:30:00-07:00",
+          "endTime": "2026-06-28T12:00:00-07:00",
+          "title": "Massage Office Hours",
+          "location": "[Wellness Center](maplocation://gold/wellness_center)",
+          "description": "Massage office hours. Stop by the Wellness Center to sign up for services and ask questions about the Wellness program."
+        },
+        {
+          "id": "96032502-4bdb-5207-bca1-17c0e49a5224",
+          "startTime": "2026-06-28T13:30:00-07:00",
+          "endTime": "2026-06-28T15:00:00-07:00",
+          "title": "Massage Office Hours",
+          "location": "[Wellness Center](maplocation://gold/wellness_center)",
+          "description": "Massage office hours. Stop by the Wellness Center to sign up for services and ask questions about the Wellness program."
+        },
+        {
+          "id": "5b4ec4aa-de1a-58c9-8313-254df23e7eb7",
+          "startTime": "2026-06-29T09:30:00-07:00",
+          "endTime": "2026-06-29T12:00:00-07:00",
+          "title": "Massage Office Hours",
+          "location": "[Wellness Center](maplocation://gold/wellness_center)",
+          "description": "Massage office hours. Stop by the Wellness Center to sign up for services and ask questions about the Wellness program."
+        },
+        {
+          "id": "d761e435-a505-5495-a298-b36d5c94e16f",
+          "startTime": "2026-06-29T13:30:00-07:00",
+          "endTime": "2026-06-29T15:00:00-07:00",
+          "title": "Massage Office Hours",
+          "location": "[Wellness Center](maplocation://gold/wellness_center)",
+          "description": "Massage office hours. Stop by the Wellness Center to sign up for services and ask questions about the Wellness program."
+        },
+        {
+          "id": "d2cdfa0e-4ef6-5f04-ab0f-e731e70c42e1",
+          "startTime": "2026-06-30T09:30:00-07:00",
+          "endTime": "2026-06-30T12:00:00-07:00",
+          "title": "Massage Office Hours",
+          "location": "[Wellness Center](maplocation://gold/wellness_center)",
+          "description": "Massage office hours. Stop by the Wellness Center to sign up for services and ask questions about the Wellness program."
+        },
+        {
+          "id": "41de1e85-90af-561b-9a05-1c1db98b974f",
+          "startTime": "2026-06-30T13:30:00-07:00",
+          "endTime": "2026-06-30T15:00:00-07:00",
+          "title": "Massage Office Hours",
+          "location": "[Wellness Center](maplocation://gold/wellness_center)",
+          "description": "Massage office hours. Stop by the Wellness Center to sign up for services and ask questions about the Wellness program."
+        },
+        {
+          "id": "a34fa2bd-1757-5983-947a-d03d3dcd3cf0",
+          "startTime": "2026-07-01T09:30:00-07:00",
+          "endTime": "2026-07-01T12:00:00-07:00",
+          "title": "Massage Office Hours",
+          "location": "[Wellness Center](maplocation://gold/wellness_center)",
+          "description": "Massage office hours. Stop by the Wellness Center to sign up for services and ask questions about the Wellness program."
+        }
+      ]
+    },
+    {
+      "name": "Medical",
+      "banner": null,
+      "events": [
+        {
+          "id": "a8fe1d60-bc4e-51f4-9b51-dbf0d061a189",
+          "startTime": "2026-06-27T08:00:00-07:00",
+          "endTime": "2026-06-28T00:00:00-07:00",
+          "title": "Emergency Medical Technician Available",
+          "location": null,
+          "description": "Emergency Medical Technician available from 8:00AM-Midnight daily."
+        },
+        {
+          "id": "49be567c-251a-59e8-a986-27bf67c79adb",
+          "startTime": "2026-06-28T08:00:00-07:00",
+          "endTime": "2026-06-29T00:00:00-07:00",
+          "title": "Emergency Medical Technician Available",
+          "location": null,
+          "description": "Emergency Medical Technician available from 8:00AM-Midnight daily."
+        },
+        {
+          "id": "6fb0f8d2-c444-5440-bbeb-abfe4aefc030",
+          "startTime": "2026-06-29T08:00:00-07:00",
+          "endTime": "2026-06-30T00:00:00-07:00",
+          "title": "Emergency Medical Technician Available",
+          "location": null,
+          "description": "Emergency Medical Technician available from 8:00AM-Midnight daily."
+        },
+        {
+          "id": "290b8ce8-bfda-5faf-8964-33cbc56f1cbf",
+          "startTime": "2026-06-29T09:00:00-07:00",
+          "endTime": "2026-06-29T12:00:00-07:00",
+          "title": "Nurse Practitioner Hours",
+          "location": "Bruised Bears Building in Camp Gold",
+          "description": "Visit our Nurse Practitioner at the Bruised Bears Building in Camp Gold located near the [Pool](maplocation://gold/pool) and [Cub Corral](maplocation://gold/cub_corral)."
+        },
+        {
+          "id": "046fba9e-0511-5acc-9b7a-0cc4561b8e2c",
+          "startTime": "2026-06-29T13:00:00-07:00",
+          "endTime": "2026-06-29T16:00:00-07:00",
+          "title": "Nurse Practitioner Hours",
+          "location": "Bruised Bears Building in Camp Gold",
+          "description": "Visit our Nurse Practitioner at the Bruised Bears Building in Camp Gold located near the [Pool](maplocation://gold/pool) and [Cub Corral](maplocation://gold/cub_corral)."
+        },
+        {
+          "id": "21862fb1-7a8e-51d3-8eaf-4d98a0e726fc",
+          "startTime": "2026-06-30T08:00:00-07:00",
+          "endTime": "2026-07-01T00:00:00-07:00",
+          "title": "Emergency Medical Technician Available",
+          "location": null,
+          "description": "Emergency Medical Technician available from 8:00AM-Midnight daily."
+        },
+        {
+          "id": "785ec9fd-c53d-5c75-8240-2dc2f6ef4e27",
+          "startTime": "2026-06-30T09:00:00-07:00",
+          "endTime": "2026-06-30T12:00:00-07:00",
+          "title": "Nurse Practitioner Hours",
+          "location": "Bruised Bears Building in Camp Gold",
+          "description": "Visit our Nurse Practitioner at the Bruised Bears Building in Camp Gold located near the [Pool](maplocation://gold/pool) and [Cub Corral](maplocation://gold/cub_corral)."
+        },
+        {
+          "id": "b7fd8e3f-ed49-5743-b4f1-050e19aaeb51",
+          "startTime": "2026-06-30T13:00:00-07:00",
+          "endTime": "2026-06-30T16:00:00-07:00",
+          "title": "Nurse Practitioner Hours",
+          "location": "Bruised Bears Building in Camp Gold",
+          "description": "Visit our Nurse Practitioner at the Bruised Bears Building in Camp Gold located near the [Pool](maplocation://gold/pool) and [Cub Corral](maplocation://gold/cub_corral)."
+        },
+        {
+          "id": "e60f5fcf-4223-5b30-87d8-653678a4a95f",
+          "startTime": "2026-07-01T08:00:00-07:00",
+          "endTime": "2026-07-02T00:00:00-07:00",
+          "title": "Emergency Medical Technician Available",
+          "location": null,
+          "description": "Emergency Medical Technician available from 8:00AM-Midnight daily."
+        },
+        {
+          "id": "d1cf0e10-682a-57b2-9f57-6acbd9249f6f",
+          "startTime": "2026-07-01T09:00:00-07:00",
+          "endTime": "2026-07-01T12:00:00-07:00",
+          "title": "Nurse Practitioner Hours",
+          "location": "Bruised Bears Building in Camp Gold",
+          "description": "Visit our Nurse Practitioner at the Bruised Bears Building in Camp Gold located near the [Pool](maplocation://gold/pool) and [Cub Corral](maplocation://gold/cub_corral)."
+        },
+        {
+          "id": "04efa538-8225-571e-ad11-e46c9cbbc042",
+          "startTime": "2026-07-01T13:00:00-07:00",
+          "endTime": "2026-07-01T16:00:00-07:00",
+          "title": "Nurse Practitioner Hours",
+          "location": "Bruised Bears Building in Camp Gold",
+          "description": "Visit our Nurse Practitioner at the Bruised Bears Building in Camp Gold located near the [Pool](maplocation://gold/pool) and [Cub Corral](maplocation://gold/cub_corral)."
+        },
+        {
+          "id": "90517c2a-1ab6-5427-bfa2-d32321b7ccaa",
+          "startTime": "2026-07-02T08:00:00-07:00",
+          "endTime": "2026-07-03T00:00:00-07:00",
+          "title": "Emergency Medical Technician Available",
+          "location": null,
+          "description": "Emergency Medical Technician available from 8:00AM-Midnight daily."
+        },
+        {
+          "id": "8fbbde37-73d7-5b13-9acc-d808302d71ad",
+          "startTime": "2026-07-02T09:00:00-07:00",
+          "endTime": "2026-07-02T12:00:00-07:00",
+          "title": "Nurse Practitioner Hours",
+          "location": "Bruised Bears Building in Camp Gold",
+          "description": "Visit our Nurse Practitioner at the Bruised Bears Building in Camp Gold located near the [Pool](maplocation://gold/pool) and [Cub Corral](maplocation://gold/cub_corral)."
+        },
+        {
+          "id": "cf9180d4-8327-58bf-8e92-82b902b06e3d",
+          "startTime": "2026-07-02T13:00:00-07:00",
+          "endTime": "2026-07-02T16:00:00-07:00",
+          "title": "Nurse Practitioner Hours",
+          "location": "Bruised Bears Building in Camp Gold",
+          "description": "Visit our Nurse Practitioner at the Bruised Bears Building in Camp Gold located near the [Pool](maplocation://gold/pool) and [Cub Corral](maplocation://gold/cub_corral)."
+        },
+        {
+          "id": "62ac9e1d-f1b0-5db7-8406-ca06f4c10f44",
+          "startTime": "2026-07-03T08:00:00-07:00",
+          "endTime": "2026-07-04T00:00:00-07:00",
+          "title": "Emergency Medical Technician Available",
+          "location": null,
+          "description": "Emergency Medical Technician available from 8:00AM-Midnight daily."
+        },
+        {
+          "id": "78337075-5790-58a9-bdcd-b7c438d07d87",
+          "startTime": "2026-07-03T09:00:00-07:00",
+          "endTime": "2026-07-03T12:00:00-07:00",
+          "title": "Nurse Practitioner Hours",
+          "location": "Bruised Bears Building in Camp Gold",
+          "description": "Visit our Nurse Practitioner at the Bruised Bears Building in Camp Gold located near the [Pool](maplocation://gold/pool) and [Cub Corral](maplocation://gold/cub_corral)."
+        },
+        {
+          "id": "1555034e-e275-5359-b2d4-ab64a9969fd7",
+          "startTime": "2026-07-03T13:00:00-07:00",
+          "endTime": "2026-07-03T16:00:00-07:00",
+          "title": "Nurse Practitioner Hours",
+          "location": "Bruised Bears Building in Camp Gold",
+          "description": "Visit our Nurse Practitioner at the Bruised Bears Building in Camp Gold located near the [Pool](maplocation://gold/pool) and [Cub Corral](maplocation://gold/cub_corral)."
+        }
+      ]
+    },
+    {
+      "name": "Pool",
+      "banner": "Adult Swim is the last 15 minutes of every hour",
+      "events": [
+        {
+          "id": "a7dceeb4-f39a-50af-a1dc-1f089106bcd0",
+          "startTime": "2026-06-27T15:00:00-07:00",
+          "endTime": "2026-06-27T17:00:00-07:00",
+          "title": "Free Swim",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": null
+        },
+        {
+          "id": "a0230416-78ee-5796-b950-88914c913b1f",
+          "startTime": "2026-06-28T10:00:00-07:00",
+          "endTime": "2026-06-28T12:00:00-07:00",
+          "title": "Free Swim",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": null
+        },
+        {
+          "id": "43ee5907-c0e5-5255-8f8e-7790e28fa44a",
+          "startTime": "2026-06-28T13:30:00-07:00",
+          "endTime": "2026-06-28T14:00:00-07:00",
+          "title": "Free Swim",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": null
+        },
+        {
+          "id": "951cd124-e0c6-5618-bdfb-5c8bf8e8d0b2",
+          "startTime": "2026-06-28T14:00:00-07:00",
+          "endTime": "2026-06-28T14:30:00-07:00",
+          "title": "Wacky Sunday Pool Show!",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": "Bring the whole family to the pool for some silliness, pool games, and root beer floats."
+        },
+        {
+          "id": "85edd3e8-d51e-5da5-b482-cc26a228fe6b",
+          "startTime": "2026-06-28T14:30:00-07:00",
+          "endTime": "2026-06-28T15:00:00-07:00",
+          "title": "Innertube Water Polo Match",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": "Campers vs. Staffers at the pool. C'mon campers, first chance to show off your athleticism. 18 and over please."
+        },
+        {
+          "id": "39f97b73-30d3-5143-a309-46c7b83cc23f",
+          "startTime": "2026-06-28T15:00:00-07:00",
+          "endTime": "2026-06-28T17:00:00-07:00",
+          "title": "Free Swim",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": null
+        },
+        {
+          "id": "f4dc2a09-5e66-5f71-8eb2-80ac1fe3d03d",
+          "startTime": "2026-06-29T07:30:00-07:00",
+          "endTime": "2026-06-29T08:15:00-07:00",
+          "title": "Lap Swim",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": null
+        },
+        {
+          "id": "2a93b90d-6946-5199-93c4-4020ea359e20",
+          "startTime": "2026-06-29T09:30:00-07:00",
+          "endTime": "2026-06-29T10:30:00-07:00",
+          "title": "Water Aerobics",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": "Join one of your lifeguards for a fun workout in the water."
+        },
+        {
+          "id": "9db6118d-0f8a-5043-b1eb-d18ab81f8ab8",
+          "startTime": "2026-06-29T10:30:00-07:00",
+          "endTime": "2026-06-29T12:00:00-07:00",
+          "title": "Free Swim",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": null
+        },
+        {
+          "id": "523e61d3-7a37-5c50-9a08-b18fa16b25cb",
+          "startTime": "2026-06-29T13:30:00-07:00",
+          "endTime": "2026-06-29T17:00:00-07:00",
+          "title": "Free Swim",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": null
+        },
+        {
+          "id": "f9720b0c-da3a-55a0-8f86-287876f2c1f5",
+          "startTime": "2026-06-30T07:30:00-07:00",
+          "endTime": "2026-06-30T08:15:00-07:00",
+          "title": "Lap Swim",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": null
+        },
+        {
+          "id": "44a4be8a-6c4a-5df1-b848-b8500b6f7771",
+          "startTime": "2026-06-30T09:30:00-07:00",
+          "endTime": "2026-06-30T10:30:00-07:00",
+          "title": "Water Aerobics",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": "Join one of your lifeguards for a fun workout in the water."
+        },
+        {
+          "id": "b603ce2b-0a25-5e57-90cd-c272b4dcc58e",
+          "startTime": "2026-06-30T10:30:00-07:00",
+          "endTime": "2026-06-30T12:00:00-07:00",
+          "title": "Free Swim",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": null
+        },
+        {
+          "id": "9c1855ed-ed0d-5a6f-9ecd-20b9fefcc74f",
+          "startTime": "2026-06-30T13:30:00-07:00",
+          "endTime": "2026-06-30T17:00:00-07:00",
+          "title": "Free Swim",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": null
+        },
+        {
+          "id": "4208e9ba-2bf0-53a0-b41f-8007c7c602b2",
+          "startTime": "2026-07-01T07:30:00-07:00",
+          "endTime": "2026-07-01T08:15:00-07:00",
+          "title": "Lap Swim",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": null
+        },
+        {
+          "id": "8a9cd475-d2ee-5000-bd06-93af60dcac0d",
+          "startTime": "2026-07-01T09:30:00-07:00",
+          "endTime": "2026-07-01T10:30:00-07:00",
+          "title": "Water Aerobics",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": "Join one of your lifeguards for a fun workout in the water."
+        },
+        {
+          "id": "5e89bb28-635e-5757-a06e-06f1e4f40e6d",
+          "startTime": "2026-07-01T10:30:00-07:00",
+          "endTime": "2026-07-01T12:00:00-07:00",
+          "title": "Free Swim",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": null
+        },
+        {
+          "id": "13986895-8856-5bb9-8b8c-87924faa7a78",
+          "startTime": "2026-07-01T13:30:00-07:00",
+          "endTime": "2026-07-01T17:00:00-07:00",
+          "title": "Free Swim",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": null
+        },
+        {
+          "id": "d5857997-0b8c-59c9-a16a-52640ca7a194",
+          "startTime": "2026-07-02T07:30:00-07:00",
+          "endTime": "2026-07-02T08:15:00-07:00",
+          "title": "Lap Swim",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": null
+        },
+        {
+          "id": "0c04f75c-ceef-595b-9f86-4d4011a76236",
+          "startTime": "2026-07-02T09:30:00-07:00",
+          "endTime": "2026-07-02T10:30:00-07:00",
+          "title": "Water Aerobics",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": "Join one of your lifeguards for a fun workout in the water."
+        },
+        {
+          "id": "6f70ad2f-5809-5af3-b6e7-9c5ed87fd8e4",
+          "startTime": "2026-07-02T10:30:00-07:00",
+          "endTime": "2026-07-02T12:00:00-07:00",
+          "title": "Free Swim",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": null
+        },
+        {
+          "id": "7bd770e6-47e9-56cf-8e18-9b4bda5b0d7a",
+          "startTime": "2026-07-02T13:30:00-07:00",
+          "endTime": "2026-07-02T17:00:00-07:00",
+          "title": "Free Swim",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": null
+        },
+        {
+          "id": "e136a5cd-6233-569d-88e9-942d4cd9cf93",
+          "startTime": "2026-07-03T07:30:00-07:00",
+          "endTime": "2026-07-03T08:15:00-07:00",
+          "title": "Lap Swim",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": null
+        },
+        {
+          "id": "358998ce-3d64-54eb-bfa0-13d1f78bcecf",
+          "startTime": "2026-07-03T09:30:00-07:00",
+          "endTime": "2026-07-03T10:30:00-07:00",
+          "title": "Water Aerobics",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": "Join one of your lifeguards for a fun workout in the water."
+        },
+        {
+          "id": "4eeb320a-9823-5834-bfb1-9c537d36fed1",
+          "startTime": "2026-07-03T10:30:00-07:00",
+          "endTime": "2026-07-03T12:00:00-07:00",
+          "title": "Free Swim",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": null
+        },
+        {
+          "id": "760993bc-757d-585f-9a60-b8caa1486e29",
+          "startTime": "2026-07-03T13:30:00-07:00",
+          "endTime": "2026-07-03T17:00:00-07:00",
+          "title": "Free Swim",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": null
+        }
+      ]
+    },
+    {
+      "name": "Athletics",
+      "banner": "Check out the full schedule to view activities and programs that combine nature, adventure, and sports!\nTournament brackets posted in Blue Lodge Starting Sunday. Complete tournaments by Friday at 6pm.",
+      "events": [
+        {
+          "id": "febba652-f876-5319-bb14-3986f15be7bc",
+          "startTime": "2026-06-28T10:00:00-07:00",
+          "endTime": "2026-06-28T10:45:00-07:00",
+          "title": "Athletics introductory meeting",
+          "location": "[Lodge](maplocation://blue/lodge)",
+          "description": "Meet with the Athletic Director, Ryan, and discuss all the fun athletic programs and activities available including how the tournaments work. Meet in the lodge."
+        },
+        {
+          "id": "70c4b6b8-8227-5e78-a1bc-6568840e7a44",
+          "startTime": "2026-06-28T13:00:00-07:00",
+          "endTime": "2026-06-28T14:00:00-07:00",
+          "title": "Women's softball practice",
+          "location": "Mike Koll Softball Field at Camp Gold",
+          "description": null
+        },
+        {
+          "id": "1d81f85a-6532-5a54-941f-fbe86ab66a1b",
+          "startTime": "2026-06-28T14:30:00-07:00",
+          "endTime": "2026-06-28T15:00:00-07:00",
+          "title": "Innertube Water Polo",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": "At the pool - Adult Campers vs. Staff."
+        },
+        {
+          "id": "44754e98-6a66-5a1b-88c9-7f875256aa37",
+          "startTime": "2026-06-28T15:30:00-07:00",
+          "endTime": "2026-06-28T16:30:00-07:00",
+          "title": "Women's Camper vs. Staff Volleyball",
+          "location": "Blue Volleyball Court",
+          "description": null
+        },
+        {
+          "id": "286e56e6-bdb5-5b06-bc72-b4234692cbaa",
+          "startTime": "2026-06-28T19:00:00-07:00",
+          "endTime": "2026-06-28T20:00:00-07:00",
+          "title": "Adult tennis clinic",
+          "location": "Tennis Courts",
+          "description": "Meet at the tennis courts."
+        },
+        {
+          "id": "12414c1e-b6e6-575e-bdc0-180d9286d205",
+          "startTime": "2026-06-29T07:15:00-07:00",
+          "endTime": "2026-06-29T08:15:00-07:00",
+          "title": "Sunrise jog to the lake",
+          "location": "In front of the [Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Meet with your Athletic Director in front of the Dining Hall for a quick stretch followed by a beautiful 3 mile round trip jog."
+        },
+        {
+          "id": "3fc0e38b-5777-526d-a803-0cdf3b898ceb",
+          "startTime": "2026-06-29T09:30:00-07:00",
+          "endTime": "2026-06-29T23:00:00-07:00",
+          "title": "Pickleball Clinic",
+          "location": "Tennis Courts",
+          "description": "Meet at the courts with a partner."
+        },
+        {
+          "id": "e9fd14bb-7348-5b32-8c8e-b292c8a48a8e",
+          "startTime": "2026-06-29T13:00:00-07:00",
+          "endTime": "2026-06-29T14:00:00-07:00",
+          "title": "Tri-Camp Softball Game!",
+          "location": "Mike Koll Softball Field at Camp Gold",
+          "description": "All are welcome! Teams will be determined at the field. Meet at the Mike Koll Softball Field at Camp Gold. (Must be 16 & up to play)"
+        },
+        {
+          "id": "5113e038-46a1-5bb6-9b9a-e6670328522a",
+          "startTime": "2026-06-29T16:00:00-07:00",
+          "endTime": "2026-06-29T17:00:00-07:00",
+          "title": "Volleyball clinic",
+          "location": "Volleyball Court",
+          "description": "Meet at the Volleyball Court."
+        },
+        {
+          "id": "2f17b29a-4970-5fac-b21b-2240023d9d51",
+          "startTime": "2026-06-29T18:45:00-07:00",
+          "endTime": "2026-06-29T20:00:00-07:00",
+          "title": "Men's softball practice",
+          "location": "Mike Koll Softball Field at Camp Gold",
+          "description": null
+        },
+        {
+          "id": "b8c3cedb-30d1-58b1-ba16-7d7c3382acdc",
+          "startTime": "2026-06-30T07:15:00-07:00",
+          "endTime": "2026-06-30T08:15:00-07:00",
+          "title": "Sunrise Stroll to the lake!",
+          "location": "In front of the [Store](maplocation://blue/store)",
+          "description": "Join a Blue staffer in front of the store for a morning stroll to the lake and maybe even a morning cold plunge! (about 3 miles round trip)"
+        },
+        {
+          "id": "a9a425b9-26e1-5ec3-ae0a-97eaa7927a52",
+          "startTime": "2026-06-30T10:00:00-07:00",
+          "endTime": "2026-06-30T12:00:00-07:00",
+          "title": "Pickleball Tournament",
+          "location": "Tennis Courts",
+          "description": "Meet at the courts with a partner."
+        },
+        {
+          "id": "3e4da82f-3b75-564f-818f-024d01602f2a",
+          "startTime": "2026-06-30T13:15:00-07:00",
+          "endTime": "2026-06-30T14:30:00-07:00",
+          "title": "Women's Camper vs. Staff Softball Game",
+          "location": "Mike Koll Softball Field at Camp Gold",
+          "description": null
+        },
+        {
+          "id": "8da16302-3009-58a2-8434-46191e3b6fd6",
+          "startTime": "2026-06-30T15:30:00-07:00",
+          "endTime": "2026-06-30T16:30:00-07:00",
+          "title": "Men's Camper vs. Staff 3 on 3 half court Basketball Game",
+          "location": "Basketball Court",
+          "description": "At the basketball court."
+        },
+        {
+          "id": "72b201c9-4926-5cb0-8650-6a34613ed76e",
+          "startTime": "2026-07-01T07:15:00-07:00",
+          "endTime": "2026-07-01T08:15:00-07:00",
+          "title": "Sunrise jog to the lake!",
+          "location": "In front of the [Store](maplocation://blue/store)",
+          "description": "Join a Blue staffer in front of the store for a quick stretch followed by a beautiful jog to the lake (about 3 miles round trip)."
+        },
+        {
+          "id": "9f052d14-e10f-551b-82f0-7886345c6adc",
+          "startTime": "2026-07-02T07:15:00-07:00",
+          "endTime": "2026-07-02T08:15:00-07:00",
+          "title": "Sunrise Stroll to the lake!",
+          "location": "In front of the [Store](maplocation://blue/store)",
+          "description": "Join a Blue staffer in front of the store for a morning stroll to the lake and maybe even a morning cold plunge! (about 3 miles round trip)"
+        },
+        {
+          "id": "fde3d9f1-dba3-5381-81bc-52e7495ba3ec",
+          "startTime": "2026-07-02T10:00:00-07:00",
+          "endTime": "2026-07-02T11:00:00-07:00",
+          "title": "Women's Blue vs. Gold Volleyball",
+          "location": "Blue",
+          "description": null
+        },
+        {
+          "id": "87b7bf37-f5b4-5f22-b82b-ad29e05c8cd1",
+          "startTime": "2026-07-02T11:00:00-07:00",
+          "endTime": "2026-07-02T12:00:00-07:00",
+          "title": "Men's Blue vs. Gold Volleyball",
+          "location": "Blue",
+          "description": null
+        },
+        {
+          "id": "1c065674-1d7a-5b58-a644-7c464ceaa4fb",
+          "startTime": "2026-07-02T13:15:00-07:00",
+          "endTime": "2026-07-02T15:00:00-07:00",
+          "title": "Men's Camper vs. Staff Softball Game",
+          "location": "Mike Koll Softball Field at Camp Gold",
+          "description": null
+        },
+        {
+          "id": "d49f2ee1-374a-5d29-b7e8-1a42483cbe1a",
+          "startTime": "2026-07-02T18:45:00-07:00",
+          "endTime": "2026-07-02T19:45:00-07:00",
+          "title": "Men's Camper vs. Staff Volleyball",
+          "location": null,
+          "description": null
+        },
+        {
+          "id": "635c5bd0-0483-54d7-b2ac-7555eb576bb8",
+          "startTime": "2026-07-03T07:00:00-07:00",
+          "endTime": "2026-07-03T08:15:00-07:00",
+          "title": "Family Fun Run!",
+          "location": "In front of the Blue [Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Come meet your Athletic Directors from all three camps for a family run to the lake and back! Meet in front of the Blue Dining Hall. End at the Gold Softball Field. Walkers welcome!"
+        },
+        {
+          "id": "18f62bf5-e546-5358-8159-86d0338c3e75",
+          "startTime": "2026-07-03T10:00:00-07:00",
+          "endTime": "2026-07-03T11:30:00-07:00",
+          "title": "Women's Softball BIG GAME",
+          "location": "Gold",
+          "description": "Blue vs. Gold at Gold. Come cheer on your ladies! This game is but once a year and there will be mini muffins and mimosas! (21 & over)"
+        },
+        {
+          "id": "bff7545f-c5da-56fc-9fe0-70fcd6c00ef0",
+          "startTime": "2026-07-03T13:30:00-07:00",
+          "endTime": "2026-07-03T15:00:00-07:00",
+          "title": "Men's Softball BIG GAME",
+          "location": "Mike Koll Softball Field at Camp Gold",
+          "description": "Blue vs. Gold at the Mike Koll Softball Field at Camp Gold. Cheer for your camp and enjoy a beer (21 & over) and a hot dog (anyone can have a hot dog, silly)!"
+        },
+        {
+          "id": "cf51535d-f5e7-5bd6-a5ac-38ed43e3b0f9",
+          "startTime": "2026-07-03T20:00:00-07:00",
+          "endTime": null,
+          "title": "Athletic Awards and Tie Dye Runway Show",
+          "location": "[Stage](maplocation://blue/stage)",
+          "description": "At the stage right before the Friday Night Show."
+        }
+      ]
+    },
+    {
+      "name": "Archery",
+      "banner": null,
+      "events": [
+        {
+          "id": "711f704b-e582-51b3-b06e-7183bca2a6ff",
+          "startTime": "2026-06-29T10:00:00-07:00",
+          "endTime": "2026-06-29T11:00:00-07:00",
+          "title": "Archery Lesson",
+          "location": "Archery range near the [Teen Lodge](maplocation://gold/teen_lodge)",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
+        },
+        {
+          "id": "0c71c47c-4ee7-5af2-9da4-6869ec6edfec",
+          "startTime": "2026-06-29T15:00:00-07:00",
+          "endTime": "2026-06-29T16:00:00-07:00",
+          "title": "Archery Lesson",
+          "location": "Archery range near the [Teen Lodge](maplocation://gold/teen_lodge)",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
+        },
+        {
+          "id": "d50ce8bd-ba5e-5725-8e98-23662d53f147",
+          "startTime": "2026-06-30T10:00:00-07:00",
+          "endTime": "2026-06-30T11:00:00-07:00",
+          "title": "Archery Lesson",
+          "location": "Archery range near the [Teen Lodge](maplocation://gold/teen_lodge)",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
+        },
+        {
+          "id": "2ec0a2df-befd-5db5-bbab-a8d7e45c3a8a",
+          "startTime": "2026-06-30T15:00:00-07:00",
+          "endTime": "2026-06-30T16:00:00-07:00",
+          "title": "Archery Lesson",
+          "location": "Archery range near the [Teen Lodge](maplocation://gold/teen_lodge)",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
+        },
+        {
+          "id": "92c30be7-2a2b-53e5-a19e-cc10ed36c964",
+          "startTime": "2026-07-01T10:00:00-07:00",
+          "endTime": "2026-07-01T11:00:00-07:00",
+          "title": "Archery Lesson",
+          "location": "Archery range near the [Teen Lodge](maplocation://gold/teen_lodge)",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
+        },
+        {
+          "id": "9c36393b-a022-53e6-a29a-bb9c99ade709",
+          "startTime": "2026-07-01T15:00:00-07:00",
+          "endTime": "2026-07-01T16:00:00-07:00",
+          "title": "Archery Lesson",
+          "location": "Archery range near the [Teen Lodge](maplocation://gold/teen_lodge)",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
+        },
+        {
+          "id": "838e6216-527f-53f5-aa66-1c0858973e51",
+          "startTime": "2026-07-02T10:00:00-07:00",
+          "endTime": "2026-07-02T11:00:00-07:00",
+          "title": "Archery Lesson",
+          "location": "Archery range near the [Teen Lodge](maplocation://gold/teen_lodge)",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
+        },
+        {
+          "id": "0ced5982-590b-58b1-9a98-01499ffca585",
+          "startTime": "2026-07-02T15:00:00-07:00",
+          "endTime": "2026-07-02T16:00:00-07:00",
+          "title": "Archery Lesson",
+          "location": "Archery range near the [Teen Lodge](maplocation://gold/teen_lodge)",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
+        },
+        {
+          "id": "502b84bf-9591-588e-8e4f-145eaf10b07e",
+          "startTime": "2026-07-03T10:00:00-07:00",
+          "endTime": "2026-07-03T11:00:00-07:00",
+          "title": "Archery Lesson",
+          "location": "Archery range near the [Teen Lodge](maplocation://gold/teen_lodge)",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
+        },
+        {
+          "id": "7a03bae4-9edd-5333-aff4-d29aa5861eab",
+          "startTime": "2026-07-03T15:00:00-07:00",
+          "endTime": "2026-07-03T16:00:00-07:00",
+          "title": "Archery Lesson",
+          "location": "Archery range near the [Teen Lodge](maplocation://gold/teen_lodge)",
+          "description": "Please sign up and pay in store. Lessons will be held at the archery range near the teen lodge. Openings limited to 12 campers per lesson, ages 9 and up."
+        }
+      ]
+    },
+    {
+      "name": "Nature/Hiking",
+      "banner": "Sign-up and pay at the store for Stand Up Paddle Boarding, Kayaking, and Horseback Riding.\n*Sign-ups for hikes will be available at the Nature Shed. Sign-ups are required for all hiking programs*\nPlease be prepared to drive for hiking programs.",
+      "events": [
+        {
+          "id": "fefb6281-02a3-5626-9970-252f0166502b",
+          "startTime": "2026-06-28T10:00:00-07:00",
+          "endTime": "2026-06-28T10:30:00-07:00",
+          "title": "Introductory hiking meeting",
+          "location": "Nature Shed",
+          "description": "Introductory hiking meeting with your Nature Directors. Meet at the Nature Shed to discuss the hikes for the week."
+        },
+        {
+          "id": "cd4e644b-9c98-5556-be29-0d15eb771e8a",
+          "startTime": "2026-06-28T19:15:00-07:00",
+          "endTime": "2026-06-28T21:00:00-07:00",
+          "title": "Sunset Wine and Cheese \"Hike\"",
+          "location": "[Volleyball Court](maplocation://oski/volleyball_court)",
+          "description": "(Ages 21+). It's not truly a hike. More of a short stroll, but the view is gorgeous! Wear warm clothes, bring a cup, and meet at the Volleyball Court with your car."
+        },
+        {
+          "id": "daec17eb-35e9-5af1-aad4-3281af015503",
+          "startTime": "2026-06-29T08:30:00-07:00",
+          "endTime": "2026-06-29T16:00:00-07:00",
+          "title": "All Day Hike!",
+          "location": "[Lair Office](maplocation://blue/lair_office)",
+          "description": "Pack a lunch and plenty of water. Meet in front of the Lair Office with your car."
+        },
+        {
+          "id": "f27facd0-39a7-5ae9-8c7d-ea87943b5a19",
+          "startTime": "2026-06-30T07:00:00-07:00",
+          "endTime": "2026-06-30T08:15:00-07:00",
+          "title": "Stand Up Paddle Boarding at Pinecrest Lake!",
+          "location": "Pinecrest Lake",
+          "description": "Sessions are one hour each. Participants must be at least 12 years old, and minors must be accompanied by an adult. Swim experience required. To participate, campers must book and pay at the store ($25), sign a waiver, and receive a slip with their time slot and directions. Bring this slip with you to the lake. The meeting spot is located at the far-right entrance to the lake, near the fishing dock. See you there!"
+        },
+        {
+          "id": "acd0892d-d0eb-5779-8c00-2a6c5f7ff63f",
+          "startTime": "2026-06-30T08:15:00-07:00",
+          "endTime": "2026-06-30T09:30:00-07:00",
+          "title": "Stand Up Paddle Boarding at Pinecrest Lake!",
+          "location": "Pinecrest Lake",
+          "description": "Sessions are one hour each. Participants must be at least 12 years old, and minors must be accompanied by an adult. Swim experience required. To participate, campers must book and pay at the store ($25), sign a waiver, and receive a slip with their time slot and directions. Bring this slip with you to the lake. The meeting spot is located at the far-right entrance to the lake, near the fishing dock. See you there!"
+        },
+        {
+          "id": "f68238ef-a613-53fa-916f-f0ac6481d333",
+          "startTime": "2026-06-30T10:30:00-07:00",
+          "endTime": "2026-06-30T16:00:00-07:00",
+          "title": "Half Day Hike!",
+          "location": "[Lair Office](maplocation://blue/lair_office)",
+          "description": "Pack a lunch and plenty of water. Meet in front of the Lair Office with your car."
+        },
+        {
+          "id": "a7be52cb-ed7e-5291-86d6-06df0e4e21f1",
+          "startTime": "2026-07-01T08:30:00-07:00",
+          "endTime": "2026-07-01T16:00:00-07:00",
+          "title": "All Day Hike!",
+          "location": "[Lair Office](maplocation://blue/lair_office)",
+          "description": "Pack a lunch and plenty of water. Meet in front of the Lair Office with your car."
+        },
+        {
+          "id": "48c4e320-9d16-5028-a695-16f053d97dd9",
+          "startTime": "2026-07-01T21:30:00-07:00",
+          "endTime": "2026-07-01T22:30:00-07:00",
+          "title": "Stargazing",
+          "location": "Blue Tennis Courts",
+          "description": "Stargazing at the Blue tennis courts with your Nature Director. Dress warmly."
+        },
+        {
+          "id": "03629eaf-cd22-575b-a7ad-07ba9a3c7637",
+          "startTime": "2026-07-02T07:00:00-07:00",
+          "endTime": "2026-07-02T08:15:00-07:00",
+          "title": "Stand Up Paddle Boarding at Pinecrest Lake!",
+          "location": "Pinecrest Lake",
+          "description": "Sessions are one hour each. Participants must be at least 12 years old, and minors must be accompanied by an adult. Swim experience required. To participate, campers must book and pay at the store ($25), sign a waiver, and receive a slip with their time slot and directions. Bring this slip with you to the lake. The meeting spot is located at the far-right entrance to the lake, near the fishing dock. See you there!"
+        },
+        {
+          "id": "9937f884-19a8-509c-9699-716577a40b44",
+          "startTime": "2026-07-02T08:15:00-07:00",
+          "endTime": "2026-07-02T09:30:00-07:00",
+          "title": "Stand Up Paddle Boarding at Pinecrest Lake!",
+          "location": "Pinecrest Lake",
+          "description": "Sessions are one hour each. Participants must be at least 12 years old, and minors must be accompanied by an adult. Swim experience required. To participate, campers must book and pay at the store ($25), sign a waiver, and receive a slip with their time slot and directions. Bring this slip with you to the lake. The meeting spot is located at the far-right entrance to the lake, near the fishing dock. See you there!"
+        },
+        {
+          "id": "dfc680a9-1248-5b5b-8a2c-d08efc10a9c6",
+          "startTime": "2026-07-02T10:30:00-07:00",
+          "endTime": "2026-07-02T16:00:00-07:00",
+          "title": "Half Day Hike!",
+          "location": "[Lair Office](maplocation://blue/lair_office)",
+          "description": "Pack a lunch and plenty of water. Meet in front of the Lair Office with your car."
+        },
+        {
+          "id": "5bd4fba4-e374-5f7f-ad2c-0a5d79fc4e0a",
+          "startTime": "2026-07-02T20:00:00-07:00",
+          "endTime": null,
+          "title": "Pinecone Contest",
+          "location": "[Stage](maplocation://blue/stage)",
+          "description": "Pinecone contest at the stage right before the Hoot!"
+        },
+        {
+          "id": "571a1c16-7a0e-5823-a3e9-8135178d92c8",
+          "startTime": "2026-07-03T07:45:00-07:00",
+          "endTime": "2026-07-03T09:15:00-07:00",
+          "title": "Morning Kayaking on the lake",
+          "location": "[Lair Office](maplocation://blue/lair_office)",
+          "description": "Please sign up and pay at the Store. Spots are limited. Ages 16 and up, and minors must be accompanied by an adult. Meet in front of the Lair Office with your car."
+        }
+      ]
+    },
+    {
+      "name": "Arts and Crafts",
+      "banner": "Lanyards close at 11:15 AM and 3:30 PM daily. Please dress appropriately -- art is messy work!\nPottery is for ages 8+ unless accompanied by an adult - Closed toe shoes are required for pottery.",
+      "events": [
+        {
+          "id": "4e0cb616-3746-563a-8a0e-976c98496255",
+          "startTime": "2026-06-28T09:45:00-07:00",
+          "endTime": "2026-06-28T10:00:00-07:00",
+          "title": "Pottery demonstration",
+          "location": "[Art Grove](maplocation://blue/art_grove)",
+          "description": "The rest of the Art Grove will be closed at that time. Dress appropriately!"
+        },
+        {
+          "id": "724f5c2d-1034-5be3-a030-1340b98bc5b3",
+          "startTime": "2026-06-28T10:00:00-07:00",
+          "endTime": "2026-06-28T10:15:00-07:00",
+          "title": "Meet the Art Grove Crew",
+          "location": "[Art Grove](maplocation://blue/art_grove)",
+          "description": "Meet the Art Grove Crew for an introduction to the Art Grove."
+        },
+        {
+          "id": "ea009db4-02d3-5666-8d92-837adacb1f66",
+          "startTime": "2026-06-28T15:00:00-07:00",
+          "endTime": "2026-06-28T16:30:00-07:00",
+          "title": "Art Grove open!",
+          "location": "[Art Grove](maplocation://blue/art_grove)",
+          "description": "Explore the Art Grove and envision your art for the week!"
+        },
+        {
+          "id": "b652580d-e40a-5549-80f0-4eac7587a0a9",
+          "startTime": "2026-06-29T09:45:00-07:00",
+          "endTime": "2026-06-29T11:45:00-07:00",
+          "title": "Open for pottery and tile/bisqueware painting",
+          "location": "[Art Grove](maplocation://blue/art_grove)",
+          "description": "Open for pottery and tile/bisqueware painting at the Art Grove. Buy tiles and clay at the store. Get started on your friendship bracelets as well!"
+        },
+        {
+          "id": "b524abff-543f-5ed8-936d-975f3d7d0818",
+          "startTime": "2026-06-29T13:30:00-07:00",
+          "endTime": "2026-06-29T16:00:00-07:00",
+          "title": "Open for pottery and tile/bisqueware painting",
+          "location": "[Art Grove](maplocation://blue/art_grove)",
+          "description": "Open for pottery and tile/bisqueware painting at the Art Grove. Buy tiles and clay at the store. Get started on your friendship bracelets as well!"
+        },
+        {
+          "id": "223bbcb1-ffce-5721-a7a3-5658a1d3d77f",
+          "startTime": "2026-06-29T16:00:00-07:00",
+          "endTime": "2026-06-29T17:00:00-07:00",
+          "title": "Adult Art Hour",
+          "location": "[Art Grove](maplocation://blue/art_grove)",
+          "description": "Come join your Art Directors for a relaxing art session with some complimentary wine (21 \\& over) and cheese."
+        },
+        {
+          "id": "9b5490ae-134a-5ec1-9ba9-a1faae914b32",
+          "startTime": "2026-06-30T09:45:00-07:00",
+          "endTime": "2026-06-30T11:45:00-07:00",
+          "title": "Tie-dye, pottery, lanyards and friendship bracelets",
+          "location": "[Art Grove](maplocation://blue/art_grove)",
+          "description": "Tie-dye, pottery, lanyards and friendship bracelets all day! Buy your shirts and other items at the store and come by the Art Grove to tie-dye with the art crew!"
+        },
+        {
+          "id": "bb0d76be-82be-5d22-bae3-fd2b7c4d5e5d",
+          "startTime": "2026-06-30T10:00:00-07:00",
+          "endTime": null,
+          "title": "Tie-dye demonstration",
+          "location": "[Art Grove](maplocation://blue/art_grove)",
+          "description": "Learn the ways of Lair Tie-dye."
+        },
+        {
+          "id": "4d5a9e43-314c-57d2-aa39-e4483e6d5e1b",
+          "startTime": "2026-06-30T10:45:00-07:00",
+          "endTime": "2026-06-30T11:45:00-07:00",
+          "title": "Focus on pottery and bisqueware",
+          "location": "[Art Grove](maplocation://blue/art_grove)",
+          "description": "Focus on pottery and bisqueware - get it glazed and finished! Today is the last day to purchase clay and start any pottery projects!"
+        },
+        {
+          "id": "f6df88a7-945c-52e6-8be8-92de1aebd8f3",
+          "startTime": "2026-06-30T13:30:00-07:00",
+          "endTime": "2026-06-30T16:00:00-07:00",
+          "title": "Tie-dye, pottery, lanyards and friendship bracelets",
+          "location": "[Art Grove](maplocation://blue/art_grove)",
+          "description": "Tie-dye, pottery, lanyards and friendship bracelets all day! Buy your shirts and other items at the store and come by the Art Grove to tie-dye with the art crew!"
+        },
+        {
+          "id": "57a5e398-8b56-53d0-a543-cdfcea83ee79",
+          "startTime": "2026-07-01T09:45:00-07:00",
+          "endTime": "2026-07-01T11:45:00-07:00",
+          "title": "Glazing, tie-dye, and friendship bracelets",
+          "location": "[Art Grove](maplocation://blue/art_grove)",
+          "description": "Glazing, tie-dye, and friendship bracelets continue. Don't forget to bring finished projects to the kiln! All pottery projects must be finished before 4pm!"
+        },
+        {
+          "id": "7a3757fa-3697-5553-b93e-4b1aa1029fa5",
+          "startTime": "2026-07-01T13:30:00-07:00",
+          "endTime": "2026-07-01T16:00:00-07:00",
+          "title": "Glazing, tie-dye, and friendship bracelets",
+          "location": "[Art Grove](maplocation://blue/art_grove)",
+          "description": "Glazing, tie-dye, and friendship bracelets continue. Don't forget to bring finished projects to the kiln! All pottery projects must be finished before 4pm!"
+        },
+        {
+          "id": "331b99cb-1468-5e37-b0eb-6528bb2b556c",
+          "startTime": "2026-07-02T09:45:00-07:00",
+          "endTime": "2026-07-02T11:45:00-07:00",
+          "title": "T-shirt painting, lanyards and tie-dye",
+          "location": "[Art Grove](maplocation://blue/art_grove)",
+          "description": "T-shirt painting supplies will be available and you can continue working on your lanyards and tie-dye."
+        },
+        {
+          "id": "ab14cff7-b336-5f5e-9efb-488317aff725",
+          "startTime": "2026-07-02T13:30:00-07:00",
+          "endTime": "2026-07-02T16:00:00-07:00",
+          "title": "T-shirt painting, lanyards and tie-dye",
+          "location": "[Art Grove](maplocation://blue/art_grove)",
+          "description": "T-shirt painting supplies will be available and you can continue working on your lanyards and tie-dye."
+        },
+        {
+          "id": "4932e468-ba8a-577f-af35-e26f9dfbd07f",
+          "startTime": "2026-07-02T16:00:00-07:00",
+          "endTime": "2026-07-02T17:00:00-07:00",
+          "title": "Adult Art Hour",
+          "location": "[Art Grove](maplocation://blue/art_grove)",
+          "description": "Come join your Art Directors for a relaxing art session with some complimentary wine and cheese. (21 \\& over)"
+        },
+        {
+          "id": "d196923e-890a-5657-bc0f-0006709ff21e",
+          "startTime": "2026-07-03T09:45:00-07:00",
+          "endTime": "2026-07-03T11:45:00-07:00",
+          "title": "Henna Day!",
+          "location": "[Art Grove](maplocation://blue/art_grove)",
+          "description": "Have a member of our Art Crew henna a cool design on your arm (with parent or guardian permission). Today is also the last day to finish all art projects. Remember to pick them up - finished ceramics will be located next to the kiln shed."
+        },
+        {
+          "id": "6d667022-087c-5013-9155-7796357532a4",
+          "startTime": "2026-07-03T13:30:00-07:00",
+          "endTime": "2026-07-03T16:00:00-07:00",
+          "title": "Henna Day!",
+          "location": "[Art Grove](maplocation://blue/art_grove)",
+          "description": "Have a member of our Art Crew henna a cool design on your arm (with parent or guardian permission). Today is also the last day to finish all art projects. Remember to pick them up - finished ceramics will be located next to the kiln shed."
+        },
+        {
+          "id": "8323c95f-f69b-5c31-bdbc-d54ce21e6957",
+          "startTime": "2026-07-04T08:00:00-07:00",
+          "endTime": "2026-07-04T10:00:00-07:00",
+          "title": "Pick up artwork",
+          "location": "Kiln Shelf next to the [Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Pick up artwork on the kiln shelf next to the Dining Hall."
+        }
+      ]
+    },
+    {
+      "name": "Music",
+      "banner": null,
+      "events": [
+        {
+          "id": "0fe623a4-a088-5f81-a8c1-6434b47227de",
+          "startTime": "2026-06-28T10:30:00-07:00",
+          "endTime": "2026-06-28T11:30:00-07:00",
+          "title": "Creekside!",
+          "location": "[Creekside](maplocation://blue/creekside)",
+          "description": "Come join your Camp Blue Music Director, Alison, for relaxing music and inspirational readings by the creek. Camper participation encouraged."
+        },
+        {
+          "id": "259976f8-826a-5f7d-8747-8e07e03eaacf",
+          "startTime": "2026-06-30T11:00:00-07:00",
+          "endTime": "2026-06-30T12:00:00-07:00",
+          "title": "Auditions for the Blue Revue",
+          "location": "[Stage](maplocation://blue/stage)",
+          "description": "Auditions for the Blue Revue (camper talent show) at the Stage."
+        },
+        {
+          "id": "c02167d1-5cfd-5fa9-addc-ca34d722b3e0",
+          "startTime": "2026-06-30T16:00:00-07:00",
+          "endTime": "2026-06-30T17:00:00-07:00",
+          "title": "Adult Sing-along",
+          "location": "[Stage](maplocation://blue/stage)",
+          "description": "Adult Sing-along at the Stage! Bring your instruments, voices, enthusiasm, and we'll bring the song books."
+        },
+        {
+          "id": "7c5cfa8f-7ed7-5a05-a375-377dad967aaa",
+          "startTime": "2026-07-01T09:30:00-07:00",
+          "endTime": "2026-07-01T10:30:00-07:00",
+          "title": "Sing-along with the Teddy Bears and Cub Corral",
+          "location": "[Cub Corral](maplocation://blue/cub_corral)",
+          "description": "Sing-along with the Teddy Bears and Cub Corral at the Blue Cub Corral!"
+        },
+        {
+          "id": "90f6f34d-469c-5af7-a8fb-d04500692197",
+          "startTime": "2026-07-01T14:00:00-07:00",
+          "endTime": "2026-07-01T15:00:00-07:00",
+          "title": "Auditions for the Blue Revue",
+          "location": "[Stage](maplocation://blue/stage)",
+          "description": "Auditions for the Blue Revue (camper talent show) at the Stage."
+        },
+        {
+          "id": "3e42fac9-8b7c-5157-b714-6ff5ca98503d",
+          "startTime": "2026-07-01T20:15:00-07:00",
+          "endTime": "2026-07-01T21:15:00-07:00",
+          "title": "Blue Revue!",
+          "location": "[Stage](maplocation://blue/stage)",
+          "description": "Join Music Director, Alison, and other camp celebrities at the stage for our weekly camper talent show."
+        },
+        {
+          "id": "09d4a38b-3a1d-5a7f-a2b5-022fcddc7ce7",
+          "startTime": "2026-07-01T22:00:00-07:00",
+          "endTime": "2026-07-01T23:00:00-07:00",
+          "title": "Teen Sing-along",
+          "location": "[Teen Lodge](maplocation://gold/teen_lodge)",
+          "description": "Teen Sing-along at the Teen Lodge. Play an instrument? Bring it! Don't play an instrument? Bring yourself!"
+        },
+        {
+          "id": "53a455e0-7a6a-5803-a5b5-dcdeefe321f5",
+          "startTime": "2026-07-02T10:30:00-07:00",
+          "endTime": "2026-07-02T12:00:00-07:00",
+          "title": "Jam Session",
+          "location": "[Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "Meet with the three camps' Music Directors at the Vista Lodge for a Jam Session. Remember to bring your instrument if you play."
+        },
+        {
+          "id": "cfaf7526-14b0-5bfd-bea0-7df60bccd5fe",
+          "startTime": "2026-07-02T20:15:00-07:00",
+          "endTime": null,
+          "title": "The Legendary Hootenanny",
+          "location": "[Stage](maplocation://blue/stage)",
+          "description": "The Legendary Hootenanny at the Stage. Yee-haw!"
+        },
+        {
+          "id": "fffa14dd-5cba-5227-a661-893c4caf80df",
+          "startTime": "2026-07-03T10:30:00-07:00",
+          "endTime": "2026-07-03T12:00:00-07:00",
+          "title": "Jam Session",
+          "location": "[Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "Meet with the three camps' Music Directors at the Vista Lodge for a Jam Session. Remember to bring your instrument if you play."
+        }
+      ]
+    },
+    {
+      "name": "Lair Yoga",
+      "banner": "Lair yoga classes are led by professionally licensed instructors. These classes are free, no sign-up needed -- just show up! All classes take place at the Yoga Tent next to Vista Lodge. We have a limited number of yoga mats available and we encourage you to bring your own. We ask that you use our cleaning wipes provided before you use any of our equipment and after you use our equipment for the next camper to enjoy. Thank you!",
+      "events": [
+        {
+          "id": "91a426cd-7eac-5797-8187-fe4d6ba649dc",
+          "startTime": "2026-06-28T07:15:00-07:00",
+          "endTime": "2026-06-28T08:00:00-07:00",
+          "title": "Yoga Fitness Class",
+          "location": "Yoga Tent next to [Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "Workout with the General Manager! Join Cathy as she leads a 45 minute class set to music that combines yoga poses with strength-building exercises and cardio."
+        },
+        {
+          "id": "e0e02119-0729-5bec-8e81-06053238678e",
+          "startTime": "2026-06-28T10:10:00-07:00",
+          "endTime": "2026-06-28T11:00:00-07:00",
+          "title": "Yoga For All",
+          "location": "Yoga Tent next to [Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "Basic Hatha Yoga including dynamic and static poses to gain awareness, strength, flexibility, and balance. Kim is your instructor."
+        },
+        {
+          "id": "6b18726a-cfff-58ed-b491-5754133bfee8",
+          "startTime": "2026-06-28T11:15:00-07:00",
+          "endTime": "2026-06-28T12:00:00-07:00",
+          "title": "Gentle Yoga",
+          "location": "Yoga Tent next to [Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "A relaxing class to improve strength and mobility while enjoying the fresh outdoor air. Kim is your instructor."
+        },
+        {
+          "id": "59540695-b4e2-57aa-ae42-2d18f32a2a1f",
+          "startTime": "2026-06-29T07:15:00-07:00",
+          "endTime": "2026-06-29T08:00:00-07:00",
+          "title": "Yoga Fitness Class",
+          "location": "Yoga Tent next to [Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "Workout with the General Manager! Join Cathy as she leads a 45 minute class set to music that combines yoga poses with strength-building exercises and cardio."
+        },
+        {
+          "id": "0f011ef8-99ee-5ca1-9d18-5299343951a2",
+          "startTime": "2026-06-29T10:10:00-07:00",
+          "endTime": "2026-06-29T11:00:00-07:00",
+          "title": "Yoga For All",
+          "location": "Yoga Tent next to [Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "Basic Hatha Yoga including dynamic and static poses to gain awareness, strength, flexibility, and balance. Dorothy is your instructor."
+        },
+        {
+          "id": "13934176-8e4c-5551-8de6-eb6ab5890594",
+          "startTime": "2026-06-29T11:15:00-07:00",
+          "endTime": "2026-06-29T12:00:00-07:00",
+          "title": "Gentle Yoga",
+          "location": "Yoga Tent next to [Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "A relaxing class to improve strength and mobility while enjoying the fresh outdoor air. Dorothy is your instructor."
+        },
+        {
+          "id": "38a0755c-91bb-5bd7-8c6a-b26dd0eaf98c",
+          "startTime": "2026-06-29T13:15:00-07:00",
+          "endTime": "2026-06-29T14:00:00-07:00",
+          "title": "Mindful Meditation",
+          "location": "Vista Yoga Tent",
+          "description": "Come relax and learn meditation skills. When you heal the mind you heal the body. This session will take place at Vista Yoga Tent. Dorothy is your instructor."
+        },
+        {
+          "id": "723326b7-d47b-5fca-9044-ec544a244ff4",
+          "startTime": "2026-06-30T07:30:00-07:00",
+          "endTime": "2026-06-30T08:15:00-07:00",
+          "title": "Sunrise Yoga",
+          "location": "Yoga Tent next to [Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "Wake up your body and your mind with gentle yoga poses. Kim or Sherrie will be your instructor."
+        },
+        {
+          "id": "f6c07f17-5882-53cc-84bb-833a9f3f104f",
+          "startTime": "2026-06-30T10:10:00-07:00",
+          "endTime": "2026-06-30T11:00:00-07:00",
+          "title": "Yoga For All",
+          "location": "Yoga Tent next to [Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "Basic Hatha Yoga including dynamic and static poses to gain awareness, strength, flexibility, and balance. Kim or Sherrie will be your instructor."
+        },
+        {
+          "id": "e1201cbc-e040-5fd3-a197-f05a442344b1",
+          "startTime": "2026-06-30T11:15:00-07:00",
+          "endTime": "2026-06-30T12:00:00-07:00",
+          "title": "Pilates",
+          "location": "Yoga Tent next to [Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "You will do the basic Pilates mat techniques to strengthen and tone your entire body. Kim or Sherrie will be your instructor."
+        },
+        {
+          "id": "ba34fdea-ba4d-52c1-b554-0c6875c44513",
+          "startTime": "2026-07-01T07:30:00-07:00",
+          "endTime": "2026-07-01T08:15:00-07:00",
+          "title": "Sunrise Yoga",
+          "location": "Yoga Tent next to [Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "Wake up your body and your mind with gentle yoga poses. Sherie is your instructor."
+        },
+        {
+          "id": "1d8dcf8d-a01b-5bd0-a8c4-f000b5dfd575",
+          "startTime": "2026-07-01T10:10:00-07:00",
+          "endTime": "2026-07-01T11:00:00-07:00",
+          "title": "Yoga For All",
+          "location": "Yoga Tent next to [Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "Basic Hatha Yoga including dynamic and static poses to gain awareness, strength, flexibility, and balance. Sherie is your instructor."
+        },
+        {
+          "id": "611cf67e-6d9e-5c44-842f-19cc5da987ec",
+          "startTime": "2026-07-01T11:15:00-07:00",
+          "endTime": "2026-07-01T12:00:00-07:00",
+          "title": "Pilates",
+          "location": "Yoga Tent next to [Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "You will do the basic Pilates mat techniques to strengthen and tone your entire body. Sherie is your instructor."
+        },
+        {
+          "id": "4354da23-12a1-52fc-8946-21f64c050416",
+          "startTime": "2026-07-01T13:30:00-07:00",
+          "endTime": "2026-07-01T14:20:00-07:00",
+          "title": "\\*Intermediate/Advanced Yoga\\*",
+          "location": "Yoga Tent next to [Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "This class is for more experienced yoga practitioners who would like a challenge. Sherie is your instructor."
+        },
+        {
+          "id": "37cc2807-7082-5b90-b66b-eda84aab7d98",
+          "startTime": "2026-07-02T10:10:00-07:00",
+          "endTime": "2026-07-02T11:00:00-07:00",
+          "title": "Yoga For All",
+          "location": "Yoga Tent next to [Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "Basic Hatha Yoga including dynamic and static poses to gain awareness, strength, flexibility, and balance. Dorothy is your instructor."
+        },
+        {
+          "id": "b8f9dc51-f8c1-5d35-a300-c91b6e568ae8",
+          "startTime": "2026-07-02T11:15:00-07:00",
+          "endTime": "2026-07-02T12:00:00-07:00",
+          "title": "Gentle Yoga",
+          "location": "Yoga Tent next to [Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "A relaxing class to improve strength and mobility while enjoying the fresh outdoor air. Dorothy is your instructor."
+        },
+        {
+          "id": "cdc30a4f-9480-581b-b640-ba1f6e565de0",
+          "startTime": "2026-07-03T07:15:00-07:00",
+          "endTime": "2026-07-03T08:00:00-07:00",
+          "title": "Yoga Fitness Class",
+          "location": "Yoga Tent next to [Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "Workout with the General Manager! Join Cathy as she leads a 45 minute class set to pop music that combines yoga poses with strength-building exercises and cardio."
+        },
+        {
+          "id": "88e57864-29a5-5d95-94ce-59b455ffada8",
+          "startTime": "2026-07-03T10:10:00-07:00",
+          "endTime": "2026-07-03T11:00:00-07:00",
+          "title": "Yoga For All",
+          "location": "Yoga Tent next to [Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "Basic Hatha Yoga including dynamic and static poses to gain awareness, strength, flexibility, and balance. Karl is your instructor."
+        },
+        {
+          "id": "683cb8c5-ba4d-5ff6-ba10-adea5baad36a",
+          "startTime": "2026-07-03T11:15:00-07:00",
+          "endTime": "2026-07-03T12:00:00-07:00",
+          "title": "Gentle Yoga",
+          "location": "Yoga Tent next to [Vista Lodge](maplocation://gold/vista_lodge)",
+          "description": "A relaxing class to improve strength and mobility while enjoying the fresh outdoor air. Karl is your instructor."
+        }
+      ]
+    },
+    {
+      "name": "Cub Corral",
+      "banner": "The Cub Corral is for two to five year old diaper-graduates. Sign-in and sign-out is required.",
+      "events": [
+        {
+          "id": "8527133b-3f80-5267-82fc-31dc6e84a3af",
+          "startTime": "2026-06-28T09:30:00-07:00",
+          "endTime": "2026-06-28T11:45:00-07:00",
+          "title": "INTRODUCTORY MEETING",
+          "location": "[Cub Corral](maplocation://blue/cub_corral)",
+          "description": "INTRODUCTORY MEETING for parents and children at the Cub Corral followed by Lair Calendar making with your Cub Corral crew! Meeting will be 9:30-10:00AM then we will move on to games! Sign-in and sign-out required."
+        },
+        {
+          "id": "5d3e7891-ddbb-50e1-9e4b-f785b692e7a6",
+          "startTime": "2026-06-28T15:30:00-07:00",
+          "endTime": "2026-06-28T16:30:00-07:00",
+          "title": "Rockin Rock Art!",
+          "location": "[Cub Corral](maplocation://blue/cub_corral)",
+          "description": "Come to the Cub Corral to rock out and decorate with the beautiful rocks we find around camp."
+        },
+        {
+          "id": "dfcd5d27-acd3-5115-a75f-166d0736ecdf",
+          "startTime": "2026-06-28T19:30:00-07:00",
+          "endTime": "2026-06-28T21:15:00-07:00",
+          "title": "Arts and Crafts!",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Show off your creativity, and we'll cap off the evening with bedtime stories. With the Teddy Bears. Drop off and pick up at the Dining Hall."
+        },
+        {
+          "id": "23c1b72c-03df-5ddc-89e5-d1497a5fb5e1",
+          "startTime": "2026-06-29T09:30:00-07:00",
+          "endTime": "2026-06-29T11:45:00-07:00",
+          "title": "Egg-cellent Crafts",
+          "location": "[Cub Corral](maplocation://blue/cub_corral)",
+          "description": "Create a home for a Lair garden, rock collection, or egg carton flowers!"
+        },
+        {
+          "id": "ff3e71f1-678d-5565-813d-fce27205cd42",
+          "startTime": "2026-06-29T14:30:00-07:00",
+          "endTime": "2026-06-29T16:00:00-07:00",
+          "title": "Dinosaur Egg Hunt",
+          "location": "[Cub Corral](maplocation://blue/cub_corral)",
+          "description": "Dinosaur Egg Hunt followed by story time in the Cub Corral!"
+        },
+        {
+          "id": "c89aee2b-6696-5338-9358-caaf333a7185",
+          "startTime": "2026-06-30T09:30:00-07:00",
+          "endTime": "2026-06-30T11:45:00-07:00",
+          "title": "Cub Corral Picnic and Crown Making!",
+          "location": "[Cub Corral](maplocation://blue/cub_corral)",
+          "description": "Meet at the Cub Corral and join the CC crew as we make Bear Crowns and have a picnic."
+        },
+        {
+          "id": "815026fa-8d67-53b4-9c96-8a0e6455ce11",
+          "startTime": "2026-06-30T14:30:00-07:00",
+          "endTime": "2026-06-30T16:00:00-07:00",
+          "title": "Box Car Making for our Drive in Movie Night!",
+          "location": "[Cub Corral](maplocation://blue/cub_corral)",
+          "description": "Meet at the Cub Corral with the Teddy Bears to make our Box Cars in preparation of our Drive In Movie Night tonight."
+        },
+        {
+          "id": "a8f5b09c-97bb-582c-9b24-0f59ca06d1dc",
+          "startTime": "2026-06-30T19:45:00-07:00",
+          "endTime": "2026-06-30T21:15:00-07:00",
+          "title": "Drive in Movie Night!",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "\u201cDrive\u201d on up to the DH with the Teddy Bears for a movie night tonight that would make the Berenstain Bears jealous!"
+        },
+        {
+          "id": "7ff4bf8d-1355-50cd-81ab-3b06e764d88b",
+          "startTime": "2026-07-01T09:30:00-07:00",
+          "endTime": "2026-07-01T11:45:00-07:00",
+          "title": "Cubchella!",
+          "location": "[Cub Corral](maplocation://blue/cub_corral)",
+          "description": "Join us in the Cub Corral with the Teddy Bears to make music shakers, have a sing along with the Music Director and then a Dance Party!"
+        },
+        {
+          "id": "ae4d619f-77f7-5071-a10d-9f2e4628aefa",
+          "startTime": "2026-07-01T14:30:00-07:00",
+          "endTime": "2026-07-01T16:00:00-07:00",
+          "title": "Blue Revue Practice!",
+          "location": "[Cub Corral](maplocation://blue/cub_corral)",
+          "description": "We're going to put together the cutest skit possible for tonight's Blue Revue."
+        },
+        {
+          "id": "d39eabbf-2e4b-5f39-9804-72f003f0d901",
+          "startTime": "2026-07-01T20:00:00-07:00",
+          "endTime": "2026-07-01T21:15:00-07:00",
+          "title": "The Blue Revue!",
+          "location": "[Cub Corral](maplocation://blue/cub_corral)",
+          "description": "Come strut your stuff with us!"
+        },
+        {
+          "id": "206eefaa-d092-5eaf-9d75-467b2ce809cb",
+          "startTime": "2026-07-02T09:30:00-07:00",
+          "endTime": "2026-07-02T11:45:00-07:00",
+          "title": "Sand Castles!",
+          "location": "[Cub Corral](maplocation://blue/cub_corral)",
+          "description": "Come play in the sand and use the toys and nature around the Cub Corral to create your own unique sand castles."
+        },
+        {
+          "id": "45e4af86-cc0b-5910-9bd3-11c5fb10e86f",
+          "startTime": "2026-07-02T14:30:00-07:00",
+          "endTime": "2026-07-02T16:00:00-07:00",
+          "title": "Flower Making",
+          "location": "[Cub Corral](maplocation://blue/cub_corral)",
+          "description": "Let's get our creative juices flowing and make our own flowers!"
+        },
+        {
+          "id": "4e0c9770-6d31-5fca-bc95-d8f18988d0c4",
+          "startTime": "2026-07-03T09:30:00-07:00",
+          "endTime": "2026-07-03T12:15:00-07:00",
+          "title": "The Most Fantastic Friday in the Cub Corral!",
+          "location": "[Cub Corral](maplocation://blue/cub_corral)",
+          "description": "It's our big day in the Cub Corral! We'll make sorcerer crowns and magic shakers and paint faces for our big parade in the DH at lunch. Parents -- pick up kids in the DH after the parade (parade is at 12:15 pm)."
+        },
+        {
+          "id": "54ecca3e-1dc3-5dc4-a852-e3378aad0c24",
+          "startTime": "2026-07-03T14:30:00-07:00",
+          "endTime": "2026-07-03T16:00:00-07:00",
+          "title": "Creek walk with the Cub Corral!",
+          "location": "[Cub Corral](maplocation://blue/cub_corral)",
+          "description": "Please be sure to wear water friendly shoes. We'll gather some nature materials and make one last masterpiece\u2026paper Lair jars! Then we'll finish up all our projects from the week."
+        },
+        {
+          "id": "a64106a4-9ac7-5d9e-87da-8b5df386c143",
+          "startTime": "2026-07-04T08:45:00-07:00",
+          "endTime": "2026-07-04T09:45:00-07:00",
+          "title": "SWEEP THE FOREST!",
+          "location": "[Cub Corral](maplocation://blue/cub_corral)",
+          "description": "Help keep our Lair beautiful. Meet at the Cub Corral to pick up litter in exchange for prizes!"
+        }
+      ]
+    },
+    {
+      "name": "Teddy Bears",
+      "banner": "Children will be released after program unless parents state otherwise at Sunday Intro Meeting (exceptions noted below)",
+      "events": [
+        {
+          "id": "640dd7de-23ec-573b-9123-8d52f8669dd7",
+          "startTime": "2026-06-28T09:45:00-07:00",
+          "endTime": "2026-06-28T11:45:00-07:00",
+          "title": "INTRODUCTORY MEETING",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "INTRODUCTORY MEETING at the Dining Hall for a meeting with parents and children. Then we're going to take a walk and explore camp and play some games like, Silly Showdown, at the stage! Pick up at the DH."
+        },
+        {
+          "id": "f4f87fdb-6e5a-5a15-afba-c3286c95eb8b",
+          "startTime": "2026-06-28T15:30:00-07:00",
+          "endTime": "2026-06-28T16:30:00-07:00",
+          "title": "Lair Journals!",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Come to the Dining Hall to get started on your Lair Journal for the week"
+        },
+        {
+          "id": "da8aa3d2-9981-5ba5-99c8-02c784ba94e2",
+          "startTime": "2026-06-28T19:30:00-07:00",
+          "endTime": "2026-06-28T21:15:00-07:00",
+          "title": "Arts and Crafts!",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Show off your creativity, and we'll cap off the evening with bedtime stories. With the Cub Corral. Drop off and pick up at the Dining Hall."
+        },
+        {
+          "id": "e84f4f59-efbb-5321-b84f-226f7c18dd45",
+          "startTime": "2026-06-29T09:45:00-07:00",
+          "endTime": "2026-06-29T11:45:00-07:00",
+          "title": "Nature Scavenger Hunt!",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Meet in the Dining Hall."
+        },
+        {
+          "id": "be58cefd-898b-5f6f-be4e-b8260ebb14e7",
+          "startTime": "2026-06-29T14:30:00-07:00",
+          "endTime": "2026-06-29T16:00:00-07:00",
+          "title": "Water Magic",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Let's experiment with the magic of water! Meet at the Dining Hall."
+        },
+        {
+          "id": "22a6c357-6800-5981-8451-1a2c2a2892f0",
+          "startTime": "2026-06-30T09:45:00-07:00",
+          "endTime": "2026-06-30T11:45:00-07:00",
+          "title": "Panning for gold in the creek!",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Learn how the pioneers used to do it! Meet at the Dining Hall."
+        },
+        {
+          "id": "06cbe384-13e5-579c-ac09-ead425977ebf",
+          "startTime": "2026-06-30T14:30:00-07:00",
+          "endTime": "2026-06-30T16:00:00-07:00",
+          "title": "Teddy Box Cars!",
+          "location": "[Kiddie Campfire](maplocation://blue/kiddie_campfire)",
+          "description": "Afterwards we're going to have story time at the Kiddie Campfire. Meet at the DH."
+        },
+        {
+          "id": "e7243dfb-9bd0-5e54-9ceb-2772b5b1aff2",
+          "startTime": "2026-06-30T19:30:00-07:00",
+          "endTime": "2026-06-30T21:15:00-07:00",
+          "title": "Movie Night!",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Alright you little bears, crawl into the DH for an awesome movie night that would make the Berenstain Bears jealous! Meet in the Dining Hall."
+        },
+        {
+          "id": "e28eabb8-a227-54ea-b6e7-687bfa90e972",
+          "startTime": "2026-07-01T09:30:00-07:00",
+          "endTime": "2026-07-01T11:45:00-07:00",
+          "title": "Cubchella!",
+          "location": "[Cub Corral](maplocation://blue/cub_corral)",
+          "description": "Join us in the Cub Corral to make music shakers, have a sing along with the Music Director and then a Dance Party! Drop off and Pick up at the Dining Hall."
+        },
+        {
+          "id": "01c9ad88-9aa4-5ddd-9261-b41d3b50c4e3",
+          "startTime": "2026-07-01T14:30:00-07:00",
+          "endTime": "2026-07-01T16:00:00-07:00",
+          "title": "Practice for the Blue Revue",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "You are all going to be stars! Practice for the Blue Revue at the Dining Hall then we'll head to the stage for some games."
+        },
+        {
+          "id": "56930243-df70-59ce-a8e3-e299c06e034b",
+          "startTime": "2026-07-01T20:00:00-07:00",
+          "endTime": "2026-07-01T21:15:00-07:00",
+          "title": "The Blue Revue",
+          "location": "[Stage](maplocation://blue/stage)",
+          "description": "The Blue Revue at the Blue Stage! Come strut your stuff with us!"
+        },
+        {
+          "id": "d991f878-f838-584f-82e8-76fc652b3a9a",
+          "startTime": "2026-07-02T09:30:00-07:00",
+          "endTime": "2026-07-02T11:30:00-07:00",
+          "title": "Teddy Bears Olympics!",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Dress as your favorite sports star and meet in front of the Dining Hall then we'll walk over to join Gold at the Mike Koll Softball Field. We'll head straight from Olympics to our Teddy Bears Pool Party at the Camp Gold Pool, so bring your suit and towel!"
+        },
+        {
+          "id": "3d14575e-0498-5240-8acc-0336895868e8",
+          "startTime": "2026-07-02T12:00:00-07:00",
+          "endTime": "2026-07-02T13:15:00-07:00",
+          "title": "Pool Party at Camp Gold!",
+          "location": "[Pool](maplocation://gold/pool)",
+          "description": "Join us at the Camp Gold Pool if you missed the Olympics. Lunch will be provided at the Gold Pool. We'll walk the kiddos back to the front of the DH by 1:15PM."
+        },
+        {
+          "id": "abe3e037-1c20-505c-bb1a-4c31de3fa0aa",
+          "startTime": "2026-07-02T14:30:00-07:00",
+          "endTime": "2026-07-02T16:00:00-07:00",
+          "title": "Cookie Decorating and Banner Making",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Cookie Decorating and Banner Making in the Dining Hall. Come meet your Camp Blue Baker, Jayne!"
+        },
+        {
+          "id": "d14b5456-9594-5990-bf7b-ec661680a21c",
+          "startTime": "2026-07-02T18:00:00-07:00",
+          "endTime": "2026-07-02T19:00:00-07:00",
+          "title": "VIP Dinner!",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Meet at the Dining Hall for our big party!"
+        },
+        {
+          "id": "a59afb81-c85d-5e9a-a750-e4fe35134b09",
+          "startTime": "2026-07-03T09:45:00-07:00",
+          "endTime": "2026-07-03T12:15:00-07:00",
+          "title": "Fantastic, Fabulous, and Ferocious Friday!",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Come to the Dining Hall for some team games! Then we'll head over to the Cub Corral to paint faces and make crowns for our special parade in the DH. We'll bring them back to the DH for pick-up."
+        },
+        {
+          "id": "0295abc3-f1e3-5beb-b927-936d1e4daf13",
+          "startTime": "2026-07-03T14:30:00-07:00",
+          "endTime": "2026-07-03T16:00:00-07:00",
+          "title": "Creek Walk",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Join us for a creek walk! Wear shoes and clothes that can get wet. Meet at the DH. After we explore the creek we'll write in our Lair Journals one last time to put the finishing touches on them."
+        },
+        {
+          "id": "a7072fc4-fda7-5b25-a173-708378000cd1",
+          "startTime": "2026-07-04T08:45:00-07:00",
+          "endTime": "2026-07-04T09:45:00-07:00",
+          "title": "SWEEP THE FOREST!",
+          "location": "Ping Pong tables",
+          "description": "Help keep our Lair beautiful! Pick up trash and exchange it for prizes! Meet us at the Ping Pong tables."
+        }
+      ]
+    },
+    {
+      "name": "Golden Bears",
+      "banner": "Don't forget to also check the rest of this schedule so you don't miss the other good stuff going on this week!",
+      "events": [
+        {
+          "id": "7526be06-b83f-5522-a8fb-58d8dbfb8e2a",
+          "startTime": "2026-06-28T09:45:00-07:00",
+          "endTime": "2026-06-28T11:15:00-07:00",
+          "title": "INTRODUCTORY MEETING",
+          "location": "[Kiddie Campfire](maplocation://blue/kiddie_campfire)",
+          "description": "Meet at the Kiddie Campfire for a short meeting for parents and kids. Then we're going to explore camp followed by some silly games! Wear clothes you are okay with getting dirty! Don't forget to sign up for horseback riding (ages 7 and up) at the Blue Store by 5:00 PM today."
+        },
+        {
+          "id": "8dd3380f-575f-5de8-9157-c4eae017eb04",
+          "startTime": "2026-06-28T20:00:00-07:00",
+          "endTime": "2026-06-28T21:15:00-07:00",
+          "title": "Marshmallow Roast and Campfire!!",
+          "location": "[Kiddie Campfire](maplocation://blue/kiddie_campfire)",
+          "description": "Meet at the Kiddie Campfire for some marshmallows and Spooky Stories. We'll return to the Lodge afterwards. Bring a flashlight for added fun."
+        },
+        {
+          "id": "b49771ce-e286-5329-9c8b-8f2e039e2525",
+          "startTime": "2026-06-29T09:45:00-07:00",
+          "endTime": "2026-06-29T11:15:00-07:00",
+          "title": "Lance's Laboratory!",
+          "location": "[Kiddie Campfire](maplocation://blue/kiddie_campfire)",
+          "description": "Join Lance for an exciting introduction to Oski Science Camp. Meet at the Kiddie Campfire."
+        },
+        {
+          "id": "329e3a96-8c6a-5acb-9886-2ac7c50da59b",
+          "startTime": "2026-06-29T14:00:00-07:00",
+          "endTime": "2026-06-29T16:30:00-07:00",
+          "title": "Horseback Riding at Aspen Meadows!",
+          "location": "[Kiddie Campfire](maplocation://blue/kiddie_campfire)",
+          "description": "Meet at the Kiddie Campfire. Be sure to wear long pants. We will need some parents to drive us there and back. Sing up, fill out a permission slip and pre-pay at the store by 5:00 PM Sunday. Limited to 15 riders, ages 7 and up."
+        },
+        {
+          "id": "7fe844ec-7f02-5f50-af0e-7481f9ad1097",
+          "startTime": "2026-06-30T09:15:00-07:00",
+          "endTime": "2026-06-30T13:15:00-07:00",
+          "title": "Paddle Boating and Lunch",
+          "location": "[Kiddie Campfire](maplocation://blue/kiddie_campfire)",
+          "description": "A hike to the lake for paddle boating and lunch with Camp Gold! Bring a towel and wear a swimsuit and your walkin' shoes. Meet at the Kiddie Campfire. We'll learn about bodies of water as we walk! We need parents to pick us up by the Snack Shack at the lake at 1:00 PM."
+        },
+        {
+          "id": "b59f60c6-4578-593e-b1bd-501d0ddeee98",
+          "startTime": "2026-06-30T14:30:00-07:00",
+          "endTime": "2026-06-30T16:00:00-07:00",
+          "title": "Creek Walk!",
+          "location": "[Kiddie Campfire](maplocation://blue/kiddie_campfire)",
+          "description": "Please be sure to wear water friendly shoes. We'll gather some nature materials and make one last masterpiece...paper Lair jars! Meet at the Kiddie Campfire."
+        },
+        {
+          "id": "741baeb1-f199-50d7-9033-f14673fee3a2",
+          "startTime": "2026-06-30T19:30:00-07:00",
+          "endTime": "2026-06-30T21:15:00-07:00",
+          "title": "Movie at the Teen Lodge!",
+          "location": "[Kiddie Campfire](maplocation://blue/kiddie_campfire)",
+          "description": "Join your Golden Bears Directors as well as the Golden Bears from Camp Gold for a movie. Meet at the Kiddie Campfire and we'll walk over together."
+        },
+        {
+          "id": "8a4e2db3-2543-5153-91ec-81ad3426b954",
+          "startTime": "2026-07-01T09:30:00-07:00",
+          "endTime": "2026-07-01T11:15:00-07:00",
+          "title": "Nature arts and crafts!",
+          "location": "[Kiddie Campfire](maplocation://blue/kiddie_campfire)",
+          "description": "Meet at the Kiddie Campfire and we'll go on a walk throughout camp and craft with what we find!"
+        },
+        {
+          "id": "a121e5cf-8fe5-56af-be2e-81141b52a6ba",
+          "startTime": "2026-07-01T14:30:00-07:00",
+          "endTime": "2026-07-01T16:00:00-07:00",
+          "title": "Blue Revue Practice",
+          "location": "[Kiddie Campfire](maplocation://blue/kiddie_campfire)",
+          "description": "Meet at the Kiddie Campfire for Blue Revue practice. After we put together our skit, we're going to do some crafts like Straw Rockets."
+        },
+        {
+          "id": "d84d4c6d-6356-5762-87b5-e76e6384b7d8",
+          "startTime": "2026-07-01T20:00:00-07:00",
+          "endTime": "2026-07-01T21:15:00-07:00",
+          "title": "Blue Revue",
+          "location": "[Stage](maplocation://blue/stage)",
+          "description": "Make yourself famous at the annual Blue Revue at the Blue Stage!"
+        },
+        {
+          "id": "fd325fa1-49a6-5112-9b4c-975fbe3ab1da",
+          "startTime": "2026-07-02T09:45:00-07:00",
+          "endTime": "2026-07-02T11:15:00-07:00",
+          "title": "Banner making",
+          "location": "[Kiddie Campfire](maplocation://blue/kiddie_campfire)",
+          "description": "Banner making for our VIP dinner party! Followed by games like Animal Yoga and Hula Hoopla! Meet at the Kiddie Campfire."
+        },
+        {
+          "id": "01546b68-a66d-53cc-9bf1-08fc3d87ea57",
+          "startTime": "2026-07-02T14:30:00-07:00",
+          "endTime": "2026-07-02T16:00:00-07:00",
+          "title": "Nature arts and crafts!",
+          "location": "[Kiddie Campfire](maplocation://blue/kiddie_campfire)",
+          "description": "Meet at the Kiddie Campfire and we'll go on a walk throughout camp and make sun prints with what we find!"
+        },
+        {
+          "id": "25583061-f97d-59db-8080-f1b2bfa48f0e",
+          "startTime": "2026-07-02T18:00:00-07:00",
+          "endTime": "2026-07-02T19:00:00-07:00",
+          "title": "VIP Dinner Party",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "VIP Dinner Party with Lair Cake in the Dining Hall. It's time to PARTY like VERY IMPORTANT PEOPLE!"
+        },
+        {
+          "id": "4cd1eb4c-957b-53ce-b66a-ec7fc594b723",
+          "startTime": "2026-07-03T09:45:00-07:00",
+          "endTime": "2026-07-03T11:00:00-07:00",
+          "title": "Gaga Ball!",
+          "location": "[Kiddie Campfire](maplocation://blue/kiddie_campfire)",
+          "description": "Get ready to dip, duck, dive and DODGE! Meet at the Kiddie Campfire, and we'll walk to the Gaga Ball court together."
+        },
+        {
+          "id": "92c5c83f-30c5-52e2-bc8c-d89aa48f9d0d",
+          "startTime": "2026-07-03T11:45:00-07:00",
+          "endTime": "2026-07-03T13:15:00-07:00",
+          "title": "Pool Party!!",
+          "location": "[Kiddie Campfire](maplocation://blue/kiddie_campfire)",
+          "description": "TropiCAL themed - wear your blue, gold, Lair, Cal or Hawaiian themed clothes! At the Gold Pool. Lunch will also be at Gold. Meet at the Kiddie Campfire for the journey over."
+        },
+        {
+          "id": "04165aad-332a-5d38-95ad-ec3a14e47d9c",
+          "startTime": "2026-07-04T08:45:00-07:00",
+          "endTime": "2026-07-04T09:45:00-07:00",
+          "title": "SWEEP THE FOREST!",
+          "location": "[Kiddie Campfire](maplocation://blue/kiddie_campfire)",
+          "description": "Help keep our Lair beautiful! Pick up trash and exchange it for prizes! Meet us at the Kiddie Campfire."
+        }
+      ]
+    },
+    {
+      "name": "Cal Bears",
+      "banner": "Don't forget to also check the rest of this schedule so you don't miss the other good stuff going on this week!",
+      "events": [
+        {
+          "id": "fa3d5d12-e63b-596d-8a36-442f5bd2fd38",
+          "startTime": "2026-06-28T09:45:00-07:00",
+          "endTime": "2026-06-28T11:15:00-07:00",
+          "title": "INTRODUCTORY MEETING!",
+          "location": "The Bear",
+          "description": "Meet at the Bear. We'll have a quick meeting with parents, and then do introductions and play some silly games!"
+        },
+        {
+          "id": "8b3cadcf-62a8-5fe4-8b80-6a0388e1039e",
+          "startTime": "2026-06-28T19:00:00-07:00",
+          "endTime": "2026-06-28T22:15:00-07:00",
+          "title": "Movie under the stars at Pinecrest Lake",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Meet in front of the Dining Hall, and dress warmly! We need parent drivers to bring us back to the Blue Lodge after the movie, so parents please come to the front of the DH to arrange rides. Thank you!"
+        },
+        {
+          "id": "bf817193-841c-58f8-9ea0-59b4fe94a3b6",
+          "startTime": "2026-06-29T09:30:00-07:00",
+          "endTime": "2026-06-29T11:15:00-07:00",
+          "title": "Camp Hike!",
+          "location": "The Bear",
+          "description": "We'll go off road and take the trails to explore all three camps. Three camps, one Lair! Meet at the Bear."
+        },
+        {
+          "id": "855bc923-de95-5bcc-b642-fae74e065c58",
+          "startTime": "2026-06-29T14:10:00-07:00",
+          "endTime": "2026-06-29T15:45:00-07:00",
+          "title": "Rush-in Softball with Camp Gold!",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "\"You're killin' me, Smalls!\" Remember your gloves and ball caps if you have them. Meet in front of the Dining Hall."
+        },
+        {
+          "id": "bba58459-63e7-5d15-997a-749eb97e4d0f",
+          "startTime": "2026-06-30T09:45:00-07:00",
+          "endTime": "2026-06-30T11:00:00-07:00",
+          "title": "Game Time!",
+          "location": "The Bear",
+          "description": "Ping-pong, KanJam, Spikeball, Gaga Ball, Cornhole! Then you can go get ready for today's pool party! Meet at the Bear."
+        },
+        {
+          "id": "87d8a817-bad0-565c-b27c-e0bab055a304",
+          "startTime": "2026-06-30T11:45:00-07:00",
+          "endTime": "2026-06-30T13:15:00-07:00",
+          "title": "Cal Bears Pool Party with Gold!!",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Lunch and inner tube water polo at Camp Gold. Wear a swim suit and your finest tropiCAL attire (blue, gold, Lair, Cal or Hawaiian themed clothes). Meet in front of the DH and we'll walk over together."
+        },
+        {
+          "id": "9cc3458e-0273-5a91-9676-53085b8e162e",
+          "startTime": "2026-06-30T14:30:00-07:00",
+          "endTime": "2026-06-30T15:45:00-07:00",
+          "title": "Scavenger Hunt!",
+          "location": "The Bear",
+          "description": "Work in teams and try to be the first get complete all the items on the list! Meet at the Bear."
+        },
+        {
+          "id": "26780c09-3c5f-5c6b-b1ec-accda2e8d99f",
+          "startTime": "2026-06-30T19:45:00-07:00",
+          "endTime": "2026-06-30T20:45:00-07:00",
+          "title": "S'mores and Stories",
+          "location": "[Kiddie Campfire](maplocation://blue/kiddie_campfire)",
+          "description": "Meet at the Kiddie Campfire for s'mores, laughs, and maybe even a spooky story or two."
+        },
+        {
+          "id": "4188967e-74f3-5978-b1c7-a0c11a8e33d1",
+          "startTime": "2026-07-01T09:45:00-07:00",
+          "endTime": "2026-07-01T11:15:00-07:00",
+          "title": "Horseback Riding at Aspen Meadows!",
+          "location": "[Kiddie Campfire](maplocation://blue/kiddie_campfire)",
+          "description": "Meet at the Kiddie Campfire. Be sure to wear long pants. We will need some parents to drive us there and back. Sign up, fill out a permission slip and pre-pay at the store by 5:00 PM Sunday. Limited to 15 riders."
+        },
+        {
+          "id": "3a7c5ea9-1b73-5cae-8bc7-8c48a7663fef",
+          "startTime": "2026-07-01T14:30:00-07:00",
+          "endTime": "2026-07-01T16:00:00-07:00",
+          "title": "Blue Revue Cal Bears skit practice",
+          "location": "The Bear",
+          "description": "Meet at the Bear for Blue Revue Cal Bears skit practice. Followed by some team games."
+        },
+        {
+          "id": "4f3a378d-e620-544b-a95b-bbfd964a3f50",
+          "startTime": "2026-07-01T20:00:00-07:00",
+          "endTime": "2026-07-01T21:15:00-07:00",
+          "title": "Blue Revue",
+          "location": "[Stage](maplocation://blue/stage)",
+          "description": "Bust a move at the annual Blue Revue at the Blue Stage."
+        },
+        {
+          "id": "2fe66744-288e-5a36-a7dc-c63246a306b3",
+          "startTime": "2026-07-02T09:45:00-07:00",
+          "endTime": "2026-07-02T11:15:00-07:00",
+          "title": "Capture the Flag - tricampal!",
+          "location": "The Bear",
+          "description": "Teams will be mixed and matched before we get started. Wear sneakers! Meet at the Bear."
+        },
+        {
+          "id": "44dd8fa9-7dd5-555a-a7a3-a6ec46367772",
+          "startTime": "2026-07-02T14:30:00-07:00",
+          "endTime": "2026-07-02T16:00:00-07:00",
+          "title": "Nature arts and crafts!",
+          "location": "The Bear",
+          "description": "Meet at the Bear and we'll go on a walk throughout camp and craft with what we find!"
+        },
+        {
+          "id": "5f549266-a20e-5482-803d-ef8f500c30f0",
+          "startTime": "2026-07-03T09:00:00-07:00",
+          "endTime": "2026-07-03T13:00:00-07:00",
+          "title": "Paddle Boating!",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "The biggie of the week! Meet at the DH with a towel and wear a swimsuit. Sunscreen is a good idea! Preteens must wear lifejackets while on the lake. Lunch is provided. No flip-flops please. We will need parents to pick us up at the lake at 1:00 PM by the Snack Shack. Thank you!"
+        },
+        {
+          "id": "90d169db-f475-57b4-b7e4-902281339d1c",
+          "startTime": "2026-07-03T18:00:00-07:00",
+          "endTime": "2026-07-03T19:00:00-07:00",
+          "title": "Cal Bear VIP Dinner Party",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Cal Bear VIP Dinner Party in the Dining Hall! Meet in front of the DH early to help decorate our super sweet party banner."
+        },
+        {
+          "id": "22f8ad96-bb4d-5743-91a9-ddd45fa92891",
+          "startTime": "2026-07-04T08:45:00-07:00",
+          "endTime": "2026-07-04T09:45:00-07:00",
+          "title": "SWEEP THE FOREST!",
+          "location": "Ping Pong Tables",
+          "description": "Help keep our Lair beautiful! Pick up trash and exchange it for prizes! Meet us at the Ping Pong tables."
+        }
+      ]
+    },
+    {
+      "name": "Grizzly Bears",
+      "banner": "Don't forget to also check the rest of this schedule so you don't miss the other good stuff going on this week!",
+      "events": [
+        {
+          "id": "92ecfc46-4944-5b67-b39f-8a18e8e26aa2",
+          "startTime": "2026-06-28T09:45:00-07:00",
+          "endTime": "2026-06-28T11:00:00-07:00",
+          "title": "INTRODUCTORY MEETING!",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Meet in front of the Dining Hall, and we'll walk to the Teen Lodge (located before Camp Gold) to meet and hang with the Grizzly Bears from all three camps."
+        },
+        {
+          "id": "5ae87f86-086a-523f-9d84-44061d24234d",
+          "startTime": "2026-06-28T14:00:00-07:00",
+          "endTime": "2026-06-28T15:00:00-07:00",
+          "title": "Wacky Pool Show!",
+          "location": "[Pool](maplocation://blue/pool)",
+          "description": "Frolic and fun at the pool... and root beer floats!"
+        },
+        {
+          "id": "c0b29556-9b0d-51c1-849a-f0fe915d8657",
+          "startTime": "2026-06-28T19:00:00-07:00",
+          "endTime": "2026-06-28T22:15:00-07:00",
+          "title": "Movie Under the Stars at Pinecrest Lake",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "Dress warmly and meet in front of the Dining Hall. We need parent drivers to pick up at the lake after the movie, so please come early to arrange rides. Thanks!"
+        },
+        {
+          "id": "ca81f464-f524-54d7-a170-282fcb63f888",
+          "startTime": "2026-06-29T09:45:00-07:00",
+          "endTime": "2026-06-29T12:00:00-07:00",
+          "title": "Tri-Camp All Teen Rush-In Softball",
+          "location": "[Volleyball Court](maplocation://oski/volleyball_court)",
+          "description": "Tri-Camp All Teen Rush-In Softball at Camp Gold. Wear your blue, gold, Cal, Lair or Hawaiian-wear. Don't forget your gloves and hats for softball! Meet at the volleyball court."
+        },
+        {
+          "id": "974d9504-93af-56b9-b2bb-d3c2ff4d81de",
+          "startTime": "2026-06-29T12:00:00-07:00",
+          "endTime": "2026-06-29T13:15:00-07:00",
+          "title": "TropiCAL themed Pool Party!",
+          "location": "[Pool](maplocation://gold/pool)",
+          "description": "Lunch followed by inner-tube H20 polo at the Gold pool with Gold and Oski Grizzly Bears. Bring your bathing suit and a towel. Bring your scuba gear too, if you remembered to pack it. We'll leave Gold at noon and walk back to Blue."
+        },
+        {
+          "id": "a24fff04-e7d7-5c07-9d0f-ff98380ab93b",
+          "startTime": "2026-06-29T15:00:00-07:00",
+          "endTime": "2026-06-29T16:00:00-07:00",
+          "title": "Grizzly Bear Art Hour!",
+          "location": "[Art Grove](maplocation://blue/art_grove)",
+          "description": "Bring some of the things you want to tie-dye or buy a shirt at the store to tie-dye. At the Art Grove."
+        },
+        {
+          "id": "5659fc40-88e9-5677-b98e-d2d19d2e62a1",
+          "startTime": "2026-06-30T10:00:00-07:00",
+          "endTime": "2026-06-30T10:45:00-07:00",
+          "title": "Preparing for College and How to Become a Staffer",
+          "location": "[Teen Lodge](maplocation://gold/teen_lodge)",
+          "description": "For Grizzly Bears and parents of Grizzly Bears, come to the Teen Lodge and hear personal experiences from our veteran staffers and learn how they got into college."
+        },
+        {
+          "id": "d091dbd3-2b7a-54c6-9c15-84d2c5c80aae",
+          "startTime": "2026-06-30T11:00:00-07:00",
+          "endTime": "2026-06-30T12:00:00-07:00",
+          "title": "Tri-camp Teen Gladiator!",
+          "location": "Gold Tennis Courts",
+          "description": "Duck, cover, and hide, can you make it? At the Gold Tennis Courts - we'll walk over from the Teen Lodge together at 10:45."
+        },
+        {
+          "id": "99e60f9c-fb74-5c60-9784-de6eddf51c7b",
+          "startTime": "2026-06-30T14:45:00-07:00",
+          "endTime": "2026-06-30T16:00:00-07:00",
+          "title": "Grizzly Bear Blue vs. Gold Volleyball",
+          "location": "[Dining Hall](maplocation://blue/dining_hall)",
+          "description": "1970's themed Grizzly Bear Blue vs. Gold Volleyball at Gold. Meet in front of the Dining Hall to walk over together. Time to unveil your sweat bands and 70's style athletic shorts."
+        },
+        {
+          "id": "0ccef5e3-ed3b-59b8-a0f6-dde51afbe6ea",
+          "startTime": "2026-06-30T18:00:00-07:00",
+          "endTime": "2026-06-30T19:00:00-07:00",
+          "title": "Grizzly Bear BBQ",
+          "location": "[Teen Lodge](maplocation://gold/teen_lodge)",
+          "description": "Grizzly Bear BBQ at the Teen Lodge with Blue and Oski! Grab a burger and have some fun, OR ELSE! Meet at the Teen Lodge."
+        },
+        {
+          "id": "ebd7a02b-dfc4-53b4-804e-3fa7616a1bec",
+          "startTime": "2026-06-30T21:00:00-07:00",
+          "endTime": "2026-06-30T22:00:00-07:00",
+          "title": "Grizzly Bear Night Swim",
+          "location": "[Pool](maplocation://gold/pool)",
+          "description": "Grizzly Bear Night Swim with Blue and Oski at the Gold Pool. Put on your swim suit, bring a towel and meet at the Gold Pool."
+        },
+        {
+          "id": "cdf45975-a5f4-507d-b503-45f9d65c574a",
+          "startTime": "2026-07-01T09:20:00-07:00",
+          "endTime": "2026-07-01T12:00:00-07:00",
+          "title": "Grizzly Bear Kayaking",
+          "location": "[Store](maplocation://blue/store)",
+          "description": "Grizzly Bear Kayaking on Pinecrest Lake -- $15/person. Sign-up at the store by Monday afternoon. Meet at the store, and we'll walk over and back, so wear good shoes and clothes that can get wet."
+        },
+        {
+          "id": "31cdc1cc-3edc-563e-868a-c12a0a62fd30",
+          "startTime": "2026-07-01T15:30:00-07:00",
+          "endTime": "2026-07-01T16:45:00-07:00",
+          "title": "Ultimate Frisbee",
+          "location": "Mike Koll Softball Field",
+          "description": "Ultimate Frisbee with Blue! Meet at the Mike Koll Softball Field and wear your athletic gear!"
+        },
+        {
+          "id": "3773dedb-aa08-5780-b325-2ee916762479",
+          "startTime": "2026-07-01T22:00:00-07:00",
+          "endTime": "2026-07-01T23:00:00-07:00",
+          "title": "Grizzly Bear Sing-along",
+          "location": "[Teen Lodge](maplocation://gold/teen_lodge)",
+          "description": "Grizzly Bear Sing-along at the Teen Lodge. Play an instrument? Bring it! Don't play an instrument? Bring yourself!"
+        },
+        {
+          "id": "f5a77efc-4fe5-5aec-b53b-544d9ea0f9d1",
+          "startTime": "2026-07-02T10:00:00-07:00",
+          "endTime": "2026-07-02T15:00:00-07:00",
+          "title": "Hike to Cleo's Bath!",
+          "location": "[Volleyball Court](maplocation://oski/volleyball_court)",
+          "description": "Make and bring your own lunch from the DH at breakfast. Wear walking shoes, bring a towel, hat & sunscreen. We need parents to drive us to the lake -- thank you! Meet at the volleyball court."
+        },
+        {
+          "id": "c499f70d-52cf-5d8d-a1e7-058bab168853",
+          "startTime": "2026-07-02T21:30:00-07:00",
+          "endTime": "2026-07-02T22:30:00-07:00",
+          "title": "Family-Wed",
+          "location": "[Stage](maplocation://blue/stage)",
+          "description": "Family-Wed --COME ON DOWN!! Grizzly Bear and Parent Family Wed at the stage following the Hoot."
+        },
+        {
+          "id": "43452b91-8026-52a9-9542-aebc50d9f32b",
+          "startTime": "2026-07-03T09:15:00-07:00",
+          "endTime": "2026-07-03T12:00:00-07:00",
+          "title": "Grizzly Bear Party Boating",
+          "location": "[Volleyball Court](maplocation://oski/volleyball_court)",
+          "description": "Grizzly Bear Party Boating at the Pinecrest Lake! $10/person. Sign-up at the store by Thursday afternoon. We'll meet up with Gold and Oski Grizzly Bears and cruise the lake. Bring your swimsuit, towel, and sunscreen. Meet at the volleyball court."
+        },
+        {
+          "id": "bf67bbf6-e579-51f7-97be-6a8dfea24a81",
+          "startTime": "2026-07-03T21:30:00-07:00",
+          "endTime": "2026-07-03T23:30:00-07:00",
+          "title": "Final Grizzly Party & Dance",
+          "location": "[Teen Lodge](maplocation://gold/teen_lodge)",
+          "description": "This is it! Final Grizzly Party & Dance at the Teen Lodge. Come participate in our game stations and campfire, and don't forget to dance! No Grizzly Bears with signs of alcohol use will be admitted."
+        },
+        {
+          "id": "a607a77e-f11e-5da6-85cc-aca5ae490c08",
+          "startTime": "2026-07-04T08:45:00-07:00",
+          "endTime": null,
+          "title": "Group Photo & Goodbye",
+          "location": "[Lodge](maplocation://blue/lodge)",
+          "description": "Come take one last group photo for the Lair's Instagram (@Lair1949), post photos using #lairofthegoldenbear and say goodbye to everyone. Meet at the Blue Lodge. :'("
+        }
+      ]
+    }
+  ]
+}
