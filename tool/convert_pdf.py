@@ -217,8 +217,11 @@ def convert_pdf(pdf_path: str, dry_run: bool):
         # Sort events chronologically by startTime, then by title
         processed_events.sort(key=lambda x: (x.get("startTime", ""), x.get("title", "")))
 
+        # Normalize track names (e.g. "All Camp Activities" -> "All-camp Activities")
+        normalized_track_name = re.sub(r'(?i)\ball\s+camp\b', 'All-camp', track_name)
+
         final_tracks.append({
-            "name": track_name,
+            "name": normalized_track_name,
             "banner": banner,
             "events": processed_events
         })
