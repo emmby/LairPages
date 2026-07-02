@@ -174,6 +174,54 @@ void main() {
                 );
               }
             }
+
+            // H. Location Casing Validation
+            if (event.location != null && event.location!.isNotEmpty) {
+              String firstCharStr = event.location!;
+              if (firstCharStr.startsWith('[')) {
+                firstCharStr = firstCharStr.substring(1);
+              }
+              if (firstCharStr.isNotEmpty) {
+                final firstChar = firstCharStr[0];
+                expect(
+                  firstChar == firstChar.toUpperCase(),
+                  true,
+                  reason: 'Event "${event.title}" location string "${event.location}" must start with an uppercase letter.',
+                );
+              }
+
+              // Ensure all maplocation markdown link labels are capitalized
+              final linkLabelRegExp = RegExp(r'\[([^\]]+)\]\(maplocation:\/\/');
+              final labelMatches = linkLabelRegExp.allMatches(event.location!);
+              for (final match in labelMatches) {
+                final label = match.group(1) ?? '';
+                if (label.isNotEmpty) {
+                  final firstChar = label[0];
+                  expect(
+                    firstChar == firstChar.toUpperCase(),
+                    true,
+                    reason: 'Event "${event.title}" markdown link label "$label" in location string must start with an uppercase letter.',
+                  );
+                }
+              }
+            }
+
+            // Ensure markdown links in description are also properly capitalized
+            if (event.description != null && event.description!.isNotEmpty) {
+              final linkLabelRegExp = RegExp(r'\[([^\]]+)\]\(maplocation:\/\/');
+              final labelMatches = linkLabelRegExp.allMatches(event.description!);
+              for (final match in labelMatches) {
+                final label = match.group(1) ?? '';
+                if (label.isNotEmpty) {
+                  final firstChar = label[0];
+                  expect(
+                    firstChar == firstChar.toUpperCase(),
+                    true,
+                    reason: 'Event "${event.title}" markdown link label "$label" in description must start with an uppercase letter.',
+                  );
+                }
+              }
+            }
           }
         }
       });
