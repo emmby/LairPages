@@ -162,37 +162,35 @@ def convert_pdf(pdf_path: str, dry_run: bool):
     
     extracted_events_by_track = {name: [] for name in track_names}
 
-    def process_batch(batch):
-        try:
-            results = extract_batch(batch)
-            return batch, results, None
-        except Exception as e:
-            return batch, None, e
-
-    print(f"Launching {len(batches)} concurrent extraction batches...")
-    
-    with concurrent.futures.ThreadPoolExecutor(max_workers=len(batches)) as executor:
-        futures = {executor.submit(process_batch, b): b for b in batches}
+    if not batches:
+        print("Warning: No tracks detected to extract.")
+    else:
+        print(f"Launching {len(batches)} concurrent extraction batches...")
         
-        for future in concurrent.futures.as_completed(futures):
-            batch, results, err = future.result()
-            if err is not None:
-                print(f"Error extracting batch {batch}: {err}")
-                raise err
+        with concurrent.futures.ThreadPoolExecutor(max_workers=len(batches)) as executor:
+            futures = {executor.submit(extract_batch, b): b for b in batches}
             
-            for track_events in results:
-                t_name = track_events.track_name
-                # Case-insensitive recovery
-                if t_name not in extracted_events_by_track:
-                    closest = next((name for name in track_names if name.lower() == t_name.lower()), None)
-                    if closest:
-                        t_name = closest
-                    else:
-                        print(f"Warning: Received unexpected track name '{t_name}' in batch {batch}")
-                        continue
+            for future in concurrent.futures.as_completed(futures):
+                batch = futures[future]
+                try:
+                    results = future.result()
+                except Exception as e:
+                    print(f"Error extracting batch {batch}: {e}")
+                    raise e
                 
-                print(f"  - Batch result received for track '{t_name}': {len(track_events.events)} events.")
-                extracted_events_by_track[t_name] = track_events.events
+                for track_events in results:
+                    t_name = track_events.track_name
+                    # Case-insensitive recovery
+                    if t_name not in extracted_events_by_track:
+                        closest = next((name for name in track_names if name.lower() == t_name.lower()), None)
+                        if closest:
+                            t_name = closest
+                        else:
+                            print(f"Warning: Received unexpected track name '{t_name}' in batch {batch}")
+                            continue
+                    
+                    print(f"  - Batch result received for track '{t_name}': {len(track_events.events)} events.")
+                    extracted_events_by_track[t_name] = track_events.events
 
     final_tracks = []
     # Build final list in original track order
