@@ -30,7 +30,7 @@ class EventModel(BaseModel):
     startTime: str = Field(description="ISO 8601 datetime format (e.g. '2026-06-20T15:00:00-07:00' with PDT -07:00 offset). Mapped to the actual calendar day of the week based on Saturday check-in.")
     endTime: Optional[str] = Field(None, description="ISO 8601 datetime format with PDT -07:00 offset, or null if no end time is specified.")
     title: str = Field(description="The title of the event.")
-    location: Optional[str] = Field(None, description="The location of the event. If the location refers to one or more known map locations, format those parts of the text as a markdown link using the scheme 'maplocation://<camp_id>/<location_id>' (e.g. '[Volleyball Court](maplocation://oski/volleyball_court)'). Leave unrecognized parts or unlabeled locations as plain text. Null if not specified.")
+    location: Optional[str] = Field(None, description="The location of the event. If the location refers to one or more known map locations, format those parts of the text as a markdown link using the scheme 'maplocation://<camp_id>/<location_id>' (e.g. '[Volleyball Court](maplocation://oski/volleyball_court)'). Always capitalize the text of the link (e.g. use '[Pool]' instead of '[pool]'). Leave unrecognized parts or unlabeled locations as plain text, starting with an uppercase letter. Null if not specified.")
     description: Optional[str] = Field(None, description="Detailed description of the event. Preserve markdown formatting like bold text, lists, or italics.")
 
 class TrackEvents(BaseModel):
@@ -71,6 +71,32 @@ def load_map_locations() -> List[dict]:
             except Exception as e:
                 print(f"Error loading map location file {filename}: {e}")
     return locations_list
+
+def _format_location_link(match) -> str:
+    label = match.group(1)
+    rest = match.group(2)
+    capitalized_label = ' '.join(word[0].upper() + word[1:] if len(word) > 0 else '' for word in label.split(' '))
+    return f"[{capitalized_label}]({rest})"
+
+def clean_location(loc: Optional[str]) -> Optional[str]:
+    if not loc:
+        return loc
+    
+    # Capitalize markdown link labels (e.g. [pool](...) -> [Pool](...))
+    loc = re.sub(r'\[([^\]]+)\]\((maplocation://[^)]+)\)', _format_location_link, loc)
+    
+    # Ensure the first letter of the location string is capitalized
+    if loc and loc[0].islower():
+        loc = loc[0].upper() + loc[1:]
+    elif loc and loc.startswith('[') and len(loc) > 1 and loc[1].islower():
+        loc = '[' + loc[1].upper() + loc[2:]
+        
+    return loc
+
+def clean_description(desc: Optional[str]) -> Optional[str]:
+    if not desc:
+        return desc
+    return re.sub(r'\[([^\]]+)\]\((maplocation://[^)]+)\)', _format_location_link, desc)
 
 def convert_pdf(pdf_path: str, dry_run: bool):
     # Parse metadata from path
@@ -178,6 +204,9 @@ def convert_pdf(pdf_path: str, dry_run: bool):
             "using the scheme 'maplocation://<camp_id>/<location_id>'. For example, map 'Volleyball Court' to '[Volleyball Court](maplocation://oski/volleyball_court)'. "
             "If an event lists multiple locations (e.g., 'Lair Lodge / Volleyball Court'), link all matching locations: '[Lair Lodge](maplocation://oski/lodge) / [Volleyball Court](maplocation://oski/volleyball_court)'. "
             "If a location doesn't match any known ID or isn't on the map, leave it as plain text.\n"
+            "11. Proper Casing for Locations: All location names, whether plain text or inside markdown links (in both the `location` and `description` fields), must start with an uppercase letter. "
+            "For example, use 'Stage', 'Pool', 'Basketball Court', 'Store', 'Gaga Pit', and 'Archery Range' instead of lowercase versions. "
+            "When wrapping a location name in a markdown link, capitalize the display text (e.g. '[Pool](maplocation://oski/pool)' instead of '[pool](maplocation://oski/pool)').\n"
             "Here is the list of known location IDs and their human-readable names:\n"
             f"{json.dumps(known_locations, indent=2)}"
         )
@@ -248,8 +277,8 @@ def convert_pdf(pdf_path: str, dry_run: bool):
                 "startTime": event.startTime,
                 "endTime": event.endTime,
                 "title": event.title,
-                "location": event.location,
-                "description": event.description
+                "location": clean_location(event.location),
+                "description": clean_description(event.description)
             }
             processed_events.append(processed_evt)
 

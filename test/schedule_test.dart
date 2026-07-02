@@ -4,6 +4,7 @@ import 'package:test/test.dart';
 import 'package:lair/src/models/models.dart';
 
 void main() {
+  final linkLabelRegExp = RegExp(r'\[([^\]]+)\]\(maplocation:\/\/');
   final scheduleDir = Directory('schedules');
 
   // Read all valid location IDs from Lair maps
@@ -172,6 +173,52 @@ void main() {
                   true,
                   reason: 'Event "${event.title}" contains link to invalid location ID "$fullId" in location string "${event.location}".',
                 );
+              }
+            }
+
+            // H. Location Casing Validation
+            if (event.location != null && event.location!.isNotEmpty) {
+              String firstCharStr = event.location!;
+              if (firstCharStr.startsWith('[')) {
+                firstCharStr = firstCharStr.substring(1);
+              }
+              if (firstCharStr.isNotEmpty) {
+                final firstChar = firstCharStr[0];
+                expect(
+                  firstChar == firstChar.toUpperCase(),
+                  true,
+                  reason: 'Event "${event.title}" location string "${event.location}" must start with an uppercase letter.',
+                );
+              }
+
+              // Ensure all maplocation markdown link labels are capitalized
+              final labelMatches = linkLabelRegExp.allMatches(event.location!);
+              for (final match in labelMatches) {
+                final label = match.group(1) ?? '';
+                if (label.isNotEmpty) {
+                  final firstChar = label[0];
+                  expect(
+                    firstChar == firstChar.toUpperCase(),
+                    true,
+                    reason: 'Event "${event.title}" markdown link label "$label" in location string must start with an uppercase letter.',
+                  );
+                }
+              }
+            }
+
+            // Ensure markdown links in description are also properly capitalized
+            if (event.description != null && event.description!.isNotEmpty) {
+              final labelMatches = linkLabelRegExp.allMatches(event.description!);
+              for (final match in labelMatches) {
+                final label = match.group(1) ?? '';
+                if (label.isNotEmpty) {
+                  final firstChar = label[0];
+                  expect(
+                    firstChar == firstChar.toUpperCase(),
+                    true,
+                    reason: 'Event "${event.title}" markdown link label "$label" in description must start with an uppercase letter.',
+                  );
+                }
               }
             }
           }
