@@ -172,7 +172,7 @@ def convert_pdf(pdf_path: str, dry_run: bool):
         processed_events.sort(key=lambda x: (x.get("startTime", ""), x.get("title", "")))
 
         # Normalize track names (e.g. "All Camp Activities" -> "All-camp Activities")
-        normalized_track_name = track_name.replace("All Camp", "All-camp")
+        normalized_track_name = re.sub(r'(?i)\ball\s+camp\b', 'All-camp', track_name)
 
         final_tracks.append({
             "name": normalized_track_name,
