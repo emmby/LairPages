@@ -18,6 +18,7 @@ from google.genai import types
 class TrackMetaModel(BaseModel):
     name: str = Field(description="The exact name of the track/category (e.g. 'All-camp Activities', 'Burger Shack', 'Pool', 'Meals', 'Store', 'Wellness/Massage', 'Medical', 'Athletics', 'Archery', 'Nature/Hiking', 'Arts and Crafts', 'Music', 'Cub Corral', 'Lair Yoga', 'Teddy Bears', 'Golden Bears', 'Cal Bears', 'Grizzly Bears').")
     banner: Optional[str] = Field(None, description="Any general policies, rules, warnings, or announcements listed under this track header (e.g. Pool adult swim rule, arts & crafts rules). Null if none.")
+    estimated_events: Optional[int] = Field(None, description="Rough estimate of the total number of events or rows listed in this track in the PDF. Count multi-day repeat events as separate rows.")
 
 class ScheduleMetadata(BaseModel):
     year: int = Field(description="The year of the schedule (e.g. 2026)")
@@ -85,7 +86,9 @@ def convert_pdf(pdf_path: str, dry_run: bool):
         "You are an expert schedule extraction assistant. Read the provided camp schedule PDF "
         "and extract the year, camp name, week number, and Saturday check-in date (YYYY-MM-DD).\n"
         "Also, identify all active tracks/categories (e.g. 'All-camp Activities', 'Meals', 'Pool', 'Arts and Crafts', 'Teddy Bears', etc.) "
-        "that have scheduled events or warnings, along with any track-level banner/policy announcements.\n\n"
+        "that have scheduled events or warnings, along with any track-level banner/policy announcements.\n"
+        "For each detected track, estimate the total number of events (rows) listed under it in the PDF schedule grid. "
+        "For recurring multi-day events or items listed with multiple times, count each daily occurrence as a separate event.\n\n"
         f"Expected: Year {path_year}, Camp {path_camp}, Week {path_week}."
     )
     
@@ -106,13 +109,15 @@ def convert_pdf(pdf_path: str, dry_run: bool):
     week = metadata.week
     start_date = metadata.start_date
     detected_tracks = metadata.tracks
-
+ 
     print(f"Successfully extracted metadata:")
     print(f"  - Year: {year}")
     print(f"  - Camp: {camp}")
     print(f"  - Week: {week}")
     print(f"  - Saturday Check-in: {start_date}")
-    print(f"  - Detected Tracks: {[t.name for t in detected_tracks]}")
+    print("  - Detected Tracks & Estimates:")
+    for t in detected_tracks:
+        print(f"    * {t.name}: ~{t.estimated_events or 0} events")
 
     # ----------------------------------------------------
     # Step 2: Concurrently Extract Events in Batches
@@ -156,9 +161,27 @@ def convert_pdf(pdf_path: str, dry_run: bool):
         batch_data = BatchExtraction.model_validate_json(response2.text)
         return batch_data.results
 
-    batch_size = 3
+    # Greedy load-balancing partitioner using estimated event counts
+    num_batches = 6
     track_names = [t.name for t in detected_tracks]
-    batches = [track_names[i:i + batch_size] for i in range(0, len(track_names), batch_size)]
+    
+    if not track_names:
+        batches = []
+    else:
+        # Sort tracks by estimated count descending
+        sorted_tracks = sorted(detected_tracks, key=lambda x: x.estimated_events or 0, reverse=True)
+        batches = [[] for _ in range(min(num_batches, len(track_names)))]
+        batch_totals = [0] * len(batches)
+        
+        for track in sorted_tracks:
+            # Find the batch with the smallest current event total
+            min_idx = batch_totals.index(min(batch_totals))
+            batches[min_idx].append(track.name)
+            batch_totals[min_idx] += (track.estimated_events or 0)
+            
+        print("\nBalanced Batches Config:")
+        for idx, (b, total) in enumerate(zip(batches, batch_totals)):
+            print(f"  * Batch {idx+1}: {b} (Estimated events total: {total})")
     
     extracted_events_by_track = {name: [] for name in track_names}
 
