@@ -22,6 +22,29 @@ void main() {
         final schedule = ScheduleData.fromRawJson(content);
         expect(schedule.tracks, isNotEmpty);
 
+        // Find the earliest event start time to establish the week's boundary
+        DateTime? earliestTime;
+        for (final track in schedule.tracks) {
+          for (final event in track.events) {
+            final t = DateTime.parse(event.startTime).toUtc();
+            if (earliestTime == null || t.isBefore(earliestTime)) {
+              earliestTime = t;
+            }
+          }
+        }
+
+        DateTime? weekStart;
+        DateTime? weekEnd;
+        if (earliestTime != null) {
+          // Check-in is Saturday. We set start bounds to Saturday 00:00:00 UTC
+          weekStart = DateTime.utc(earliestTime.year, earliestTime.month, earliestTime.day);
+          // And end bounds to Saturday 24:00:00 UTC of the following week (8 days later, exclusive)
+          weekEnd = weekStart.add(const Duration(days: 8));
+        }
+
+        final seenIds = <String>{};
+        final seenTitleTimes = <String>{};
+
         for (final track in schedule.tracks) {
           expect(track.name, isNotEmpty);
 
@@ -29,8 +52,19 @@ void main() {
           for (final event in track.events) {
             expect(event.trackName, equals(track.name));
 
-            // Verify chronological order
-            final currentTime = DateTime.parse(event.startTime);
+            final currentTime = DateTime.parse(event.startTime).toUtc();
+
+            // A. Date Range Boundary Validation
+            if (weekStart != null && weekEnd != null) {
+              expect(
+                (currentTime.isAfter(weekStart) || currentTime.isAtSameMomentAs(weekStart)) &&
+                    currentTime.isBefore(weekEnd),
+                true,
+                reason: 'Event "${event.title}" (time: ${event.startTime}) falls outside the week boundaries ($weekStart to $weekEnd).',
+              );
+            }
+
+            // B. Chronological Order Validation
             if (previousTime != null) {
               expect(
                 currentTime.isAfter(previousTime) || currentTime.isAtSameMomentAs(previousTime),
@@ -40,7 +74,63 @@ void main() {
             }
             previousTime = currentTime;
 
-            // 2. Verify startTime offset is PDT (-07:00)
+            // C. Temporal Logic Validation
+            if (event.endTime != null) {
+              final endTime = DateTime.parse(event.endTime!).toUtc();
+              expect(
+                endTime.isAfter(currentTime),
+                true,
+                reason: 'Event "${event.title}" (ID: ${event.id}) has endTime equal to or before startTime.',
+              );
+              expect(
+                endTime.difference(currentTime).inHours <= 28,
+                true,
+                reason: 'Event "${event.title}" (ID: ${event.id}) has an implausibly long duration (${endTime.difference(currentTime).inHours} hours).',
+              );
+            }
+
+            // D. Duplicate Event Prevention
+            expect(
+              seenIds.add(event.id),
+              true,
+              reason: 'Duplicate event ID "${event.id}" found in track "${track.name}".',
+            );
+            
+            final uniqueKey = '${track.name}_${event.title}_${event.startTime}';
+            expect(
+              seenTitleTimes.add(uniqueKey),
+              true,
+              reason: 'Duplicate event "${event.title}" at time ${event.startTime} found in track "${track.name}".',
+            );
+
+            // E. Text Cleanliness & Formatting Checks
+            expect(
+              event.title.trim(),
+              equals(event.title),
+              reason: 'Event "${event.title}" has leading/trailing whitespaces.',
+            );
+            expect(
+              event.title.contains('\n'),
+              false,
+              reason: 'Event "${event.title}" has newlines in its title.',
+            );
+
+            final desc = event.description ?? '';
+            final boldCount = RegExp(r'\*\*').allMatches(desc).length;
+            expect(
+              boldCount % 2,
+              0,
+              reason: 'Event "${event.title}" has unclosed double asterisks (**) in description: "$desc".',
+            );
+
+            final codeCount = RegExp(r'`').allMatches(desc).length;
+            expect(
+              codeCount % 2,
+              0,
+              reason: 'Event "${event.title}" has unclosed code backticks (`) in description: "$desc".',
+            );
+
+            // F. Verify timezone offset is PDT (-07:00)
             if (!event.isAllDay) {
               expect(
                 event.startTime,
@@ -49,7 +139,6 @@ void main() {
               );
             }
 
-            // 3. Verify endTime offset is PDT (-07:00)
             if (event.endTime != null) {
               expect(
                 event.endTime,
