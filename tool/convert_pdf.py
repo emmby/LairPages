@@ -5,6 +5,7 @@ import uuid
 import hashlib
 import argparse
 import re
+import concurrent.futures
 from pydantic import BaseModel, Field
 from typing import List, Optional
 from google import genai
@@ -32,9 +33,12 @@ class EventModel(BaseModel):
     location: Optional[str] = Field(None, description="The location of the event, or null if not specified.")
     description: Optional[str] = Field(None, description="Detailed description of the event. Preserve markdown formatting like bold text, lists, or italics.")
 
-class TrackEventsModel(BaseModel):
-    name: str = Field(description="The name of the track/category being extracted.")
+class TrackEvents(BaseModel):
+    track_name: str = Field(description="The exact name of the track.")
     events: List[EventModel] = Field(description="List of events belonging to this track.")
+
+class BatchExtraction(BaseModel):
+    results: List[TrackEvents] = Field(description="List of extractions for each queried track.")
 
 # ==========================================
 # Core Conversion Flow
@@ -111,47 +115,89 @@ def convert_pdf(pdf_path: str, dry_run: bool):
     print(f"  - Detected Tracks: {[t.name for t in detected_tracks]}")
 
     # ----------------------------------------------------
-    # Step 2: Loop and Extract Events per Track
+    # Step 2: Concurrently Extract Events in Batches
     # ----------------------------------------------------
-    print("\n--- STEP 2: Extracting Events Track-by-Track ---")
-    final_tracks = []
+    print("\n--- STEP 2: Extracting Events Concurrently in Batches ---")
     
-    for idx, track_meta in enumerate(detected_tracks):
-        track_name = track_meta.name
-        banner = track_meta.banner
-        
-        print(f"[{idx+1}/{len(detected_tracks)}] Extracting events for track: '{track_name}'...")
-        
+    def extract_batch(batch_tracks: List[str]) -> List[TrackEvents]:
+        track_names_str = ", ".join(f"'{name}'" for name in batch_tracks)
+        print(f"Starting extraction for batch: {batch_tracks}")
         prompt2 = (
             "You are an expert schedule extraction assistant.\n"
-            f"Extract all events belonging to the track '{track_name}' from the provided PDF schedule.\n\n"
+            f"Extract all events belonging to the following tracks: [{track_names_str}] from the provided PDF schedule.\n\n"
             "Rules:\n"
-            f"1. Strict Track Membership: You must associate events with '{track_name}' strictly based on the physical visual layout "
-            "(e.g., column, grid cell, or row boundaries) in the PDF. Do NOT assign an event to this track based on semantic association "
+            "1. Strict Track Membership: You must associate events with their respective tracks strictly based on the physical visual layout "
+            "(e.g., column, grid cell, or row boundaries) in the PDF. Do NOT assign an event to a track based on semantic association "
             "or topical relevance (for example, do not include dining, kitchen, or meal-related meetings under 'All-camp Activities' "
             "unless they are physically drawn inside that track's column/section of the grid).\n"
-            f"2. Group only events for this track. Omit events that physically belong to other tracks.\n"
+            "2. Group only events for these specific tracks. Omit events that physically belong to other tracks.\n"
             "3. Map day names (Saturday, Sunday, Monday, etc.) to absolute ISO 8601 dates starting from the Saturday check-in date "
             f"'{start_date}' (PDT timezone offset -07:00, e.g., '2026-06-20T15:00:00-07:00').\n"
             "4. Expand recurring events (e.g. daily store hours or daily meals) into individual daily entries.\n"
             "5. Split events with multiple daily times (e.g. '9:00 AM & 2:00 PM') into separate events.\n"
             "6. Omit non-event text blocks like Land Acknowledgements.\n"
-            "7. Preserve markdown formatting like bold text or list items in event descriptions."
+            "7. Preserve markdown formatting like bold text or list items in event descriptions.\n"
+            "8. Markdown Escaping: If the source PDF contains literal characters like asterisks (e.g. '*' or '**'), underscores ('_'), "
+            "or backticks ('`') that are part of the literal text and not meant as markdown styling, you must escape them (e.g. '\\*', '\\*\\*', '\\_', '\\`') "
+            "so they are not interpreted as markdown formatting by the app's renderer.\n"
+            f"9. The 'track_name' field for each entry in 'results' must exactly match one of: {track_names_str}."
         )
-        
+
         response2 = client.models.generate_content(
             model=model_name,
             contents=[pdf_part, prompt2],
             config=types.GenerateContentConfig(
                 response_mime_type="application/json",
-                response_schema=TrackEventsModel,
+                response_schema=BatchExtraction,
                 temperature=0.1,
             ),
         )
+
+        batch_data = BatchExtraction.model_validate_json(response2.text)
+        return batch_data.results
+
+    batch_size = 3
+    track_names = [t.name for t in detected_tracks]
+    batches = [track_names[i:i + batch_size] for i in range(0, len(track_names), batch_size)]
+    
+    extracted_events_by_track = {name: [] for name in track_names}
+
+    if not batches:
+        print("Warning: No tracks detected to extract.")
+    else:
+        print(f"Launching {len(batches)} concurrent extraction batches...")
         
-        track_events_data = TrackEventsModel.model_validate_json(response2.text)
-        events = track_events_data.events
-        print(f"  - Extracted {len(events)} events.")
+        with concurrent.futures.ThreadPoolExecutor(max_workers=len(batches)) as executor:
+            futures = {executor.submit(extract_batch, b): b for b in batches}
+            
+            for future in concurrent.futures.as_completed(futures):
+                batch = futures[future]
+                try:
+                    results = future.result()
+                except Exception as e:
+                    print(f"Error extracting batch {batch}: {e}")
+                    raise e
+                
+                for track_events in results:
+                    t_name = track_events.track_name
+                    # Case-insensitive recovery
+                    if t_name not in extracted_events_by_track:
+                        closest = next((name for name in track_names if name.lower() == t_name.lower()), None)
+                        if closest:
+                            t_name = closest
+                        else:
+                            print(f"Warning: Received unexpected track name '{t_name}' in batch {batch}")
+                            continue
+                    
+                    print(f"  - Batch result received for track '{t_name}': {len(track_events.events)} events.")
+                    extracted_events_by_track[t_name] = track_events.events
+
+    final_tracks = []
+    # Build final list in original track order
+    for track_meta in detected_tracks:
+        track_name = track_meta.name
+        banner = track_meta.banner
+        events = extracted_events_by_track.get(track_name, [])
         
         processed_events = []
         for event in events:
