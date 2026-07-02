@@ -6,6 +6,33 @@ import 'package:lair/src/models/models.dart';
 void main() {
   final scheduleDir = Directory('schedules');
 
+  // Read all valid location IDs from Lair maps
+  final validLocationIds = <String>{};
+  final mapsDir = Directory('../Lair/assets/maps');
+  if (!mapsDir.existsSync()) {
+    throw StateError(
+      'Sibling Lair repository map assets directory does not exist at ${mapsDir.absolute.path}. '
+      'Ensure the Lair repository is checked out adjacent to LairPages so location IDs can be validated.',
+    );
+  }
+
+  final mapFiles = mapsDir.listSync().whereType<File>();
+  for (final file in mapFiles) {
+    final filename = file.path.split(Platform.pathSeparator).last;
+    if (filename.startsWith('locations_') && filename.endsWith('.json')) {
+      final campName = filename.substring(10, filename.length - 5);
+      final content = file.readAsStringSync();
+      final data = json.decode(content) as Map<String, dynamic>;
+      final locations = data['locations'] as List<dynamic>? ?? [];
+      for (final loc in locations) {
+        final locId = loc['id'] as String?;
+        if (locId != null && locId.isNotEmpty) {
+          validLocationIds.add('$campName/$locId');
+        }
+      }
+    }
+  }
+
   group('Schedule Datetime & Schema Tests', () {
     // Locate all json schedule files, ignoring manifest.json
     final files = scheduleDir
@@ -130,6 +157,22 @@ void main() {
                 endsWith('-07:00'),
                 reason: 'Event "${event.title}" (ID: ${event.id}) has invalid endTime offset.',
               );
+            }
+
+            // G. Location Markdown Link Validation
+            if (event.location != null) {
+              final linkRegExp = RegExp(r'maplocation:\/\/([^/)]+)\/([^)]+)');
+              final matches = linkRegExp.allMatches(event.location!);
+              for (final match in matches) {
+                final campId = match.group(1);
+                final locationId = match.group(2);
+                final fullId = '$campId/$locationId';
+                expect(
+                  validLocationIds.contains(fullId),
+                  true,
+                  reason: 'Event "${event.title}" contains link to invalid location ID "$fullId" in location string "${event.location}".',
+                );
+              }
             }
           }
         }
