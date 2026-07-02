@@ -4,6 +4,7 @@ import 'package:test/test.dart';
 import 'package:lair/src/models/models.dart';
 
 void main() {
+  final linkLabelRegExp = RegExp(r'\[([^\]]+)\]\(maplocation:\/\/');
   final scheduleDir = Directory('schedules');
 
   // Read all valid location IDs from Lair maps
@@ -191,7 +192,6 @@ void main() {
               }
 
               // Ensure all maplocation markdown link labels are capitalized
-              final linkLabelRegExp = RegExp(r'\[([^\]]+)\]\(maplocation:\/\/');
               final labelMatches = linkLabelRegExp.allMatches(event.location!);
               for (final match in labelMatches) {
                 final label = match.group(1) ?? '';
@@ -208,7 +208,6 @@ void main() {
 
             // Ensure markdown links in description are also properly capitalized
             if (event.description != null && event.description!.isNotEmpty) {
-              final linkLabelRegExp = RegExp(r'\[([^\]]+)\]\(maplocation:\/\/');
               final labelMatches = linkLabelRegExp.allMatches(event.description!);
               for (final match in labelMatches) {
                 final label = match.group(1) ?? '';

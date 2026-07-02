@@ -72,18 +72,18 @@ def load_map_locations() -> List[dict]:
                 print(f"Error loading map location file {filename}: {e}")
     return locations_list
 
+def _format_location_link(match) -> str:
+    label = match.group(1)
+    rest = match.group(2)
+    capitalized_label = ' '.join(word[0].upper() + word[1:] if len(word) > 0 else '' for word in label.split(' '))
+    return f"[{capitalized_label}]({rest})"
+
 def clean_location(loc: Optional[str]) -> Optional[str]:
     if not loc:
         return loc
     
     # Capitalize markdown link labels (e.g. [pool](...) -> [Pool](...))
-    def format_link(match):
-        label = match.group(1)
-        rest = match.group(2)
-        capitalized_label = ' '.join(word[0].upper() + word[1:] if len(word) > 0 else '' for word in label.split(' '))
-        return f"[{capitalized_label}]({rest})"
-        
-    loc = re.sub(r'\[([^\]]+)\]\((maplocation://[^)]+)\)', format_link, loc)
+    loc = re.sub(r'\[([^\]]+)\]\((maplocation://[^)]+)\)', _format_location_link, loc)
     
     # Ensure the first letter of the location string is capitalized
     if loc and loc[0].islower():
@@ -96,14 +96,7 @@ def clean_location(loc: Optional[str]) -> Optional[str]:
 def clean_description(desc: Optional[str]) -> Optional[str]:
     if not desc:
         return desc
-    
-    def format_link(match):
-        label = match.group(1)
-        rest = match.group(2)
-        capitalized_label = ' '.join(word[0].upper() + word[1:] if len(word) > 0 else '' for word in label.split(' '))
-        return f"[{capitalized_label}]({rest})"
-        
-    return re.sub(r'\[([^\]]+)\]\((maplocation://[^)]+)\)', format_link, desc)
+    return re.sub(r'\[([^\]]+)\]\((maplocation://[^)]+)\)', _format_location_link, desc)
 
 def convert_pdf(pdf_path: str, dry_run: bool):
     # Parse metadata from path
