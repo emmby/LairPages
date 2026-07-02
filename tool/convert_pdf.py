@@ -30,7 +30,7 @@ class EventModel(BaseModel):
     startTime: str = Field(description="ISO 8601 datetime format (e.g. '2026-06-20T15:00:00-07:00' with PDT -07:00 offset). Mapped to the actual calendar day of the week based on Saturday check-in.")
     endTime: Optional[str] = Field(None, description="ISO 8601 datetime format with PDT -07:00 offset, or null if no end time is specified.")
     title: str = Field(description="The title of the event.")
-    location: Optional[str] = Field(None, description="The location of the event, or null if not specified.")
+    location: Optional[str] = Field(None, description="The location of the event. If the location refers to one or more known map locations, format those parts of the text as a markdown link using the scheme 'maplocation://<camp_id>/<location_id>' (e.g. '[Volleyball Court](maplocation://oski/volleyball_court)'). Leave unrecognized parts or unlabeled locations as plain text. Null if not specified.")
     description: Optional[str] = Field(None, description="Detailed description of the event. Preserve markdown formatting like bold text, lists, or italics.")
 
 class TrackEvents(BaseModel):
@@ -43,6 +43,34 @@ class BatchExtraction(BaseModel):
 # ==========================================
 # Core Conversion Flow
 # ==========================================
+
+def load_map_locations() -> List[dict]:
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    maps_dir = os.path.abspath(os.path.join(script_dir, "..", "..", "Lair", "assets", "maps"))
+    
+    locations_list = []
+    if not os.path.exists(maps_dir):
+        print(f"Warning: Maps directory not found at {maps_dir}")
+        return locations_list
+        
+    for filename in os.listdir(maps_dir):
+        if filename.startswith("locations_") and filename.endswith(".json"):
+            camp_name = filename[10:-5]  # e.g. "oski", "blue", "gold", "overall"
+            filepath = os.path.join(maps_dir, filename)
+            try:
+                with open(filepath, "r") as f:
+                    data = json.load(f)
+                    for loc in data.get("locations", []):
+                        loc_id = loc.get("id")
+                        name = loc.get("name")
+                        if loc_id and name:
+                            locations_list.append({
+                                "id": f"{camp_name}/{loc_id}",
+                                "name": name
+                            })
+            except Exception as e:
+                print(f"Error loading map location file {filename}: {e}")
+    return locations_list
 
 def convert_pdf(pdf_path: str, dry_run: bool):
     # Parse metadata from path
@@ -65,6 +93,10 @@ def convert_pdf(pdf_path: str, dry_run: bool):
     if not api_key:
         print("Error: GEMINI_API_KEY environment variable is not set.")
         sys.exit(1)
+
+    print("Loading map locations from Lair...")
+    known_locations = load_map_locations()
+    print(f"Loaded {len(known_locations)} known map locations.")
 
     print("Reading PDF file as bytes...")
     with open(pdf_path, 'rb') as f:
@@ -140,7 +172,14 @@ def convert_pdf(pdf_path: str, dry_run: bool):
             "8. Markdown Escaping: If the source PDF contains literal characters like asterisks (e.g. '*' or '**'), underscores ('_'), "
             "or backticks ('`') that are part of the literal text and not meant as markdown styling, you must escape them (e.g. '\\*', '\\*\\*', '\\_', '\\`') "
             "so they are not interpreted as markdown formatting by the app's renderer.\n"
-            f"9. The 'track_name' field for each entry in 'results' must exactly match one of: {track_names_str}."
+            f"9. The 'track_name' field for each entry in 'results' must exactly match one of: {track_names_str}.\n"
+            "10. Location Mapping: For the event's location text, match it against the known map locations list below. "
+            "If a location refers to one or more known map locations, format that part of the text as an inline markdown link "
+            "using the scheme 'maplocation://<camp_id>/<location_id>'. For example, map 'Volleyball Court' to '[Volleyball Court](maplocation://oski/volleyball_court)'. "
+            "If an event lists multiple locations (e.g., 'Lair Lodge / Volleyball Court'), link all matching locations: '[Lair Lodge](maplocation://oski/lodge) / [Volleyball Court](maplocation://oski/volleyball_court)'. "
+            "If a location doesn't match any known ID or isn't on the map, leave it as plain text.\n"
+            "Here is the list of known location IDs and their human-readable names:\n"
+            f"{json.dumps(known_locations, indent=2)}"
         )
 
         response2 = client.models.generate_content(
