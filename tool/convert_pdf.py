@@ -207,6 +207,8 @@ def convert_pdf(pdf_path: str, dry_run: bool):
             "11. Proper Casing for Locations: All location names, whether plain text or inside markdown links (in both the `location` and `description` fields), must start with an uppercase letter. "
             "For example, use 'Stage', 'Pool', 'Basketball Court', 'Store', 'Gaga Pit', and 'Archery Range' instead of lowercase versions. "
             "When wrapping a location name in a markdown link, capitalize the display text (e.g. '[Pool](maplocation://oski/pool)' instead of '[pool](maplocation://oski/pool)').\n"
+            "12. Time Range PM Resolution: When a time range is specified with a meridian marker at the end (e.g. '3:30-4:30 PM' or '1:30-4:00 PM' or '2:30-4:00 PM'), both the start and end times inherit the same marker (PM in this case) unless explicitly specified otherwise. For example, '3:30-4:30 PM' must be parsed as 15:30:00 to 16:30:00 (not 03:30:00), and '2:30-4:00 PM' must be parsed as 14:30:00 to 16:00:00 (not 02:30:00).\n"
+            "13. 24-Hour Time Conversion: When converting PM times to 24-hour format, add 12 to the hour (e.g., 1:00 PM -> 13:00, 2:30 PM -> 14:30, 3:00 PM -> 15:00, 4:00 PM -> 16:00, 11:00 PM -> 23:00). Double check that you do not map 2:30 PM to 23:30.\n"
             "Here is the list of known location IDs and their human-readable names:\n"
             f"{json.dumps(known_locations, indent=2)}"
         )
