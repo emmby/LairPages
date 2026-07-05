@@ -163,6 +163,12 @@ Aliases:
     return ""
 
 
+def normalize_location_key(text: str) -> str:
+    if not text:
+        return ""
+    return re.sub(r'\s+', ' ', text.strip().lower())
+
+
 def apply_mappings_to_text(text: str, mapping: dict) -> str:
     if not text:
         return text
@@ -171,7 +177,7 @@ def apply_mappings_to_text(text: str, mapping: dict) -> str:
         val = mapping[key]
         if val and val != key:
             # Match existing markdown links or the target raw location
-            pattern = r'(\[[^\]]+\]\([^)]+\))|(\b' + re.escape(key) + r'\b)'
+            pattern = r'(\[[^\]]+\]\([^)]+\))|(?<!\w)' + re.escape(key) + r'(?!\w)'
             def repl(match):
                 if match.group(1):
                     return match.group(1)
@@ -527,7 +533,7 @@ def convert_pdf(pdf_path: str, dry_run: bool):
             f"{json.dumps(raw_locations_list, indent=2)}"
         )
         
-        response4 = client.models.generate_content(
+        response4 = call_gemini_with_retry(lambda: client.models.generate_content(
             model=model_name,
             contents=[prompt4],
             config=types.GenerateContentConfig(
@@ -535,13 +541,15 @@ def convert_pdf(pdf_path: str, dry_run: bool):
                 response_schema=LocationResolutionResponse,
                 temperature=0.1,
             ),
-        )
+        ))
         
         resolution_data = LocationResolutionResponse.model_validate_json(response4.text)
         for item in resolution_data.mappings:
             if item.mapped_location:
-                resolved_map[item.raw_location] = item.mapped_location
-                print(f"  Mapped: '{item.raw_location}' -> '{item.mapped_location}'")
+                # Store normalized key to prevent casing/whitespace mismatches
+                norm_key = normalize_location_key(item.raw_location)
+                resolved_map[norm_key] = item.mapped_location
+                print(f"  Mapped: '{item.raw_location}' -> '{item.mapped_location}' (normalized key: '{norm_key}')")
             else:
                 print(f"  Unmapped: '{item.raw_location}'")
 
@@ -566,7 +574,8 @@ def convert_pdf(pdf_path: str, dry_run: bool):
             # If the location is already a link, we can keep it as is, or apply new mappings
             # Let's extract its plain text first to see if we mapped that plain text in Step 3
             plain_loc = extract_plain_text_location(raw_loc) if raw_loc else None
-            mapped_loc = resolved_map.get(plain_loc, raw_loc) if plain_loc else raw_loc
+            norm_plain = normalize_location_key(plain_loc) if plain_loc else None
+            mapped_loc = resolved_map.get(norm_plain, raw_loc) if norm_plain else raw_loc
             
             if mapped_loc == raw_loc and raw_loc:
                 # In case of sub-parts or description, apply the mapping via string replacement
