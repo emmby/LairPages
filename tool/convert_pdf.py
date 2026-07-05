@@ -363,7 +363,7 @@ def convert_pdf(pdf_path: str, dry_run: bool):
             
     resolved_times = {}
     if all_raw_events:
-        time_batch_size = 80
+        time_batch_size = 40
         time_batches = [all_raw_events[i:i + time_batch_size] for i in range(0, len(all_raw_events), time_batch_size)]
         
         print(f"Resolving timestamps for {len(all_raw_events)} events in {len(time_batches)} batches...")
@@ -414,18 +414,16 @@ def convert_pdf(pdf_path: str, dry_run: bool):
                 print(f"Response text: {response3.text}")
                 raise e
 
-        with concurrent.futures.ThreadPoolExecutor(max_workers=len(time_batches)) as executor:
-            futures = {executor.submit(resolve_time_batch, tb): tb for tb in time_batches}
-            for future in concurrent.futures.as_completed(futures):
-                try:
-                    resolutions = future.result()
-                    for res in resolutions:
-                        clean_start = fix_timestamp_format(res.startTime)
-                        clean_end = fix_timestamp_format(res.endTime)
-                        resolved_times[res.unique_id] = (clean_start, clean_end)
-                except Exception as e:
-                    print(f"Error resolving time batch: {e}")
-                    raise e
+        for tb in time_batches:
+            try:
+                resolutions = resolve_time_batch(tb)
+                for res in resolutions:
+                    clean_start = fix_timestamp_format(res.startTime)
+                    clean_end = fix_timestamp_format(res.endTime)
+                    resolved_times[res.unique_id] = (clean_start, clean_end)
+            except Exception as e:
+                print(f"Error resolving time batch: {e}")
+                raise e
 
     final_tracks = []
     # Build final list in original track order
