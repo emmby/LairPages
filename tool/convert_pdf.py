@@ -123,8 +123,9 @@ def convert_pdf(pdf_path: str, dry_run: bool):
         elif os.path.exists(".env"):
             with open(".env", "r") as f:
                 for line in f:
-                    if line.strip().startswith("GEMINI_API_KEY="):
-                        api_key = line.split("=", 1)[1].strip().strip('"').strip("'")
+                    match = re.match('^\\s*GEMINI_API_KEY\\s*=\\s*["\']?([^#"\']*)["\']?', line)
+                    if match:
+                        api_key = match.group(1).strip()
                         break
     if not api_key:
         print("Error: GEMINI_API_KEY environment variable is not set and no key found in .tmp/api_key.txt or .env.")
@@ -209,7 +210,7 @@ def convert_pdf(pdf_path: str, dry_run: bool):
             "4. Expand recurring events (e.g. daily store hours or daily meals) into individual daily entries.\n"
             "5. Split events with multiple daily times (e.g. '9:00 AM & 2:00 PM') into separate events.\n"
             "6. Omit non-event text blocks like Land Acknowledgements.\n"
-            "7. Preserve markdown formatting like bold text or list items in event descriptions.\n"
+            "7. Preserve the ENTIRE pdf event description when creating the json event description, including markdown formatting like bold text or list items. Do NOT modify, shorten, truncate, or remove any text from the description, even if the event title or location already includes or repeats that information.\n"
             "8. Markdown Escaping: If the source PDF contains literal characters like asterisks (e.g. '*' or '**'), underscores ('_'), "
             "or backticks ('`') that are part of the literal text and not meant as markdown styling, you must escape them (e.g. '\\*', '\\*\\*', '\\_', '\\`') "
             "so they are not interpreted as markdown formatting by the app's renderer.\n"
