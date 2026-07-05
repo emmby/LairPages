@@ -24,17 +24,17 @@ class RawBatchExtraction(BaseModel):
 def test_extraction(pdf_path: str, tracks: List[str]):
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
-        # Try fallback locations
-        for path in [".tmp/api_key.txt", ".env"]:
-            if os.path.exists(path):
-                with open(path) as f:
-                    content = f.read()
-                    for line in content.splitlines():
-                        if "GEMINI_API_KEY" in line:
-                            api_key = line.split("=")[-1].strip().strip('"').strip("'")
-                            break
-                if api_key:
-                    break
+        if os.path.exists(".tmp/api_key.txt"):
+            with open(".tmp/api_key.txt", "r") as f:
+                api_key = f.read().strip()
+        elif os.path.exists(".env"):
+            import re
+            with open(".env", "r") as f:
+                for line in f:
+                    match = re.match(r'^\s*GEMINI_API_KEY\s*=\s*["\']?([^#"\']*)["\']?', line)
+                    if match:
+                        api_key = match.group(1).strip()
+                        break
     
     if not api_key:
         print("Error: GEMINI_API_KEY environment variable not set, and no key found in .tmp/api_key.txt or .env")
