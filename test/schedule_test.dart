@@ -111,10 +111,32 @@ void main() {
                 reason: 'Event "${event.title}" (ID: ${event.id}) has endTime equal to or before startTime.',
               );
               expect(
-                endTime.difference(currentTime).inHours <= 28,
+                endTime.difference(currentTime).inHours <= 24,
                 true,
                 reason: 'Event "${event.title}" (ID: ${event.id}) has an implausibly long duration (${endTime.difference(currentTime).inHours} hours).',
               );
+            }
+
+            if (!event.isAllDay) {
+              final startHour = int.parse(event.startTime.substring(11, 13));
+              expect(
+                startHour >= 6,
+                true,
+                reason: 'Event "${event.title}" (ID: ${event.id}) starts before 6:00 AM (at ${event.startTime}).',
+              );
+
+              if (event.endTime != null) {
+                final endHour = int.parse(event.endTime!.substring(11, 13));
+                final endMinute = int.parse(event.endTime!.substring(14, 16));
+                final endSecond = int.parse(event.endTime!.substring(17, 19));
+                if (endHour >= 1 && endHour < 6) {
+                  expect(
+                    endHour == 1 && endMinute == 0 && endSecond == 0,
+                    true,
+                    reason: 'Event "${event.title}" (ID: ${event.id}) ends after 1:00 AM (at ${event.endTime}).',
+                  );
+                }
+              }
             }
 
             // D. Duplicate Event Prevention
