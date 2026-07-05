@@ -50,6 +50,13 @@ class TimeResolution(BaseModel):
 class TimeResolutionResults(BaseModel):
     resolutions: List[TimeResolution] = Field(description="List of resolved date/time values.")
 
+class LocationMapping(BaseModel):
+    raw_location: str = Field(description="The exact raw location string from the input list.")
+    mapped_location: Optional[str] = Field(None, description="The resolved location string. If any parts of raw_location correspond to one or more known map locations, format those parts as markdown links using the scheme 'maplocation://<camp_id>/<location_id>' (e.g., '[Pool](maplocation://gold/pool)'). A raw_location string may contain zero, one, or multiple locations (e.g., 'Kiddie Campfire / Dining Hall'). If none of the locations match, or if a location is not on the map, return the raw_location with no changes.")
+
+class LocationResolutionResponse(BaseModel):
+    mappings: List[LocationMapping]
+
 # ==========================================
 # Core Conversion Flow
 # ==========================================
@@ -107,6 +114,77 @@ def clean_description(desc: Optional[str]) -> Optional[str]:
     if not desc:
         return desc
     return re.sub(r'\[([^\]]+)\]\((maplocation://[^)]+)\)', _format_location_link, desc)
+
+
+def get_camp_aliases_prompt(camp: str) -> str:
+    if camp == "oski":
+        return """
+Aliases:
+- 'Stage' or 'Oski Stage' -> 'oski/papa_bear_stage'
+- 'Dining Hall' or 'Oski Dining Hall' -> 'oski/lodge'
+- 'Lair Lodge' or 'Lodge' -> 'oski/lodge'
+- 'Volleyball Court' or 'Oski Volleyball Court' -> 'oski/volleyball_court'
+- 'Gaga Pit' -> 'gold/gaga_ball'
+- 'Wellness Center' -> 'gold/wellness_center'
+- 'Vista Lodge' or 'Vista Lounge' -> 'gold/vista_lodge'
+- 'Teen Lodge' -> 'gold/teen_lodge'
+- 'Bruised Bears Building' or 'Bruised Bears' -> 'gold/wounded_bears'
+- 'Gold Pool' -> 'gold/pool'
+- 'Gold Softball Field' or 'Softball Field' -> 'gold/sports_courts'
+"""
+    elif camp == "blue":
+        return """
+Aliases:
+- 'Stage' or 'Blue Stage' -> 'blue/stage'
+- 'Dining Hall' or 'Blue Dining Hall' -> 'blue/dining_hall'
+- 'Lodge' or 'Blue Lodge' -> 'blue/lodge'
+- 'Volleyball Court' -> 'blue/sports_courts'
+- 'Gaga Pit' -> 'gold/gaga_ball'
+- 'Wellness Center' -> 'gold/wellness_center'
+- 'Vista Lodge' -> 'gold/vista_lodge'
+- 'Teen Lodge' -> 'gold/teen_lodge'
+- 'Bruised Bears Building' -> 'gold/wounded_bears'
+- 'Gold Pool' -> 'gold/pool'
+"""
+    elif camp == "gold":
+        return """
+Aliases:
+- 'Stage' or 'Gold Stage' -> 'gold/stage'
+- 'Dining Hall' or 'Gold Dining Hall' -> 'gold/dining_hall'
+- 'Lodge' or 'Gold Lodge' -> 'gold/lodge'
+- 'Volleyball Court' -> 'gold/sports_courts'
+- 'Gaga Pit' -> 'gold/gaga_ball'
+- 'Wellness Center' -> 'gold/wellness_center'
+- 'Vista Lodge' -> 'gold/vista_lodge'
+- 'Teen Lodge' -> 'gold/teen_lodge'
+- 'Bruised Bears Building' -> 'gold/wounded_bears'
+- 'Gold Pool' -> 'gold/pool'
+"""
+    return ""
+
+
+def apply_mappings_to_text(text: str, mapping: dict) -> str:
+    if not text:
+        return text
+    sorted_keys = sorted(mapping.keys(), key=len, reverse=True)
+    for key in sorted_keys:
+        val = mapping[key]
+        if val and val != key:
+            # Match existing markdown links or the target raw location
+            pattern = r'(\[[^\]]+\]\([^)]+\))|(\b' + re.escape(key) + r'\b)'
+            def repl(match):
+                if match.group(1):
+                    return match.group(1)
+                return val
+            text = re.sub(pattern, repl, text, flags=re.IGNORECASE)
+    return text
+
+
+def extract_plain_text_location(loc: str) -> str:
+    if not loc:
+        return ""
+    # Strip any markdown links to just their label
+    return re.sub(r'\[([^\]]+)\]\((maplocation://[^)]+)\)', r'\1', loc)
 
 def fix_timestamp_format(ts: Optional[str]) -> Optional[str]:
     if not ts:
@@ -258,7 +336,7 @@ def convert_pdf(pdf_path: str, dry_run: bool):
             "2. Group only events for these specific tracks. Omit events that physically belong to other tracks.\n"
             "3. Raw Day and Time: Extract the raw day of the week (e.g. 'Monday', 'Tuesday') and the raw time text exactly as shown "
             "in the schedule grid (e.g. '2:30-4:00 PM', '7:15 AM', '9:00 AM - 12:00 PM'). Do NOT convert these to ISO timestamps or do any date calculations.\n"
-            "4. Expand recurring events (e.g. daily store hours or daily meals) into individual daily entries.\n"
+            "4. Expand recurring events (e.g. daily store hours or daily meals) into individual daily entries. Do not generate or expand daily events for the arrival Saturday before the official check-in begins, or for the departure Saturday after the official check-out time.\n"
             "5. Split events with multiple daily times (e.g. '9:00 AM & 2:00 PM') into separate events.\n"
             "6. Omit non-event text blocks like Land Acknowledgements.\n"
             "7. Preserve the ENTIRE pdf event description when creating the json event description, including markdown formatting like bold text or list items. Do NOT modify, shorten, truncate, or remove any text from the description, even if the event title or location already includes or repeats that information.\n"
@@ -266,24 +344,12 @@ def convert_pdf(pdf_path: str, dry_run: bool):
             "or backticks ('`') that are part of the literal text and not meant as markdown styling, you must escape them (e.g. '\\*', '\\*\\*', '\\_', '\\`') "
             "so they are not interpreted as markdown formatting by the app's renderer.\n"
             f"9. The 'track_name' field for each entry in 'results' must exactly match one of: {track_names_str}.\n"
-            "10. Location Mapping: For the event's location text, match it against the known map locations list below. "
-            "Each known location in the list below has an 'id' containing '<camp_id>/<location_id>' (for example, 'gold/lodge' has camp_id 'gold' and location_id 'lodge'). "
-            "If a location refers to one or more known map locations, format that part of the text as an inline markdown link "
-            "using the scheme 'maplocation://<camp_id>/<location_id>'. For example, map 'Volleyball Court' to '[Volleyball Court](maplocation://oski/volleyball_court)'. "
-            "Be careful NOT to duplicate the camp_id (e.g., do NOT write 'maplocation://gold/gold/lodge'; format it as 'maplocation://gold/lodge'). "
-            "If an event lists multiple locations (e.g., 'Lair Lodge / Volleyball Court'), link all matching locations: '[Lair Lodge](maplocation://oski/lodge) / [Volleyball Court](maplocation://oski/volleyball_court)'. "
-            "If a location doesn't match any known ID or isn't on the map, leave it as plain text.\n"
-            "11. Proper Casing for Locations: All location names, whether plain text or inside markdown links (in both the `location` and `description` fields), must start with an uppercase letter. "
-            "For example, use 'Stage', 'Pool', 'Basketball Court', 'Store', 'Gaga Pit', and 'Archery Range' instead of lowercase versions. "
-            "When wrapping a location name in a markdown link, capitalize the display text (e.g. '[Pool](maplocation://oski/pool)' instead of '[pool](maplocation://oski/pool)').\n"
-            "12. Visual Grouping and Sub-categories: If a track is visually grouped or sub-categorized by a label in the first column, "
+            "10. Visual Grouping and Sub-categories: If a track is visually grouped or sub-categorized by a label in the first column, "
             "row header, or cell of the grid (for example, rows in 'General Daily Times' grouped by labels like 'MEALS', 'STORE', 'Burger Shack', 'MEDICAL', 'WELLNESS CENTER / MASSAGE', etc.), "
             "you must incorporate the group/category label into the event's title. Format the title as: '{Group Name}: {Event Title}', "
             "converting the group name to Title Case (e.g., 'Meals: Breakfast Buffet', 'Burger Shack: Evening Hours', 'Store: Sunday - Friday'). "
             "Do not extract the group label as a separate track name.\n"
-            "13. Time-Only Extraction: Only extract a row, block, or cell from the PDF as an event if it contains an explicit, scheduled time or time range in the document's designated time column or grid cell. Do not extract general description blocks, booking instructions, or policy announcements as events if they do not have a scheduled time associated with them.\n"
-            "Here is the list of known location IDs and their human-readable names:\n"
-            f"{json.dumps(known_locations, indent=2)}"
+            "11. Time-Only Extraction: Only extract a row, block, or cell from the PDF as an event if it contains an explicit, scheduled time or time range in the document's designated time column or grid cell. Do not extract general description blocks, booking instructions, or policy announcements as events if they do not have a scheduled time associated with them.\n"
         )
 
         response2 = call_gemini_with_retry(lambda: thread_client.models.generate_content(
@@ -293,10 +359,6 @@ def convert_pdf(pdf_path: str, dry_run: bool):
                 response_mime_type="application/json",
                 response_schema=RawBatchExtraction,
                 temperature=0.1,
-                max_output_tokens=8192,
-                thinking_config=types.ThinkingConfig(
-                    thinking_budget=1024
-                )
             ),
         ))
 
@@ -425,6 +487,64 @@ def convert_pdf(pdf_path: str, dry_run: bool):
                 print(f"Error resolving time batch: {e}")
                 raise e
 
+    # ----------------------------------------------------
+    # Step 3: Resolve Locations (Pass 2)
+    # ----------------------------------------------------
+    print("\n--- STEP 3: Resolving Locations (Pass 2) ---")
+    all_raw_locations = set()
+    for track_name, events in extracted_events_by_track.items():
+        for event in events:
+            if event.location:
+                # Extract the plain text (strip any existing markdown links)
+                plain_loc = extract_plain_text_location(event.location).strip()
+                if plain_loc:
+                    all_raw_locations.add(plain_loc)
+
+    raw_locations_list = sorted(list(all_raw_locations))
+    resolved_map = {}
+    if not raw_locations_list:
+        print("No raw locations to resolve.")
+    else:
+        print(f"Resolving {len(raw_locations_list)} unique raw locations...")
+        aliases_text = get_camp_aliases_prompt(camp)
+        prompt4 = (
+            "You are an expert location-to-map linking assistant.\n"
+            "Given a list of unique location strings extracted from a camp schedule, "
+            "and a list of known map location IDs and their names, your job is to "
+            "map the locations in the input list to their correct maplocation markdown links.\n\n"
+            "Rules:\n"
+            "1. Link Format: Use the scheme 'maplocation://<camp_id>/<location_id>'. E.g., '[Volleyball Court](maplocation://oski/volleyball_court)'.\n"
+            "2. Multiple Locations: A single raw location string may contain more than one location (e.g., 'Kiddie Campfire / Dining Hall' or 'Gold Pool / Gaga Pit'). "
+            "You must format all recognized map locations as links (e.g., '[Kiddie Campfire](maplocation://oski/kiddie_campfire) / [Dining Hall](maplocation://oski/lodge)').\n"
+            "3. Unknown Locations: If a location is not on the map or unrecognized, leave it as plain text. Do not make up map links.\n"
+            f"4. Camp Context: The schedule we are processing is for Camp {camp}.\n"
+            "5. Cross-Camp Mapping: Events in one camp may occur at another camp. Map them to that other camp if applicable (e.g., 'Wellness Center' or 'Vista Lodge' in an Oski schedule should map to Gold camp locations).\n"
+            "6. Aliases and Specific Mappings:\n"
+            f"{aliases_text}\n"
+            "Here is the list of known location IDs and their human-readable names:\n"
+            f"{json.dumps(known_locations, indent=2)}\n\n"
+            "Here are the raw location strings to resolve:\n"
+            f"{json.dumps(raw_locations_list, indent=2)}"
+        )
+        
+        response4 = client.models.generate_content(
+            model=model_name,
+            contents=[prompt4],
+            config=types.GenerateContentConfig(
+                response_mime_type="application/json",
+                response_schema=LocationResolutionResponse,
+                temperature=0.1,
+            ),
+        )
+        
+        resolution_data = LocationResolutionResponse.model_validate_json(response4.text)
+        for item in resolution_data.mappings:
+            if item.mapped_location:
+                resolved_map[item.raw_location] = item.mapped_location
+                print(f"  Mapped: '{item.raw_location}' -> '{item.mapped_location}'")
+            else:
+                print(f"  Unmapped: '{item.raw_location}'")
+
     final_tracks = []
     # Build final list in original track order
     for track_meta in detected_tracks:
@@ -441,7 +561,20 @@ def convert_pdf(pdf_path: str, dry_run: bool):
             if not startTime:
                 # Default to start_date T00:00:00
                 startTime = f"{start_date}T00:00:00-07:00"
+            
+            raw_loc = event.location
+            # If the location is already a link, we can keep it as is, or apply new mappings
+            # Let's extract its plain text first to see if we mapped that plain text in Step 3
+            plain_loc = extract_plain_text_location(raw_loc) if raw_loc else None
+            mapped_loc = resolved_map.get(plain_loc, raw_loc) if plain_loc else raw_loc
+            
+            if mapped_loc == raw_loc and raw_loc:
+                # In case of sub-parts or description, apply the mapping via string replacement
+                mapped_loc = apply_mappings_to_text(raw_loc, resolved_map)
                 
+            raw_desc = event.description
+            mapped_desc = apply_mappings_to_text(raw_desc, resolved_map) if raw_desc else raw_desc
+            
             val = f"{event.title}_{startTime}_{track_name}"
             evt_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, val))
             
@@ -450,8 +583,8 @@ def convert_pdf(pdf_path: str, dry_run: bool):
                 "startTime": startTime,
                 "endTime": endTime,
                 "title": event.title,
-                "location": clean_location(event.location),
-                "description": clean_description(event.description)
+                "location": clean_location(mapped_loc),
+                "description": clean_description(mapped_desc)
             }
             processed_events.append(processed_evt)
 
