@@ -16,7 +16,7 @@ from google.genai import types
 # ==========================================
 
 class TrackMetaModel(BaseModel):
-    name: str = Field(description="The exact name of the track/category (e.g. 'All-camp Activities', 'Burger Shack', 'Pool', 'Meals', 'Store', 'Wellness/Massage', 'Medical', 'Athletics', 'Archery', 'Nature/Hiking', 'Arts and Crafts', 'Music', 'Cub Corral', 'Lair Yoga', 'Teddy Bears', 'Golden Bears', 'Cal Bears', 'Grizzly Bears').")
+    name: str = Field(description="The exact name of the track/category (e.g. 'All-camp Activities', 'General Daily Times', 'Pool', 'Athletics', 'Archery', 'Nature/Hiking', 'Arts and Crafts', 'Music', 'Cub Corral', 'Lair Yoga', 'Teddy Bears', 'Golden Bears', 'Cal Bears', 'Grizzly Bears'). Visual Grouping Rule: Look at the visual layout and headers of the document. If a table or grid section has an overarching heading/title (e.g., 'General Daily Times') and contains multiple sub-sections or rows grouped by a category in the first column or sub-headers (e.g., 'Meals', 'Burger Shack', 'Store', 'Medical'), do NOT extract each of those sub-sections/sub-groups as separate tracks. Instead, extract only the overarching section/track name.")
     banner: Optional[str] = Field(None, description="Any general policies, rules, warnings, or announcements listed under this track header (e.g. Pool adult swim rule, arts & crafts rules). Null if none.")
 
 class ScheduleMetadata(BaseModel):
@@ -27,8 +27,8 @@ class ScheduleMetadata(BaseModel):
     tracks: List[TrackMetaModel] = Field(description="List of all tracks/categories that contain events or rules in the document")
 
 class EventModel(BaseModel):
-    startTime: str = Field(description="ISO 8601 datetime format (e.g. '2026-06-20T15:00:00-07:00' with PDT -07:00 offset). Mapped to the actual calendar day of the week based on Saturday check-in.")
-    endTime: Optional[str] = Field(None, description="ISO 8601 datetime format with PDT -07:00 offset, or null if no end time is specified.")
+    startTime: str = Field(description="ISO 8601 datetime format (e.g. '2026-06-20T15:00:00-07:00' with PDT -07:00 offset). You MUST zero-pad the hour, minute, and second values (e.g., use 'T02:30:00' instead of 'T2:30:00'). Mapped to the actual calendar day of the week based on Saturday check-in.")
+    endTime: Optional[str] = Field(None, description="ISO 8601 datetime format with PDT -07:00 offset (e.g., '2026-06-20T17:30:00-07:00'). You MUST zero-pad the hour, minute, and second values (e.g., use 'T02:30:00' instead of 'T2:30:00'). Null if no end time is specified.")
     title: str = Field(description="The title of the event.")
     location: Optional[str] = Field(None, description="The location of the event. If the location refers to one or more known map locations, format those parts of the text as a markdown link using the scheme 'maplocation://<camp_id>/<location_id>' (e.g. '[Volleyball Court](maplocation://oski/volleyball_court)'). Always capitalize the text of the link (e.g. use '[Pool]' instead of '[pool]'). Leave unrecognized parts or unlabeled locations as plain text, starting with an uppercase letter. Null if not specified.")
     description: Optional[str] = Field(None, description="Detailed description of the event. Preserve markdown formatting like bold text, lists, or italics.")
@@ -117,7 +117,17 @@ def convert_pdf(pdf_path: str, dry_run: bool):
         
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
-        print("Error: GEMINI_API_KEY environment variable is not set.")
+        if os.path.exists(".tmp/api_key.txt"):
+            with open(".tmp/api_key.txt", "r") as f:
+                api_key = f.read().strip()
+        elif os.path.exists(".env"):
+            with open(".env", "r") as f:
+                for line in f:
+                    if line.strip().startswith("GEMINI_API_KEY="):
+                        api_key = line.split("=", 1)[1].strip().strip('"').strip("'")
+                        break
+    if not api_key:
+        print("Error: GEMINI_API_KEY environment variable is not set and no key found in .tmp/api_key.txt or .env.")
         sys.exit(1)
 
     print("Loading map locations from Lair...")
@@ -142,8 +152,13 @@ def convert_pdf(pdf_path: str, dry_run: bool):
     prompt1 = (
         "You are an expert schedule extraction assistant. Read the provided camp schedule PDF "
         "and extract the year, camp name, week number, and Saturday check-in date (YYYY-MM-DD).\n"
-        "Also, identify all active tracks/categories (e.g. 'All-camp Activities', 'Meals', 'Pool', 'Arts and Crafts', 'Teddy Bears', etc.) "
+        "Also, identify all active tracks/categories (e.g. 'All-camp Activities', 'General Daily Times', 'Pool', 'Arts and Crafts', 'Teddy Bears', etc.) "
         "that have scheduled events or warnings, along with any track-level banner/policy announcements.\n\n"
+        "Visual Grouping Rule: Look at the visual layout and headers of the document. If a table or grid section "
+        "has an overarching heading/title (e.g., 'General Daily Times') and contains multiple sub-sections or rows "
+        "grouped by a category in the first column or sub-headers (e.g., 'Meals', 'Burger Shack', 'Store', 'Medical'), "
+        "do NOT extract each of those sub-sections/sub-groups as separate tracks. Instead, extract only the overarching "
+        "section name (e.g., 'General Daily Times') as a single active track.\n\n"
         f"Expected: Year {path_year}, Camp {path_camp}, Week {path_week}."
     )
     
@@ -190,7 +205,7 @@ def convert_pdf(pdf_path: str, dry_run: bool):
             "unless they are physically drawn inside that track's column/section of the grid).\n"
             "2. Group only events for these specific tracks. Omit events that physically belong to other tracks.\n"
             "3. Map day names (Saturday, Sunday, Monday, etc.) to absolute ISO 8601 dates starting from the Saturday check-in date "
-            f"'{start_date}' (PDT timezone offset -07:00, e.g., '2026-06-20T15:00:00-07:00').\n"
+            f"'{start_date}' (PDT timezone offset -07:00, e.g., '2026-06-20T15:00:00-07:00'). You MUST zero-pad the hour, minute, and second values (e.g., use 'T02:30:00' instead of 'T2:30:00').\n"
             "4. Expand recurring events (e.g. daily store hours or daily meals) into individual daily entries.\n"
             "5. Split events with multiple daily times (e.g. '9:00 AM & 2:00 PM') into separate events.\n"
             "6. Omit non-event text blocks like Land Acknowledgements.\n"
@@ -200,8 +215,10 @@ def convert_pdf(pdf_path: str, dry_run: bool):
             "so they are not interpreted as markdown formatting by the app's renderer.\n"
             f"9. The 'track_name' field for each entry in 'results' must exactly match one of: {track_names_str}.\n"
             "10. Location Mapping: For the event's location text, match it against the known map locations list below. "
+            "Each known location in the list below has an 'id' containing '<camp_id>/<location_id>' (for example, 'gold/lodge' has camp_id 'gold' and location_id 'lodge'). "
             "If a location refers to one or more known map locations, format that part of the text as an inline markdown link "
             "using the scheme 'maplocation://<camp_id>/<location_id>'. For example, map 'Volleyball Court' to '[Volleyball Court](maplocation://oski/volleyball_court)'. "
+            "Be careful NOT to duplicate the camp_id (e.g., do NOT write 'maplocation://gold/gold/lodge'; format it as 'maplocation://gold/lodge'). "
             "If an event lists multiple locations (e.g., 'Lair Lodge / Volleyball Court'), link all matching locations: '[Lair Lodge](maplocation://oski/lodge) / [Volleyball Court](maplocation://oski/volleyball_court)'. "
             "If a location doesn't match any known ID or isn't on the map, leave it as plain text.\n"
             "11. Proper Casing for Locations: All location names, whether plain text or inside markdown links (in both the `location` and `description` fields), must start with an uppercase letter. "
@@ -209,6 +226,11 @@ def convert_pdf(pdf_path: str, dry_run: bool):
             "When wrapping a location name in a markdown link, capitalize the display text (e.g. '[Pool](maplocation://oski/pool)' instead of '[pool](maplocation://oski/pool)').\n"
             "12. Time Range PM Resolution: When a time range is specified with a meridian marker at the end (e.g. '3:30-4:30 PM' or '1:30-4:00 PM' or '2:30-4:00 PM'), both the start and end times inherit the same marker (PM in this case) unless explicitly specified otherwise. For example, '3:30-4:30 PM' must be parsed as 15:30:00 to 16:30:00 (not 03:30:00), and '2:30-4:00 PM' must be parsed as 14:30:00 to 16:00:00 (not 02:30:00).\n"
             "13. 24-Hour Time Conversion: When converting PM times to 24-hour format, add 12 to the hour (e.g., 1:00 PM -> 13:00, 2:30 PM -> 14:30, 3:00 PM -> 15:00, 4:00 PM -> 16:00, 11:00 PM -> 23:00). Double check that you do not map 2:30 PM to 23:30.\n"
+            "14. Visual Grouping and Sub-categories: If a track is visually grouped or sub-categorized by a label in the first column, "
+            "row header, or cell of the grid (for example, rows in 'General Daily Times' grouped by labels like 'MEALS', 'STORE', 'Burger Shack', 'MEDICAL', 'WELLNESS CENTER / MASSAGE', etc.), "
+            "you must incorporate the group/category label into the event's title. Format the title as: '{Group Name}: {Event Title}', "
+            "converting the group name to Title Case (e.g., 'Meals: Breakfast Buffet', 'Burger Shack: Evening Hours', 'Store: Sunday - Friday'). "
+            "Do not extract the group label as a separate track name.\n"
             "Here is the list of known location IDs and their human-readable names:\n"
             f"{json.dumps(known_locations, indent=2)}"
         )
