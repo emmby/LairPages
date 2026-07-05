@@ -41,6 +41,22 @@ To test the extraction and verify the generated JSON structure without updating 
 .tmp/venv/bin/python3 tool/convert_pdf.py schedules/2026/oski/week_04.pdf --dry-run
 ```
 
+### Diagnostic & Debugging Tools
+
+We provide standalone utility scripts under `tool/diagnostics/` to debug extraction accuracy and trace input texts:
+
+#### 1. PDF Text Inspection (`inspect_pdf_text.py`)
+Extracts and prints the raw layout text from a PDF page-by-page. Helpful for verifying text coordinates or boundary boxes:
+```bash
+.tmp/venv/bin/python3 tool/diagnostics/inspect_pdf_text.py schedules/2026/oski/week_04.pdf --page 1
+```
+
+#### 2. Direct Gemini Extraction Tester (`test_gemini_extraction.py`)
+Performs an isolated event-extraction query on specific tracks using `gemini-3.5-flash` with the same temperature and response schemas as the main pipeline. Useful for testing prompt tuning or custom schemas:
+```bash
+.tmp/venv/bin/python3 tool/diagnostics/test_gemini_extraction.py schedules/2026/oski/week_04.pdf "Pool" "Lair Yoga"
+```
+
 ---
 
 ## Integration with Dart Tests
