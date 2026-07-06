@@ -6,3 +6,8 @@ pubspec.lock
 build/
 .tmp/
 .env
+
+# Node.js
+node_modules/
+dist/
+
