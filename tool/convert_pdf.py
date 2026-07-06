@@ -211,11 +211,11 @@ def call_gemini_with_retry(api_call_fn, max_retries=3):
             return api_call_fn()
         except genai_errors.APIError as e:
             # Retry only on rate limits (429) or server errors (>= 500)
-            if e.status_code == 429 or (e.status_code and e.status_code >= 500):
+            if e.code == 429 or (e.code and e.code >= 500):
                 if attempt == max_retries - 1:
                     raise e
                 wait_time = 2 ** attempt
-                print(f"Gemini API error (Status {e.status_code}): {e.message}. Retrying in {wait_time}s...")
+                print(f"Gemini API error (Status {e.code}): {e.message}. Retrying in {wait_time}s...")
                 time.sleep(wait_time)
             else:
                 # Permanent error (e.g. 400, 403, 404), do not retry
@@ -385,27 +385,30 @@ def convert_pdf(pdf_path: str, dry_run: bool):
     if not batches:
         print("Warning: No tracks detected to extract.")
     else:
-        print(f"Running {len(batches)} Stage 1 extraction batches sequentially...")
-        for batch in batches:
-            try:
-                results = extract_batch(batch)
-            except Exception as e:
-                print(f"Error extracting batch {batch}: {e}")
-                raise e
-                
-            for track_events in results:
-                t_name = track_events.track_name
-                # Case-insensitive recovery
-                if t_name not in extracted_events_by_track:
-                    closest = next((name for name in track_names if name.lower() == t_name.lower()), None)
-                    if closest:
-                        t_name = closest
-                    else:
-                        print(f"Warning: Received unexpected track name '{t_name}' in batch {batch}")
-                        continue
-                
-                print(f"  - Batch result received for track '{t_name}': {len(track_events.events)} events.")
-                extracted_events_by_track[t_name] = track_events.events
+        print(f"Running {len(batches)} Stage 1 extraction batches in parallel (max_workers=4)...")
+        with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
+            future_to_batch = {executor.submit(extract_batch, batch): batch for batch in batches}
+            for future in concurrent.futures.as_completed(future_to_batch):
+                batch = future_to_batch[future]
+                try:
+                    results = future.result()
+                except Exception as e:
+                    print(f"Error extracting batch {batch}: {e}")
+                    raise e
+                    
+                for track_events in results:
+                    t_name = track_events.track_name
+                    # Case-insensitive recovery
+                    if t_name not in extracted_events_by_track:
+                        closest = next((name for name in track_names if name.lower() == t_name.lower()), None)
+                        if closest:
+                            t_name = closest
+                        else:
+                            print(f"Warning: Received unexpected track name '{t_name}' in batch {batch}")
+                            continue
+                    
+                    print(f"  - Batch result received for track '{t_name}': {len(track_events.events)} events.")
+                    extracted_events_by_track[t_name] = track_events.events
 
     # ----------------------------------------------------
     # Stage 2: Batch Time Resolution
@@ -468,10 +471,6 @@ def convert_pdf(pdf_path: str, dry_run: bool):
                     response_mime_type="application/json",
                     response_schema=TimeResolutionResults,
                     temperature=0.1,
-                    max_output_tokens=8192,
-                    thinking_config=types.ThinkingConfig(
-                        thinking_budget=1024
-                    )
                 )
             ))
             
@@ -482,16 +481,20 @@ def convert_pdf(pdf_path: str, dry_run: bool):
                 print(f"Response text: {response3.text}")
                 raise e
 
-        for tb in time_batches:
-            try:
-                resolutions = resolve_time_batch(tb)
-                for res in resolutions:
-                    clean_start = fix_timestamp_format(res.startTime)
-                    clean_end = fix_timestamp_format(res.endTime)
-                    resolved_times[res.unique_id] = (clean_start, clean_end)
-            except Exception as e:
-                print(f"Error resolving time batch: {e}")
-                raise e
+        print(f"Resolving timestamps for {len(all_raw_events)} events in {len(time_batches)} batches in parallel (max_workers=4)...")
+        with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
+            future_to_tb = {executor.submit(resolve_time_batch, tb): tb for tb in time_batches}
+            for future in concurrent.futures.as_completed(future_to_tb):
+                tb = future_to_tb[future]
+                try:
+                    resolutions = future.result()
+                    for res in resolutions:
+                        clean_start = fix_timestamp_format(res.startTime)
+                        clean_end = fix_timestamp_format(res.endTime)
+                        resolved_times[res.unique_id] = (clean_start, clean_end)
+                except Exception as e:
+                    print(f"Error resolving time batch: {e}")
+                    raise e
 
     # ----------------------------------------------------
     # Step 3: Resolve Locations (Pass 2)
