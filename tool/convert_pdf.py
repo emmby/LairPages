@@ -358,23 +358,26 @@ def convert_pdf(pdf_path: str, dry_run: bool):
             "11. Time-Only Extraction: Only extract a row, block, or cell from the PDF as an event if it contains an explicit, scheduled time or time range in the document's designated time column or grid cell. Do not extract general description blocks, booking instructions, or policy announcements as events if they do not have a scheduled time associated with them.\n"
         )
 
-        response2 = call_gemini_with_retry(lambda: thread_client.models.generate_content(
-            model=model_name,
-            contents=[pdf_part, prompt2],
-            config=types.GenerateContentConfig(
-                response_mime_type="application/json",
-                response_schema=RawBatchExtraction,
-                temperature=0.1,
-            ),
-        ))
-
-        try:
-            batch_data = RawBatchExtraction.model_validate_json(response2.text)
-            return batch_data.results
-        except Exception as e:
-            print(f"Validation error for batch {batch_tracks}: {e}")
-            print(f"Response text: {response2.text}")
-            raise e
+        for attempt in range(3):
+            try:
+                response2 = call_gemini_with_retry(lambda: thread_client.models.generate_content(
+                    model=model_name,
+                    contents=[pdf_part, prompt2],
+                    config=types.GenerateContentConfig(
+                        response_mime_type="application/json",
+                        response_schema=RawBatchExtraction,
+                        temperature=0.1,
+                    ),
+                ))
+                batch_data = RawBatchExtraction.model_validate_json(response2.text)
+                return batch_data.results
+            except Exception as e:
+                if attempt == 2:
+                    print(f"Validation error for batch {batch_tracks}: {e}")
+                    print(f"Response text: {response2.text if 'response2' in locals() else 'No response'}")
+                    raise e
+                print(f"Validation or API error in extract_batch for {batch_tracks} (attempt {attempt+1}/3): {e}. Retrying...")
+                time.sleep(2)
 
     batch_size = 1
     track_names = [t.name for t in detected_tracks]
@@ -464,22 +467,25 @@ def convert_pdf(pdf_path: str, dry_run: bool):
                 f"Events to resolve:\n{json.dumps(batch_events, indent=2)}"
             )
             
-            response3 = call_gemini_with_retry(lambda: thread_client.models.generate_content(
-                model=model_name,
-                contents=[prompt3],
-                config=types.GenerateContentConfig(
-                    response_mime_type="application/json",
-                    response_schema=TimeResolutionResults,
-                    temperature=0.1,
-                )
-            ))
-            
-            try:
-                return TimeResolutionResults.model_validate_json(response3.text).resolutions
-            except Exception as e:
-                print(f"Validation error for resolve time batch: {e}")
-                print(f"Response text: {response3.text}")
-                raise e
+            for attempt in range(3):
+                try:
+                    response3 = call_gemini_with_retry(lambda: thread_client.models.generate_content(
+                        model=model_name,
+                        contents=[prompt3],
+                        config=types.GenerateContentConfig(
+                            response_mime_type="application/json",
+                            response_schema=TimeResolutionResults,
+                            temperature=0.1,
+                        )
+                    ))
+                    return TimeResolutionResults.model_validate_json(response3.text).resolutions
+                except Exception as e:
+                    if attempt == 2:
+                        print(f"Validation error for resolve time batch: {e}")
+                        print(f"Response text: {response3.text if 'response3' in locals() else 'No response'}")
+                        raise e
+                    print(f"Validation or API error in resolve_time_batch (attempt {attempt+1}/3): {e}. Retrying...")
+                    time.sleep(2)
 
         print(f"Resolving timestamps for {len(all_raw_events)} events in {len(time_batches)} batches in parallel (max_workers=4)...")
         with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
