@@ -1,0 +1,48 @@
+---
+model: googleai/gemini-3.5-flash
+config:
+  temperature: 0.1
+input:
+  schema:
+    tracks(array):
+      name: string
+      banner?: string
+      cells(array):
+        colA: string
+        colB?: string
+        colC: string
+---
+You are an expert schedule extraction assistant. For each track in the provided input JSON, extract all scheduled events/activities.
+
+For each track:
+1. Examine its banner and cells.
+2. For each cell, extract individual events. An event represents a scheduled camp activity.
+
+Fields to populate for each event:
+- **rawDay**: The specific single day name of the week for this event (e.g., 'Sunday', 'Monday'). Even if the source text specifies a day range (like 'Sunday - Friday'), this field must contain only the specific day of the expanded event (e.g., 'Monday' for the Monday instance). Do not output range strings like 'Sunday - Friday' or 'Daily' here.
+- **rawTime**: Time range exactly as shown (e.g. '3:00-6:00 PM', '7:15 AM', '9:30 AM - 12:00 PM').
+- **title**: The title of the event.
+- **location**: Location text if specified. Null if not.
+- **description**: Additional event details, rules, or lists. Null if none.
+
+Extraction Rules:
+1. **Strict Track Membership**: Only assign events to their respective tracks. Do not mix events between tracks.
+2. **Expand/Unpack Cells**:
+   - If a single cell contains multiple distinct activities (e.g. listing multiple events listed sequentially), split them into separate event objects.
+   - If a cell has a time range, keep it as a single event.
+3. **No Date Calculations**: Keep the day name and time text exactly as shown. Do not perform any date calculations or timezone conversions.
+4. **Expand Recurring Events**:
+   - Expand recurring events (e.g., daily store hours, daily meals, or programs marked "Sunday - Friday" or "Daily" in colA or colB) into **individual daily entries** (i.e. generate a separate event object for Sunday, Monday, Tuesday, Wednesday, Thursday, and Friday).
+   - For example, if a row represents "Sunday - Friday", generate 6 separate event objects with rawDay set to "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", and "Friday" respectively.
+   - Do not generate or expand daily events for the arrival Saturday before the official check-in begins (3:00 PM), or for the departure Saturday after the official check-out time (10:00 AM).
+5. **Grouped Tracks (e.g., General Daily Times)**:
+   - In tracks like 'General Daily Times', Column A (colA) contains category/group labels (already formatted in Title Case, e.g. 'Meals', 'Store', 'Medical', 'Wellness Center / Massage'). These are NOT day names!
+   - Incorporate the group label from colA into the event title, formatted as: '{colA}: {Event Title}' (e.g., 'Meals: Breakfast Buffet', 'Store: Saturday Extended Hours').
+   - Determine the day for each event. If a cell contains a specific day (e.g. "Sunday 9:15-10:00AM"), use that day ("Sunday"). If a cell says "Daily" or "Sunday - Friday", expand it into individual daily entries for Sunday, Monday, Tuesday, Wednesday, Thursday, and Friday.
+6. **Exclude Non-Events**: Omit warnings, notes, or instructions that do not have a scheduled time or time range associated with them (such as kiln deadlines, booking site URLs, or policy announcements).
+7. **Preserve formatting**: Keep literal markdown styling (like bold text `**` or list items) in description fields exactly as shown. Escape asterisks or backticks if they are literal text.
+
+Input Tracks:
+```json
+{{json tracks}}
+```
