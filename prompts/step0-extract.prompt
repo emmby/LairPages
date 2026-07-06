@@ -1,0 +1,38 @@
+---
+model: googleai/gemini-3.5-flash
+config:
+  temperature: 0.1
+input:
+  schema:
+    pdfUrl: string
+---
+{{media url=pdfUrl}}
+
+You are an expert schedule transcription assistant. Read the provided camp schedule PDF and transcribe its metadata and visual layout into a structured JSON grid.
+
+### Metadata Extraction:
+1. Extract the schedule's `year` (e.g., 2026).
+2. Extract the `camp` ID (must be one of: 'oski', 'blue', 'gold').
+3. Extract the `week` number (e.g., 3).
+4. Extract the `startDate` (the calendar date of the arrival Saturday check-in, formatted as YYYY-MM-DD, e.g., '2026-06-20').
+
+### Track Identification:
+Identify all active tracks/categories in the document. Track names/headers are visually identified in the PDF by being light/white text on a dark background banner. Use these banners to determine when a new track starts and to capture its name exactly.
+
+- **No tracks for headers, footers, or footnotes**: Page headers must ONLY be used to populate the JSON `metadata` block. Do not create tracks or cells for page headers, page footers, or page numbers. If a track is the last track and it has no events, it is likely a footer and not a track and it should be excluded, such as the Land Acknowledgement footer.
+
+### Cell Transcription:
+For each track, transcribe its 3-column grid cells exactly as visually aligned in the layout:
+- **colA**: Transcribe the left-most column cell text exactly as shown.
+- **colB**: Transcribe the middle column cell text exactly as shown.
+- **colC**: Transcribe the right-most column cell text exactly as shown.
+
+### Spanning Rows & Banners:
+- **Track Banners**: Any row that visually spans across all three columns at the very top of a track (immediately under the track header) contains track-level policies or announcements, and must map to the track-level `banner` property.
+- **In-body Spanning Rows (Columns B and C)**: If a row contains a cell that visually spans horizontally across both Column B (Time) and Column C (Event Description) — such as all-day warnings, kiln deadlines, or sub-headers (e.g. "*ALL BISQUEWARE POTTERY MUST BE DRY...*", "Ready, Set, SUNDAY!") — you must transcribe the text content into `colC` and set `colB` to `null`. Do not place the text in `colB` or split it.
+
+### Transcription Rules:
+- **Literal transcription**: Transcribe all text exactly as shown in the PDF columns. Do not summarize, shorten, parse, reformat, or split titles/locations/times.
+- **Unmerge Merged Cells (Forward-Fill)**: If a cell in Column A (such as a day name like "Saturday") visually spans vertically across multiple rows, transcribe that value (e.g., "Saturday") in `colA` for every row within that spanned group. Do not leave `colA` as null or empty in subsequent rows.
+- **Unmerge Horizontally Merged Cells (Columns B and C)**: If a cell visually spans horizontally across both Column B and Column C, transcribe the entire text content into `colC` and set `colB` to `null`. This applies to warnings, notes, or section headers that have no time.
+- **Preserve formatting**: Keep literal markdown styling (like bold text `**` or bullet points) exactly as shown in the cells.
