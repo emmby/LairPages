@@ -2,7 +2,7 @@ import { z } from 'zod';
 import * as fs from 'fs';
 import * as path from 'path';
 import { ai } from '../lib/genkit.js';
-import { RawGridSchema } from '../schemas/raw-grid.js';
+import { RawGridSchema, RawGridTrack } from '../schemas/raw-grid.js';
 
 export const step0ExtractFlow = ai.defineFlow(
   {
@@ -40,7 +40,7 @@ export const step0ExtractFlow = ai.defineFlow(
     }
 
     // Programmatically rename "All Camp Activities" to "All-camp Activities" to avoid app filter confusion
-    parsed.tracks = parsed.tracks.map(track => {
+    parsed.tracks = parsed.tracks.map((track: RawGridTrack) => {
       if (track.name.toLowerCase() === 'all camp activities') {
         return { ...track, name: 'All-camp Activities' };
       }
@@ -54,15 +54,15 @@ export const step0ExtractFlow = ai.defineFlow(
     }
 
     // 2. Unique Track Names Check
-    const trackNames = parsed.tracks.map(t => t.name);
+    const trackNames = parsed.tracks.map((t: RawGridTrack) => t.name);
     const uniqueNames = new Set(trackNames);
     if (uniqueNames.size !== trackNames.length) {
-      const duplicates = trackNames.filter((item, index) => trackNames.indexOf(item) !== index);
+      const duplicates = trackNames.filter((item: string, index: number) => trackNames.indexOf(item) !== index);
       throw new Error(`Duplicate track names found: ${Array.from(new Set(duplicates)).join(', ')}`);
     }
 
     // 3. Cell Count Boundary Check (40-300)
-    const totalCells = parsed.tracks.reduce((acc, t) => acc + t.cells.length, 0);
+    const totalCells = parsed.tracks.reduce((acc: number, t: RawGridTrack) => acc + t.cells.length, 0);
     if (totalCells < 40 || totalCells > 300) {
       throw new Error(`Total cell count (${totalCells}) is out of expected bounds (40-300)`);
     }

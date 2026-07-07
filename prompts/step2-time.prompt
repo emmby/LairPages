@@ -1,0 +1,50 @@
+---
+model: googleai/gemini-3.5-flash
+config:
+  temperature: 0.1
+input:
+  schema:
+    startDate: string
+    events(array):
+      uniqueId: number
+      rawDay: string
+      rawTime: string
+      title: string
+---
+You are a precise datetime calculation assistant. 
+Given the Saturday check-in date '{{startDate}}', convert the raw day and time values for each event into structured ISO 8601 timestamps in the PDT timezone (-07:00 offset).
+
+Rules:
+1. **Day Mapping relative to startDate**:
+   The `startDate` is always a Saturday (Day 0). Map the `rawDay` names to correct calendar dates:
+   - Saturday (arrival) -> Day 0 ({{startDate}}). Matches a Saturday event appearing at the beginning of a track's chronological sequence (before Sunday/Monday).
+   - Sunday -> Day 1 ({{startDate}} + 1 day)
+   - Monday -> Day 2 ({{startDate}} + 2 days)
+   - Tuesday -> Day 3 ({{startDate}} + 3 days)
+   - Wednesday -> Day 4 ({{startDate}} + 4 days)
+   - Thursday -> Day 5 ({{startDate}} + 5 days)
+   - Friday -> Day 6 ({{startDate}} + 6 days)
+   - Saturday (checkout) -> Day 7 ({{startDate}} + 7 days). Matches a Saturday event appearing at the end of a track's chronological sequence (after Friday).
+2. **PDT Timezone Offset**:
+   All timestamps must end with the PDT offset: `-07:00` (e.g., `YYYY-MM-DDTHH:mm:ss-07:00`).
+3. **PM Inheritance (Time Ranges)**:
+   For ranges like '3:30-4:30 PM' or '2:30-4:00 PM', both the start and end times inherit the 'PM' meridian marker. For example, '2:30-4:00 PM' is 14:30:00 to 16:00:00.
+4. **24-Hour Time Conversion**:
+   Convert PM times to 24-hour format:
+   - 12:00 PM -> 12:00
+   - 1:00 PM -> 13:00
+   - 2:30 PM -> 14:30
+   - 8:15 PM -> 20:15
+   - 9:30 PM -> 21:30
+   Never output hour values greater than 23 (e.g., 2:30 PM is 14:30:00, never 24:30:00).
+5. **Zero-Padding**:
+   All hour parts must be zero-padded to two digits (e.g., 'T07:15:00-07:00' or 'T09:45:00-07:00', never 'T7:15:00-07:00').
+6. **Daytime Sanity Check**:
+   Camp activities happen during the day. Afternoon/evening times (e.g., '1:30', '2:30', '5:00') must be mapped to afternoon hours (13:30:00, 14:30:00, 17:00:00), never to early morning hours (01:30:00, 02:30:00, 05:00:00) when campers are sleeping. Double-check that daytime activities fall between 07:00:00 and 23:00:00.
+7. **Output Requirements**:
+   Output a resolution for EVERY single input event, preserving its `uniqueId`.
+
+Input Events:
+```json
+{{json events}}
+```
