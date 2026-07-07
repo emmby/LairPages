@@ -19,7 +19,7 @@ For each track:
 2. For each cell, extract individual events. An event represents a scheduled camp activity.
 
 Fields to populate for each event:
-- **rawDay**: The specific single day name of the week for this event (e.g., 'Sunday', 'Monday'). Even if the source text specifies a day range (like 'Sunday - Friday'), this field must contain only the specific day of the expanded event (e.g., 'Monday' for the Monday instance). Do not output range strings like 'Sunday - Friday' or 'Daily' here.
+- **rawDay**: The specific single day name of the week for this event (e.g., 'Saturday (arrival)', 'Sunday', 'Saturday (checkout)'). Even if the source text specifies a day range (like 'Sunday - Friday'), this field must contain only the specific day of the expanded event (e.g., 'Monday' for the Monday instance). Do not output range strings like 'Sunday - Friday' or 'Daily' here. Preserve 'Saturday (arrival)' and 'Saturday (checkout)' verbatim as day names if they were transcribed in colA.
 - **rawTime**: Time range exactly as shown (e.g. '3:00-6:00 PM', '7:15 AM', '9:30 AM - 12:00 PM').
 - **title**: The title of the event.
 - **location**: Location text if specified. Null if not.
@@ -38,7 +38,7 @@ Extraction Rules:
 5. **Grouped Tracks (e.g., General Daily Times)**:
    - In tracks like 'General Daily Times', Column A (colA) contains category/group labels (already formatted in Title Case, e.g. 'Meals', 'Store', 'Medical', 'Wellness Center / Massage'). These are NOT day names!
    - Incorporate the group label from colA into the event title, formatted as: '{colA}: {Event Title}' (e.g., 'Meals: Breakfast Buffet', 'Store: Saturday Extended Hours').
-   - Determine the day for each event. If a cell contains a specific day (e.g. "Sunday 9:15-10:00AM"), use that day ("Sunday"). If a cell says "Daily" or "Sunday - Friday", expand it into individual daily entries for Sunday, Monday, Tuesday, Wednesday, Thursday, and Friday.
+   - Determine the day for each event. If a cell contains a specific day (e.g. "Sunday 9:15-10:00AM"), use that day ("Sunday"). If a cell says "Daily" or "Sunday - Friday", expand it into individual daily entries for Sunday, Monday, Tuesday, Wednesday, Thursday, and Friday. If the cell's day matches a Saturday type, preserve the specific Saturday type ("Saturday (arrival)" or "Saturday (checkout)") verbatim.
 6. **Exclude Non-Events**: Omit warnings, notes, or instructions that do not have a scheduled time or time range associated with them (such as kiln deadlines, booking site URLs, or policy announcements).
 7. **Preserve formatting**: Keep literal markdown styling (like bold text `**` or list items) in description fields exactly as shown. Escape asterisks or backticks if they are literal text.
 

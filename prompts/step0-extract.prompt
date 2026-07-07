@@ -23,7 +23,7 @@ Identify all active tracks/categories in the document. Track names/headers are v
 
 ### Cell Transcription:
 For each track, transcribe its 3-column grid cells exactly as visually aligned in the layout:
-- **colA**: Transcribe the left-most column cell text exactly as shown.
+- **colA**: Transcribe the left-most column cell text exactly as shown. For Saturday cells, determine their visual page position: transcribe the check-in/arrival Saturday at the beginning of the schedule as "Saturday (arrival)", and the departure/checkout Saturday at the end of the schedule as "Saturday (checkout)". For all other days, use the standard day name (e.g. Sunday, Monday, Tuesday, Wednesday, Thursday, Friday).
 - **colB**: Transcribe the middle column cell text exactly as shown.
 - **colC**: Transcribe the right-most column cell text exactly as shown.
 
@@ -33,6 +33,6 @@ For each track, transcribe its 3-column grid cells exactly as visually aligned i
 
 ### Transcription Rules:
 - **Literal transcription**: Transcribe all text exactly as shown in the PDF columns. Do not summarize, shorten, parse, reformat, or split titles/locations/times.
-- **Unmerge Merged Cells (Forward-Fill)**: If a cell in Column A (such as a day name like "Saturday") visually spans vertically across multiple rows, transcribe that value (e.g., "Saturday") in `colA` for every row within that spanned group. Do not leave `colA` as null or empty in subsequent rows.
+- **Unmerge Merged Cells (Forward-Fill)**: If a cell in Column A (such as a day name like "Sunday" or a Saturday type like "Saturday (arrival)") visually spans vertically across multiple rows, transcribe that value in `colA` for every row within that spanned group. Do not leave `colA` as null or empty in subsequent rows.
 - **Unmerge Horizontally Merged Cells (Columns B and C)**: If a cell visually spans horizontally across both Column B and Column C, transcribe the entire text content into `colC` and set `colB` to `null`. This applies to warnings, notes, or section headers that have no time.
 - **Preserve formatting**: Keep literal markdown styling (like bold text `**` or bullet points) exactly as shown in the cells.

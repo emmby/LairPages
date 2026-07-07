@@ -17,14 +17,14 @@ Given the Saturday check-in date '{{startDate}}', convert the raw day and time v
 Rules:
 1. **Day Mapping relative to startDate**:
    The `startDate` is always a Saturday (Day 0). Map the `rawDay` names to correct calendar dates:
-   - Saturday (arrival) -> Day 0 ({{startDate}}). Matches a Saturday event appearing at the beginning of a track's chronological sequence (before Sunday/Monday).
+   - Saturday (arrival) -> Day 0 ({{startDate}})
    - Sunday -> Day 1 ({{startDate}} + 1 day)
    - Monday -> Day 2 ({{startDate}} + 2 days)
    - Tuesday -> Day 3 ({{startDate}} + 3 days)
    - Wednesday -> Day 4 ({{startDate}} + 4 days)
    - Thursday -> Day 5 ({{startDate}} + 5 days)
    - Friday -> Day 6 ({{startDate}} + 6 days)
-   - Saturday (checkout) -> Day 7 ({{startDate}} + 7 days). Matches a Saturday event appearing at the end of a track's chronological sequence (after Friday).
+   - Saturday (checkout) -> Day 7 ({{startDate}} + 7 days)
 2. **PDT Timezone Offset**:
    All timestamps must end with the PDT offset: `-07:00` (e.g., `YYYY-MM-DDTHH:mm:ss-07:00`).
 3. **PM Inheritance (Time Ranges)**:

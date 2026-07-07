@@ -10,17 +10,18 @@ const nullableNonEmptyString = z.string().nullable().optional()
   });
 
 export const RawDayEnum = z.enum([
-  'Saturday',
+  'Saturday (arrival)',
   'Sunday',
   'Monday',
   'Tuesday',
   'Wednesday',
   'Thursday',
   'Friday',
+  'Saturday (checkout)',
 ]);
 
 export const RawEventSchema = z.object({
-  rawDay: RawDayEnum.describe('The specific single day name of the week for this event (e.g., "Sunday", "Monday"). Do not output range strings like "Sunday - Friday" or "Daily".'),
+  rawDay: RawDayEnum.describe('The specific single day name of the week for this event (e.g., "Saturday (arrival)", "Sunday", "Saturday (checkout)"). Do not output range strings like "Sunday - Friday" or "Daily".'),
   rawTime: nonEmptyString.describe('Raw time range as shown in colB (e.g. "2:30-4:00 PM"). Must be non-empty.'),
   title: nonEmptyString.describe('Extracted event title. Must be non-empty.'),
   location: nullableNonEmptyString.describe('Extracted location text. Null if not specified.'),
