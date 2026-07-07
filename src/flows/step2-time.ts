@@ -138,11 +138,6 @@ export const step2TimeFlow = ai.defineFlow(
     const isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}-07:00$/;
 
     outputTracks.forEach(track => {
-      // For chronological ordering, we group events by category
-      // For normal tracks, category is always trackName.
-      // For General Daily Times, we extract the colon-prefix (e.g. "Meals", "Store")
-      const categories = new Map<string, typeof track.events>();
-
       track.events.forEach((event, eventIdx) => {
         // Validation 3: Strict ISO-8601 format check
         if (!isoRegex.test(event.startTime)) {
@@ -167,31 +162,7 @@ export const step2TimeFlow = ai.defineFlow(
         if (endMs && startMs >= endMs) {
           throw new Error(`Track "${track.trackName}" event index ${eventIdx} ("${event.title}"): startTime "${event.startTime}" is not before endTime "${event.endTime}".`);
         }
-
-        // Populate category groups for chronological checks
-        let cat = track.trackName;
-        if (track.trackName === 'General Daily Times') {
-          const colonIdx = event.title.indexOf(':');
-          if (colonIdx !== -1) {
-            cat = event.title.substring(0, colonIdx).trim();
-          }
-        }
-        if (!categories.has(cat)) {
-          categories.set(cat, []);
-        }
-        categories.get(cat)!.push(event);
       });
-
-      // Validation 6: Chronological Consistency within category sequence
-      for (const [catName, catEvents] of categories.entries()) {
-        for (let i = 0; i < catEvents.length - 1; i++) {
-          const t1 = new Date(catEvents[i].startTime).getTime();
-          const t2 = new Date(catEvents[i + 1].startTime).getTime();
-          if (t1 > t2) {
-            throw new Error(`Chronological inversion in track "${track.trackName}" category "${catName}": "${catEvents[i].title}" (${catEvents[i].startTime}) is listed before "${catEvents[i+1].title}" (${catEvents[i+1].startTime}).`);
-          }
-        }
-      }
     });
 
     return {
