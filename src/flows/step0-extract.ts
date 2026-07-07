@@ -39,6 +39,14 @@ export const step0ExtractFlow = ai.defineFlow(
       throw new Error('Model did not return structured output matching RawGridSchema');
     }
 
+    // Programmatically rename "All Camp Activities" to "All-camp Activities" to avoid app filter confusion
+    parsed.tracks = parsed.tracks.map(track => {
+      if (track.name.toLowerCase() === 'all camp activities') {
+        return { ...track, name: 'All-camp Activities' };
+      }
+      return track;
+    });
+
     // 1. Saturday Start Date Check
     const date = new Date(parsed.metadata.startDate);
     if (isNaN(date.getTime()) || date.getUTCDay() !== 6) {
