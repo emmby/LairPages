@@ -123,6 +123,77 @@ export const step2TimeFlow = ai.defineFlow(
       };
     });
 
+    // --- STEP 2 VALIDATIONS ---
+
+    // 1. Input-to-Output Event Count Parity
+    const outputEventCount = outputTracks.reduce((acc, t) => acc + t.events.length, 0);
+    if (flatEvents.length !== outputEventCount) {
+      throw new Error(`Event count mismatch: input has ${flatEvents.length} events, output has ${outputEventCount} events.`);
+    }
+
+    // 2. Week Boundary Calculations
+    const lowerBoundMs = new Date(`${input.startDate}T00:00:00-07:00`).getTime();
+    const upperBoundMs = lowerBoundMs + 8 * 24 * 60 * 60 * 1000 - 1; // 8 days total to cover checkout Saturday entirely
+
+    const isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}-07:00$/;
+
+    outputTracks.forEach(track => {
+      // For chronological ordering, we group events by category
+      // For normal tracks, category is always trackName.
+      // For General Daily Times, we extract the colon-prefix (e.g. "Meals", "Store")
+      const categories = new Map<string, typeof track.events>();
+
+      track.events.forEach((event, eventIdx) => {
+        // Validation 3: Strict ISO-8601 format check
+        if (!isoRegex.test(event.startTime)) {
+          throw new Error(`Track "${track.trackName}" event index ${eventIdx} ("${event.title}"): startTime "${event.startTime}" is not in YYYY-MM-DDTHH:mm:ss-07:00 format.`);
+        }
+        if (event.endTime && !isoRegex.test(event.endTime)) {
+          throw new Error(`Track "${track.trackName}" event index ${eventIdx} ("${event.title}"): endTime "${event.endTime}" is not in YYYY-MM-DDTHH:mm:ss-07:00 format.`);
+        }
+
+        const startMs = new Date(event.startTime).getTime();
+        const endMs = event.endTime ? new Date(event.endTime).getTime() : null;
+
+        // Validation 4: Week Boundary Date Range check
+        if (startMs < lowerBoundMs || startMs > upperBoundMs) {
+          throw new Error(`Track "${track.trackName}" event index ${eventIdx} ("${event.title}"): startTime "${event.startTime}" falls outside week boundaries [${input.startDate} to ${new Date(upperBoundMs).toISOString().split('T')[0]}].`);
+        }
+        if (endMs && (endMs < lowerBoundMs || endMs > upperBoundMs)) {
+          throw new Error(`Track "${track.trackName}" event index ${eventIdx} ("${event.title}"): endTime "${event.endTime}" falls outside week boundaries [${input.startDate} to ${new Date(upperBoundMs).toISOString().split('T')[0]}].`);
+        }
+
+        // Validation 5: Temporal Logical Integrity (startTime < endTime)
+        if (endMs && startMs >= endMs) {
+          throw new Error(`Track "${track.trackName}" event index ${eventIdx} ("${event.title}"): startTime "${event.startTime}" is not before endTime "${event.endTime}".`);
+        }
+
+        // Populate category groups for chronological checks
+        let cat = track.trackName;
+        if (track.trackName === 'General Daily Times') {
+          const colonIdx = event.title.indexOf(':');
+          if (colonIdx !== -1) {
+            cat = event.title.substring(0, colonIdx).trim();
+          }
+        }
+        if (!categories.has(cat)) {
+          categories.set(cat, []);
+        }
+        categories.get(cat)!.push(event);
+      });
+
+      // Validation 6: Chronological Consistency within category sequence
+      for (const [catName, catEvents] of categories.entries()) {
+        for (let i = 0; i < catEvents.length - 1; i++) {
+          const t1 = new Date(catEvents[i].startTime).getTime();
+          const t2 = new Date(catEvents[i + 1].startTime).getTime();
+          if (t1 > t2) {
+            throw new Error(`Chronological inversion in track "${track.trackName}" category "${catName}": "${catEvents[i].title}" (${catEvents[i].startTime}) is listed before "${catEvents[i+1].title}" (${catEvents[i+1].startTime}).`);
+          }
+        }
+      }
+    });
+
     return {
       tracks: outputTracks,
     };
