@@ -61,12 +61,6 @@ export const step0ExtractFlow = ai.defineFlow(
       throw new Error(`Duplicate track names found: ${Array.from(new Set(duplicates)).join(', ')}`);
     }
 
-    // 3. Cell Count Boundary Check (40-300)
-    const totalCells = parsed.tracks.reduce((acc: number, t: RawGridTrack) => acc + t.cells.length, 0);
-    if (totalCells < 40 || totalCells > 300) {
-      throw new Error(`Total cell count (${totalCells}) is out of expected bounds (40-300)`);
-    }
-
     return parsed;
   }
 );

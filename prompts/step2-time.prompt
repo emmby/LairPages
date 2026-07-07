@@ -39,8 +39,8 @@ Rules:
    Never output hour values greater than 23 (e.g., 2:30 PM is 14:30:00, never 24:30:00).
 5. **Zero-Padding**:
    All hour parts must be zero-padded to two digits (e.g., 'T07:15:00-07:00' or 'T09:45:00-07:00', never 'T7:15:00-07:00').
-6. **Daytime Sanity Check**:
-   Camp activities happen during the day. Afternoon/evening times (e.g., '1:30', '2:30', '5:00') must be mapped to afternoon hours (13:30:00, 14:30:00, 17:00:00), never to early morning hours (01:30:00, 02:30:00, 05:00:00) when campers are sleeping. Double-check that daytime activities fall between 07:00:00 and 23:00:00.
+6. **Prevent AM/PM Hour Flips**:
+   Afternoon/evening times (e.g., '1:30', '2:30', '5:00', '8:00') must be mapped to correct 24-hour PM hours (13:30:00, 14:30:00, 17:00:00, 20:00:00), never to early morning hours (01:30:00, 02:30:00, 05:00:00, 08:00:00) when campers are sleeping. Some late-night events can conclude at midnight (which maps to 00:00:00 of the following day).
 7. **Output Requirements**:
    Output a resolution for EVERY single input event, preserving its `uniqueId`.
 
