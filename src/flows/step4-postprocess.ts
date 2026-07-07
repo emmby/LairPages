@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { ai } from '../lib/genkit.js';
 import { RawGridSchema } from '../schemas/raw-grid.js';
 import { Step3OutputSchema } from '../schemas/located-events.js';
+import { titleCase } from 'title-case';
 import { FinalScheduleSchema, FinalTrack, FinalEvent } from '../schemas/schedule.js';
 
 export const Step4InputSchema = z.object({
@@ -28,11 +29,7 @@ export function generateUUIDv5(name: string): string {
 }
 
 function cleanLocationLink(match: string, label: string, target: string): string {
-  const capitalizedLabel = label
-    .split(' ')
-    .map(word => (word.length > 0 ? word[0].toUpperCase() + word.substring(1) : ''))
-    .join(' ');
-  return `[${capitalizedLabel}](${target})`;
+  return `[${titleCase(label.toLowerCase())}](${target})`;
 }
 
 export function cleanLocation(loc: string | null | undefined): string | null {
