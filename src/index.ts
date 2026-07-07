@@ -8,28 +8,19 @@ import { step3LocationFlow } from './flows/step3-location.js';
 import { step4PostProcessFlow } from './flows/step4-postprocess.js';
 import { step5EvaluateFlow } from './flows/step5-evaluate.js';
 
-async function main() {
-  // Parse command line arguments
-  const args = process.argv.slice(2);
-  const pdfPathArg = args.find(arg => !arg.startsWith('--'));
-  const useCache = args.includes('--cache-step0') || !args.includes('--no-cache');
-
-  if (!pdfPathArg) {
-    console.error('Usage: npx tsx src/index.ts <path-to-pdf> [--no-cache]');
-    process.exit(1);
-  }
-
+async function processPdf(pdfPathArg: string, useCache: boolean): Promise<boolean> {
+  const startTime = Date.now();
   const pdfPath = path.resolve(process.cwd(), pdfPathArg);
   if (!fs.existsSync(pdfPath)) {
     console.error(`PDF file not found at: ${pdfPath}`);
-    process.exit(1);
+    return false;
   }
 
   // Parse camp and week from path (e.g. schedules/2026/oski/week_03.pdf)
   const match = pdfPathArg.match(/schedules\/(\d{4})\/([^/]+)\/([^/.]+)\.pdf/);
   if (!match) {
-    console.error('Invalid PDF path format. Expected: schedules/<year>/<camp>/<week>.pdf');
-    process.exit(1);
+    console.error(`Invalid PDF path format for ${pdfPathArg}. Expected: schedules/<year>/<camp>/<week>.pdf`);
+    return false;
   }
 
   const year = parseInt(match[1], 10);
@@ -37,7 +28,9 @@ async function main() {
   const weekStr = match[3]; // e.g. week_03
   const week = parseInt(weekStr.replace('week_', ''), 10);
 
-  console.log(`Starting PDF Processing Pipeline for ${camp.toUpperCase()} Year ${year} ${weekStr.toUpperCase()}...`);
+  console.log(`\n=============================================`);
+  console.log(`Processing: ${camp.toUpperCase()} Year ${year} ${weekStr.toUpperCase()}...`);
+  console.log(`=============================================`);
 
   // Step 0: Transcription / Image Processing
   let step0Result;
@@ -109,8 +102,8 @@ async function main() {
   console.log('=============================================\n');
 
   if (!step5Result.passed) {
-    console.error('Pipeline failed: Audit failed! Please review critical issues above.');
-    process.exit(1);
+    console.error(`Pipeline failed: Audit failed for ${pdfPathArg}! Please review critical issues above.`);
+    return false;
   }
 
   // Write final output file to schedules/2026/<camp>/<week>.json
@@ -158,7 +151,46 @@ async function main() {
     console.warn(`manifest.json not found at ${manifestPath}. Skipping manifest update.`);
   }
 
-  console.log('Pipeline run finished successfully!');
+  const durationSec = ((Date.now() - startTime) / 1000).toFixed(1);
+  console.log(`Processed ${pdfPathArg} successfully in ${durationSec}s!`);
+  return true;
+}
+
+async function main() {
+  const args = process.argv.slice(2);
+  const pdfPaths = args.filter(arg => !arg.startsWith('--'));
+  const useCache = args.includes('--cache-step0') || !args.includes('--no-cache');
+
+  if (pdfPaths.length === 0) {
+    console.error('Usage: npx tsx src/index.ts <path-to-pdf1> [path-to-pdf2] ... [--no-cache]');
+    process.exit(1);
+  }
+
+  const globalStart = Date.now();
+  const results: { pdf: string; success: boolean; durationSec: string }[] = [];
+
+  for (const pdf of pdfPaths) {
+    const singleStart = Date.now();
+    const success = await processPdf(pdf, useCache);
+    const singleDuration = ((Date.now() - singleStart) / 1000).toFixed(1);
+    results.push({ pdf, success, durationSec: singleDuration });
+
+    if (!success) {
+      console.error(`Pipeline halted due to failure in: ${pdf}`);
+      process.exit(1);
+    }
+  }
+
+  const totalDurationSec = ((Date.now() - globalStart) / 1000).toFixed(1);
+  console.log(`\n=============================================`);
+  console.log(`             PIPELINE RUN SUMMARY            `);
+  console.log(`=============================================`);
+  for (const res of results) {
+    console.log(`- ${res.pdf}: ${res.success ? '✅ Success' : '❌ Failed'} (${res.durationSec}s)`);
+  }
+  console.log(`---------------------------------------------`);
+  console.log(`Total Execution Time: ${totalDurationSec}s`);
+  console.log(`=============================================\n`);
 }
 
 main().catch(err => {

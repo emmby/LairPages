@@ -28,8 +28,8 @@ Fields to populate for each event:
 Extraction Rules:
 1. **Strict Track Membership**: Only assign events to their respective tracks. Do not mix events between tracks.
 2. **Expand/Unpack Cells**:
-   - If a single cell contains multiple distinct activities (e.g. listing multiple events listed sequentially), split them into separate event objects.
-   - If a cell has a time range, keep it as a single event.
+   - If a single cell contains multiple distinct activities, OR if it contains multiple disjoint/separated time ranges (e.g., '9:45-11:45 AM & 2:00-5:00 PM' or '9:00-12:00 PM, 1:00-4:00 PM'), you MUST split them into separate, individual event objects (one event per time range).
+   - Only keep as a single event if the cell represents a single continuous time range.
 3. **No Date Calculations**: Keep the day name and time text exactly as shown. Do not perform any date calculations or timezone conversions.
 4. **Expand Recurring Events**:
    - Expand recurring events (e.g., daily store hours, daily meals, or programs marked "Sunday - Friday" or "Daily" in colA or colB) into **individual daily entries** (i.e. generate a separate event object for Sunday, Monday, Tuesday, Wednesday, Thursday, and Friday).

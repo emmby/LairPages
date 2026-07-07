@@ -21,9 +21,9 @@ Your task is to audit the output of our PDF extraction pipeline by comparing the
 Rate the final schedule on a scale from 0 to 5:
 
 * **5 (Perfect)**: All events from the source grid are fully and correctly represented. No missing events, no hallucinated events, correct times, and accurate text representation.
-* **4 (Minor Warnings)**: Structurally perfect. Zero critical errors (no missing events, correct datetimes), but contains minor non-critical warnings (e.g. minor punctuation difference, casing warning, or harmless typos in unlinked text). **Safe to deploy (`passed: true`)**.
-* **3 (Minor Errors)**: Structural extraction is correct, but there is a non-critical data mismatch (e.g. description is missing a minor secondary sentence, but all event names, dates, times, and locations are 100% correct). **Not safe to deploy (`passed: false`)**.
-* **2 (Critical Issues)**: At least one scheduled event is completely missing from the output, or a time range/date is incorrect (e.g. AM/PM flip, or wrong day mapping). **Not safe to deploy (`passed: false`)**.
+* **4 (Minor Warnings)**: Structurally perfect. Zero critical errors (no missing events, correct datetimes), but contains a single minor non-critical warning (e.g., one minor punctuation difference or minor typo in unlinked description text). **Safe to deploy (`passed: true`)**.
+* **3 (Minor Errors / Systemic Issues)**: Structural extraction is mostly correct, but there is a non-critical data mismatch, OR there are multiple warnings/notes of any kind (e.g., 3 or more total warnings, or repeating the same warning multiple times which indicates a systemic extraction issue). **Not safe to deploy (`passed: false`)**.
+* **2 (Critical Issues)**: At least one scheduled event is completely missing from the output, or a time range/date is incorrect (e.g., merging two separate/disjoint time ranges like '9:00-12:00 PM and 1:00-4:00 PM' into a single continuous '9:00 AM - 4:00 PM' block, which hides facility closures). Merging disjoint time ranges is always a CRITICAL error. **Not safe to deploy (`passed: false`)**.
 * **1 (Severe Failure)**: Multiple events are missing, or entire tracks are empty or duplicated. **Not safe to deploy (`passed: false`)**.
 * **0 (Total Mismatch)**: Completely corrupt or failed extraction.
 
