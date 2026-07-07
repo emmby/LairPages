@@ -75,10 +75,7 @@ export const step4PostProcessFlow = ai.defineFlow(
       const banner = matchingStep0Track?.banner || null;
 
       // 2. Normalize track name casing
-      let normalizedTrackName = step3Track.trackName;
-      if (normalizedTrackName.toLowerCase() === 'all-camp activities' || normalizedTrackName.toLowerCase() === 'all camp activities') {
-        normalizedTrackName = 'All-camp Activities';
-      }
+      const normalizedTrackName = step3Track.trackName.replace(/\ball[\s-]*camp\b/gi, 'All-camp');
 
       // 3. Process events
       const processedEvents: FinalEvent[] = step3Track.events.map((event) => {
