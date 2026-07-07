@@ -40,53 +40,7 @@ function loadMapLocations(mapsDir: string): Array<{ id: string; name: string }> 
   return list;
 }
 
-function getCampAliasesPrompt(camp: string): string {
-  if (camp === 'oski') {
-    return `
-Aliases:
-- 'Stage' or 'Oski Stage' -> 'oski/papa_bear_stage'
-- 'Dining Hall' or 'Oski Dining Hall' -> 'oski/lodge'
-- 'Lair Lodge' or 'Lodge' -> 'oski/lodge'
-- 'Volleyball Court' or 'Oski Volleyball Court' -> 'oski/volleyball_court'
-- 'Gaga Pit' -> 'gold/gaga_ball'
-- 'Wellness Center' -> 'gold/wellness_center'
-- 'Vista Lodge' or 'Vista Lounge' -> 'gold/vista_lodge'
-- 'Teen Lodge' -> 'gold/teen_lodge'
-- 'Bruised Bears Building' or 'Bruised Bears' -> 'gold/wounded_bears'
-- 'Gold Pool' -> 'gold/pool'
-- 'Gold Softball Field' or 'Softball Field' -> 'gold/sports_courts'
-`;
-  } else if (camp === 'blue') {
-    return `
-Aliases:
-- 'Stage' or 'Blue Stage' -> 'blue/stage'
-- 'Dining Hall' or 'Blue Dining Hall' -> 'blue/dining_hall'
-- 'Lodge' or 'Blue Lodge' -> 'blue/lodge'
-- 'Volleyball Court' -> 'blue/sports_courts'
-- 'Gaga Pit' -> 'gold/gaga_ball'
-- 'Wellness Center' -> 'gold/wellness_center'
-- 'Vista Lodge' -> 'gold/vista_lodge'
-- 'Teen Lodge' -> 'gold/teen_lodge'
-- 'Bruised Bears Building' -> 'gold/wounded_bears'
-- 'Gold Pool' -> 'gold/pool'
-`;
-  } else if (camp === 'gold') {
-    return `
-Aliases:
-- 'Stage' or 'Gold Stage' -> 'gold/stage'
-- 'Dining Hall' or 'Gold Dining Hall' -> 'gold/dining_hall'
-- 'Lodge' or 'Gold Lodge' -> 'gold/lodge'
-- 'Volleyball Court' -> 'gold/sports_courts'
-- 'Gaga Pit' -> 'gold/gaga_ball'
-- 'Wellness Center' -> 'gold/wellness_center'
-- 'Vista Lodge' -> 'gold/vista_lodge'
-- 'Teen Lodge' -> 'gold/teen_lodge'
-- 'Bruised Bears Building' -> 'gold/wounded_bears'
-- 'Gold Pool' -> 'gold/pool'
-`;
-  }
-  return '';
-}
+
 
 function escapeRegExp(string: string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -144,12 +98,17 @@ export const step3LocationFlow = ai.defineFlow(
       return { tracks: input.tracks };
     }
 
+    // Load location aliases from JSON file
+    const aliasesFilePath = path.resolve(process.cwd(), 'src/lib/location_aliases.json');
+    const aliasesData = JSON.parse(fs.readFileSync(aliasesFilePath, 'utf-8'));
+    const campAliases = aliasesData[input.camp] || {};
+
     // 3. Resolve locations via Gemini Step 3 prompt
     const step3Prompt = ai.prompt('step3-location');
     const response = await step3Prompt(
       {
         camp: input.camp,
-        aliases: getCampAliasesPrompt(input.camp),
+        aliases: campAliases,
         knownLocations,
         rawLocations: Array.from(rawLocations),
       },

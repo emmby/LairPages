@@ -5,7 +5,7 @@ config:
 input:
   schema:
     camp: string
-    aliases: string
+    aliases: any
     knownLocations(array):
       id: string
       name: string
@@ -27,12 +27,16 @@ Rules:
    Events on this camp's schedule may take place at a sibling camp. Map them to that sibling camp if appropriate (e.g., 'Vista Lodge' or 'Wellness Center' on an Oski schedule should map to Gold camp locations).
 5. **Casing & Spacing**:
    Casing and punctuation mismatches should be handled flexibly (e.g. 'volleyball court' or 'Volleyball Court' should both map to 'oski/volleyball_court').
+6. **Local Priority**:
+   Always prioritize resolving a raw name to the local camp's locations first. For example, if the raw name is 'Lodge' and the camp is 'oski', resolve it to the local 'oski/lodge' (since 'Lair Lodge' is the local lodge) rather than routing it to 'gold/lodge' just because 'gold/lodge' is an exact text match. Only route to a sibling camp if the location is completely unique to that sibling camp (e.g. 'Vista Lodge' or 'Wellness Center' which are only in Gold).
 
 Camp Context:
 - The schedule is for Camp {{camp}}.
 
-Aliases to apply:
-{{aliases}}
+Aliases to apply for Camp {{camp}} (where target ID maps to list of raw names):
+```json
+{{json aliases}}
+```
 
 Known Map Location IDs and Names:
 ```json
