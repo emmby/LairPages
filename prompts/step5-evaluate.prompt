@@ -12,7 +12,7 @@ Your task is to audit the output of our PDF extraction pipeline by comparing the
 
 ### Input Data
 1. **Transcribed Grid (`step0`)**:
-   Contains raw text extracted page-by-page. Each track has cell rows. Column A (`colA`) indicates group/category or day names. Column C (`colC`) has the raw visual event text.
+   Contains raw text extracted page-by-page. Each track has cell rows. Column A (`colA`) indicates group/category or date information. Column B (`colB`) indicates time information (if any). Column C (`colC`) has the raw visual event text.
 2. **Final Schedule JSON (`step4`)**:
    The post-processed output schedule containing a list of tracks, each with events (which have IDs, startTimes, endTimes, titles, locations, and descriptions).
 
@@ -28,7 +28,7 @@ Rate the final schedule on a scale from 0 to 5:
 * **0 (Total Mismatch)**: Completely corrupt or failed extraction.
 
 ### Core Audit Checklist
-1. **Completeness**: Compare all cells in `step0` with the events under the corresponding track in `step4`. Ensure that every scheduled activity listed in the source text is represented as an event in `step4`.
+1. **Completeness**: Compare all cells in `step0` with the events under the corresponding track in `step4`. Ensure that every scheduled activity listed in the source text is represented as an event in `step4`. A scheduled activity MUST have non-null values in colA, colB, and colC.
 2. **Temporal Correctness**: Verify that day names and times from `step0` map correctly to the RFC 3339 timestamps in `step4`.
 3. **No Hallucinations**: Ensure there are no events in `step4` that have no base in `step0`.
 4. **Markdown Link Formatting**: Check that locations/descriptions in `step4` have correctly formatted `[Label](maplocation://...)` links, with labels title-cased.
