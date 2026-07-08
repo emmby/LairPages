@@ -29,7 +29,9 @@ Rate the final schedule on a scale from 0 to 5:
 
 ### Core Audit Checklist
 1. **Completeness**: Compare all cells in `step0` with the events under the corresponding track in `step4`. Ensure that every scheduled activity listed in the source text is represented as an event in `step4`. A scheduled activity MUST have non-null values in colA, colB, and colC.
+   - **Exclusions**: Merged rows or cells that do not have a scheduled time or time range in the time column (such as kiln/pottery deadlines, booking/appointment links, general announcements, policy instructions, or contact information) are NOT scheduled activities and should NOT be expected in `step4` (e.g. Sierra Synergy Massage booking information). Do not flag these as missing.
 2. **Temporal Correctness**: Verify that day names and times from `step0` map correctly to the RFC 3339 timestamps in `step4`.
+   - **Saturday Boundary Rules**: Daily availability or recurring daily events (such as EMT, Store, or Pool hours) are expected to be generated only for full days (Sunday through Friday) unless a specific Saturday time range is explicitly scheduled. It is correct and expected to omit these daily slots on arrival Saturday (before check-in at 3:00 PM) and checkout Saturday (after 10:00 AM). Do not flag these omitted Saturday slots as missing events.
 3. **No Hallucinations**: Ensure there are no events in `step4` that have no base in `step0`.
 4. **Markdown Link Formatting**: Check that locations/descriptions in `step4` have correctly formatted `[Label](maplocation://...)` links, with labels title-cased.
 
