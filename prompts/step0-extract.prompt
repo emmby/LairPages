@@ -35,4 +35,5 @@ For each track, transcribe its 3-column grid cells exactly as visually aligned i
 - **Literal transcription**: Transcribe all text exactly as shown in the PDF columns. Do not summarize, shorten, parse, reformat, or split titles/locations/times.
 - **Unmerge Merged Cells (Forward-Fill)**: If a cell in Column A (such as a day name like "Sunday" or a Saturday type like "Saturday (arrival)") visually spans vertically across multiple rows, transcribe that value in `colA` for every row within that spanned group. Do not leave `colA` as null or empty in subsequent rows.
 - **Unmerge Horizontally Merged Cells (Columns B and C)**: If a cell visually spans horizontally across both Column B and Column C, transcribe the entire text content into `colC` and set `colB` to `null`. This applies to warnings, notes, or section headers that have no time.
-- **Preserve formatting**: Keep literal markdown styling (like bold text `**` or bullet points) exactly as shown in the cells.
+- **Transcribe visual formatting**: Detect visual text styling in the PDF cells. For any text that is visually styled as bold (such as an introductory title or first few words of a description), wrap it in HTML bold tags (e.g., `<b>bold text</b>`). For visually italicized text, wrap it in HTML italic tags (e.g., `<i>italic text</i>`). Transcribe literal asterisks exactly as shown without escaping.
+

@@ -53,7 +53,21 @@ export function cleanLocation(loc: string | null | undefined): string | null {
 
 export function cleanDescription(desc: string | null | undefined): string | null {
   if (!desc) return null;
-  return desc.replace(/\[([^\]]+)\]\((maplocation:\/\/[^)]+)\)/g, cleanLocationLink);
+  
+  // 1. Programmatically escape all literal markdown syntax characters
+  let processed = desc
+    .replace(/\*/g, '\\*')
+    .replace(/`/g, '\\`');
+
+  // 2. Convert HTML tags to proper Markdown
+  processed = processed
+    .replace(/<b>(.*?)<\/b>/gi, '**$1**')
+    .replace(/<strong>(.*?)<\/strong>/gi, '**$1**')
+    .replace(/<i>(.*?)<\/i>/gi, '_$1_')
+    .replace(/<em>(.*?)<\/em>/gi, '_$1_');
+
+  // 3. Keep the existing markdown link label cleanup
+  return processed.replace(/\[([^\]]+)\]\((maplocation:\/\/[^)]+)\)/g, cleanLocationLink);
 }
 
 export const step4PostProcessFlow = ai.defineFlow(
