@@ -61,10 +61,10 @@ export function cleanDescription(desc: string | null | undefined): string | null
 
   // 2. Convert HTML tags to proper Markdown
   processed = processed
-    .replace(/<b>(.*?)<\/b>/gi, '**$1**')
-    .replace(/<strong>(.*?)<\/strong>/gi, '**$1**')
-    .replace(/<i>(.*?)<\/i>/gi, '_$1_')
-    .replace(/<em>(.*?)<\/em>/gi, '_$1_');
+    .replace(/<b\b[^>]*>([\s\S]*?)<\/b>/gi, '**$1**')
+    .replace(/<strong\b[^>]*>([\s\S]*?)<\/strong>/gi, '**$1**')
+    .replace(/<i\b[^>]*>([\s\S]*?)<\/i>/gi, '_$1_')
+    .replace(/<em\b[^>]*>([\s\S]*?)<\/em>/gi, '_$1_');
 
   // 3. Keep the existing markdown link label cleanup
   return processed.replace(/\[([^\]]+)\]\((maplocation:\/\/[^)]+)\)/g, cleanLocationLink);

@@ -17,12 +17,16 @@ describe('cleanDescription formatting and escaping', () => {
     expect(cleanDescription('<b>Hello World</b>')).toBe('**Hello World**');
     expect(cleanDescription('<strong>Hello World</strong>')).toBe('**Hello World**');
     expect(cleanDescription('<B>Hello World</B>')).toBe('**Hello World**');
+    expect(cleanDescription('<b class="test">Hello World</b>')).toBe('**Hello World**');
+    expect(cleanDescription('<b >Hello World</b>')).toBe('**Hello World**');
+    expect(cleanDescription('<b>Hello\nWorld</b>')).toBe('**Hello\nWorld**');
   });
 
   test('converts HTML italic tags to markdown italic tags', () => {
     expect(cleanDescription('<i>Hello World</i>')).toBe('_Hello World_');
     expect(cleanDescription('<em>Hello World</em>')).toBe('_Hello World_');
     expect(cleanDescription('<I>Hello World</I>')).toBe('_Hello World_');
+    expect(cleanDescription('<i style="color: red;">Hello World</i>')).toBe('_Hello World_');
   });
 
   test('handles combined HTML tags, literal symbols, and location links', () => {
