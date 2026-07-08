@@ -23,7 +23,7 @@ Fields to populate for each event:
 - **rawTime**: Time range exactly as shown (e.g. '3:00-6:00 PM', '7:15 AM', '9:30 AM - 12:00 PM').
 - **title**: The title of the event.
 - **location**: Location text if specified. Null if not.
-- **description**: Additional event details, rules, or lists. Null if none.
+- **description**: The exact, complete text of the original cell (colC) verbatim. Do NOT make this null, even if it is identical to the title.
 
 Extraction Rules:
 1. **Strict Track Membership**: Only assign events to their respective tracks. Do not mix events between tracks.
@@ -41,6 +41,7 @@ Extraction Rules:
    - Determine the day for each event. If a cell contains a specific day (e.g. "Sunday 9:15-10:00AM"), use that day ("Sunday"). If a cell says "Daily" or "Sunday - Friday", expand it into individual daily entries for Sunday, Monday, Tuesday, Wednesday, Thursday, and Friday. If the cell's day matches a Saturday type, preserve the specific Saturday type ("Saturday (arrival)" or "Saturday (checkout)") verbatim.
 6. **Exclude Non-Events**: Omit warnings, notes, or instructions that do not have a scheduled time or time range associated with them (such as kiln deadlines, booking site URLs, or policy announcements).
 7. **Preserve formatting**: Keep literal markdown styling (like bold text `**` or list items) in description fields exactly as shown. Escape asterisks or backticks if they are literal text.
+8. **Verbatim Description**: For every extracted event, you MUST set the `description` field to the exact, complete text of the original cell (`colC`) from which the event was extracted. Preserve all words, sentences, punctuation, and markdown formatting (like asterisks or list items) exactly as shown in `colC`. Do NOT summarize, simplify, edit, or omit any text, and do not make it null.
 
 Input Tracks:
 ```json
