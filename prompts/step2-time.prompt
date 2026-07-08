@@ -1,5 +1,4 @@
 ---
-model: googleai/gemini-3.5-flash
 config:
   temperature: 0.1
 input:
@@ -16,7 +15,7 @@ Given the Saturday check-in date '{{startDate}}', convert the raw day and time v
 
 Rules:
 1. **Day Mapping relative to startDate**:
-   The `startDate` is always a Saturday (Day 0). Map the `rawDay` names to correct calendar dates:
+   The `startDate` is always a Saturday (Day 0). Map the `rawDay` names to correct calendar dates strictly relative to the startDate:
    - Saturday (arrival) -> Day 0 ({{startDate}})
    - Sunday -> Day 1 ({{startDate}} + 1 day)
    - Monday -> Day 2 ({{startDate}} + 2 days)
@@ -25,6 +24,7 @@ Rules:
    - Thursday -> Day 5 ({{startDate}} + 5 days)
    - Friday -> Day 6 ({{startDate}} + 6 days)
    - Saturday (checkout) -> Day 7 ({{startDate}} + 7 days)
+   Each day name corresponds to a single, fixed date relative to the startDate, regardless of the order of events in the list. For example, "Sunday" must always map to Day 1 ({{startDate}} + 1 day), never to Day 8. Do not wrap dates into the following week.
 2. **PDT Timezone Offset**:
    All timestamps must end with the PDT offset: `-07:00` (e.g., `YYYY-MM-DDTHH:mm:ss-07:00`).
 3. **PM Inheritance (Time Ranges)**:
@@ -43,6 +43,8 @@ Rules:
    Afternoon/evening times (e.g., '1:30', '2:30', '5:00', '8:00') must be mapped to correct 24-hour PM hours (13:30:00, 14:30:00, 17:00:00, 20:00:00), never to early morning hours (01:30:00, 02:30:00, 05:00:00, 08:00:00) when campers are sleeping. Some late-night events can conclude at midnight (which maps to 00:00:00 of the following day).
 7. **Output Requirements**:
    Output a resolution for EVERY single input event, preserving its `uniqueId`.
+8. **Strict Output Format**:
+   Return ONLY the raw JSON object conforming strictly to the schema. Do not wrap the JSON in markdown code blocks, do not include any postscript messages, and do not append any conversational commentary.
 
 Input Events:
 ```json
