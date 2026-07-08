@@ -133,7 +133,7 @@ export const step2TimeFlow = ai.defineFlow(
 
     // 2. Week Boundary Calculations
     const lowerBoundMs = new Date(`${input.startDate}T00:00:00-07:00`).getTime();
-    const upperBoundMs = lowerBoundMs + 8 * 24 * 60 * 60 * 1000 - 1; // 8 days total to cover checkout Saturday entirely
+    const upperBoundMs = lowerBoundMs + 8 * 24 * 60 * 60 * 1000; // 8 days total to cover checkout Saturday entirely (including midnight ending)
 
     const isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}-07:00$/;
 
