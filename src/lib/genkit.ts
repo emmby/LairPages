@@ -21,7 +21,7 @@ if (!process.env.GEMINI_API_KEY) {
 export const ai = genkit({
   plugins: [googleAI()],
   promptDir: './prompts',
-  model: 'googleai/gemini-2.5-flash',
+  model: googleAI.model('gemini-2.5-flash'),
 });
 
 function isTransientError(error: any): boolean {
