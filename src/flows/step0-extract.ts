@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import * as fs from 'fs';
 import * as path from 'path';
-import { ai } from '../lib/genkit.js';
+import { ai, runWithRetry } from '../lib/genkit.js';
 import { RawGridSchema, RawGridTrack } from '../schemas/raw-grid.js';
 
 export const step0ExtractFlow = ai.defineFlow(
@@ -27,11 +27,13 @@ export const step0ExtractFlow = ai.defineFlow(
     const step0Prompt = ai.prompt('step0-extract');
 
     console.log(`Executing model call for Step 0...`);
-    const response = await step0Prompt(
-      { pdfUrl },
-      {
-        output: { schema: RawGridSchema },
-      }
+    const response = await runWithRetry(() =>
+      step0Prompt(
+        { pdfUrl },
+        {
+          output: { schema: RawGridSchema },
+        }
+      )
     );
 
     const parsed = response.output;

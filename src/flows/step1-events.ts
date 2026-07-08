@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { titleCase } from 'title-case';
-import { ai } from '../lib/genkit.js';
+import { ai, runWithRetry } from '../lib/genkit.js';
 import { RawGridSchema } from '../schemas/raw-grid.js';
 import { Step1OutputSchema, Step1BatchOutputSchema } from '../schemas/events.js';
 
@@ -57,11 +57,13 @@ export const step1EventsFlow = ai.defineFlow(
       const batchNames = batch.map(t => t.name).join(', ');
       console.log(`[Batch ${idx + 1}/${batches.length}] Sending tracks: ${batchNames}`);
       
-      const response = await step1Prompt(
-        { tracks: batch },
-        {
-          output: { schema: Step1BatchOutputSchema },
-        }
+      const response = await runWithRetry(() =>
+        step1Prompt(
+          { tracks: batch },
+          {
+            output: { schema: Step1BatchOutputSchema },
+          }
+        )
       );
 
       if (!response.output) {
@@ -75,11 +77,11 @@ export const step1EventsFlow = ai.defineFlow(
     const results = await Promise.all(promises);
     const flattenedTracks = results.flat();
 
-    // Restore original track order from Step 0 (using the same Title Case formatting)
-    const originalOrder = rawGrid.tracks.map(t => titleCase(t.name.toLowerCase()));
+    // Restore original track order from Step 0 (using normalized names for robust matching)
+    const originalOrderNormalized = rawGrid.tracks.map(t => t.name.trim().toLowerCase());
     flattenedTracks.sort((a, b) => {
-      const indexA = originalOrder.indexOf(a.trackName);
-      const indexB = originalOrder.indexOf(b.trackName);
+      const indexA = originalOrderNormalized.indexOf(a.trackName.trim().toLowerCase());
+      const indexB = originalOrderNormalized.indexOf(b.trackName.trim().toLowerCase());
       return indexA - indexB;
     });
 

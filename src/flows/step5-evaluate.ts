@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { ai } from '../lib/genkit.js';
+import { ai, runWithRetry } from '../lib/genkit.js';
 import { RawGridSchema } from '../schemas/raw-grid.js';
 import { FinalScheduleSchema } from '../schemas/schedule.js';
 import { EvaluationResultsSchema } from '../schemas/evaluation.js';
@@ -20,11 +20,13 @@ export const step5EvaluateFlow = ai.defineFlow(
     
     console.log('Sending Step 0 and Step 4 output to LLM judge for verification...');
     
-    const response = await step5Prompt(
-      { step0: input.step0, step4: input.step4 },
-      {
-        output: { schema: EvaluationResultsSchema },
-      }
+    const response = await runWithRetry(() =>
+      step5Prompt(
+        { step0: input.step0, step4: input.step4 },
+        {
+          output: { schema: EvaluationResultsSchema },
+        }
+      )
     );
 
     if (!response.output) {

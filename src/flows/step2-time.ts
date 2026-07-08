@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { ai } from '../lib/genkit.js';
+import { ai, runWithRetry } from '../lib/genkit.js';
 import { Step1OutputSchema } from '../schemas/events.js';
 import { Step2OutputSchema, TimeResolutionResultsSchema } from '../schemas/timed-events.js';
 
@@ -61,7 +61,7 @@ export const step2TimeFlow = ai.defineFlow(
     const step2Prompt = ai.prompt('step2-time');
     const promises = batches.map(async (batch, idx) => {
       console.log(`[Time Batch ${idx + 1}/${batches.length}] Sending ${batch.length} events.`);
-      const response = await step2Prompt(
+      const response = await runWithRetry(() => step2Prompt(
         {
           startDate: input.startDate,
           events: batch,
@@ -69,7 +69,7 @@ export const step2TimeFlow = ai.defineFlow(
         {
           output: { schema: TimeResolutionResultsSchema },
         }
-      );
+      ));
 
       if (!response.output) {
         throw new Error(`Model failed to return output for time batch ${idx + 1}`);

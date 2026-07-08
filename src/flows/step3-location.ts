@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { z } from 'zod';
-import { ai } from '../lib/genkit.js';
+import { ai, runWithRetry } from '../lib/genkit.js';
 import { Step2OutputSchema } from '../schemas/timed-events.js';
 import { Step3OutputSchema, LocationMappingResultsSchema, LocationMapping } from '../schemas/located-events.js';
 
@@ -54,7 +54,7 @@ function applyMappings(text: string | null | undefined, mapping: Map<string, str
   for (const key of sortedKeys) {
     const val = mapping.get(key);
     if (val && val !== key) {
-      const pattern = new RegExp('(\\[[^\\]]+\\]\\([^)]+\\))|\\b' + escapeRegExp(key) + '\\b', 'gi');
+      const pattern = new RegExp('(\\[[^\\]]+\\]\\([^)]+\\))|(?<!\\w)' + escapeRegExp(key) + '(?!\\w)', 'gi');
       result = result.replace(pattern, (match, link) => {
         if (link) return link;
         return val;
@@ -105,16 +105,18 @@ export const step3LocationFlow = ai.defineFlow(
 
     // 3. Resolve locations via Gemini Step 3 prompt
     const step3Prompt = ai.prompt('step3-location');
-    const response = await step3Prompt(
-      {
-        camp: input.camp,
-        aliases: campAliases,
-        knownLocations,
-        rawLocations: Array.from(rawLocations),
-      },
-      {
-        output: { schema: LocationMappingResultsSchema },
-      }
+    const response = await runWithRetry(() =>
+      step3Prompt(
+        {
+          camp: input.camp,
+          aliases: campAliases,
+          knownLocations,
+          rawLocations: Array.from(rawLocations),
+        },
+        {
+          output: { schema: LocationMappingResultsSchema },
+        }
+      )
     );
 
     if (!response.output) {
