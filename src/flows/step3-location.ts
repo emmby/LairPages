@@ -72,7 +72,10 @@ export const step3LocationFlow = ai.defineFlow(
   },
   async (input) => {
     // 1. Load map locations from sibling Lair folder
-    const mapsDir = path.resolve(process.cwd(), '../../Lair/refactor-pdf-processing-engine/assets/maps');
+    let mapsDir = path.resolve(process.cwd(), '../Lair/assets/maps');
+    if (!fs.existsSync(mapsDir)) {
+      mapsDir = path.resolve(process.cwd(), '../../Lair/refactor-pdf-processing-engine/assets/maps');
+    }
     console.log(`Loading map locations from: ${mapsDir}`);
     const knownLocations = loadMapLocations(mapsDir);
     console.log(`Loaded ${knownLocations.length} known locations.`);

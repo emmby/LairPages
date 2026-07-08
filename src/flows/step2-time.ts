@@ -10,15 +10,15 @@ export const Step2InputSchema = z.object({
 
 function sanitizeTimestamp(ts: string | null | undefined): string | null {
   if (!ts) return null;
-  const trimmed = ts.trim();
+  let trimmed = ts.trim();
+  if (!/[+-]\d{2}:?\d{2}$|Z$/i.test(trimmed)) {
+    trimmed += '-07:00';
+  }
   const date = new Date(trimmed);
   if (isNaN(date.getTime())) {
     throw new Error(`Invalid timestamp format received from model: "${trimmed}"`);
   }
-  // Shift by 7 hours (PDT offset is UTC -7) to obtain local PDT components
   const localTime = new Date(date.getTime() - 7 * 60 * 60 * 1000);
-  // localTime.toISOString() yields 'YYYY-MM-DDTHH:mm:ss.sssZ'
-  // Slice to 'YYYY-MM-DDTHH:mm:ss' and append the '-07:00' timezone offset
   return localTime.toISOString().substring(0, 19) + '-07:00';
 }
 
