@@ -70,6 +70,20 @@ export function cleanDescription(desc: string | null | undefined): string | null
   return processed.replace(/\[([^\]]+)\]\((maplocation:\/\/[^)]+)\)/g, cleanLocationLink);
 }
 
+export function normalizeAndTruncateDescription(desc: string | null | undefined): string {
+  if (!desc || desc.trim().length === 0) {
+    throw new Error('Event description is empty, null, or undefined; cannot generate stable event ID.');
+  }
+  const normalized = desc
+    .toLowerCase()
+    .replace(/<[^>]*>/g, '') // remove HTML tags
+    .replace(/[^a-z0-9]/g, ''); // remove non-alphanumeric characters
+  if (normalized.length === 0) {
+    throw new Error(`Event description "${desc}" contains no alphanumeric characters; cannot generate stable event ID.`);
+  }
+  return normalized.substring(0, 50);
+}
+
 export const step4PostProcessFlow = ai.defineFlow(
   {
     name: 'step4PostProcess',
@@ -95,9 +109,9 @@ export const step4PostProcessFlow = ai.defineFlow(
         const cleanedDesc = cleanDescription(event.description);
 
         // Generate deterministic, case-insensitive UUIDv5
-        const cleanTitleForHash = event.title.toLowerCase().trim();
+        const normDesc = normalizeAndTruncateDescription(event.description);
         const cleanTrackForHash = normalizedTrackName.toLowerCase().trim();
-        const hashInput = `${cleanTitleForHash}_${event.startTime}_${cleanTrackForHash}`;
+        const hashInput = `${normDesc}_${event.startTime}_${event.endTime || ''}_${cleanTrackForHash}`;
         const eventId = generateUUIDv5(hashInput);
 
         return {
