@@ -56,7 +56,8 @@ export async function runWithRetry<T>(fn: () => Promise<T>, retries = 3, delay =
     if (retries <= 0 || !isTransientError(error)) {
       throw error;
     }
-    console.warn(`Transient API error encountered (${error.message || error}). Retrying in ${delay}ms... (${retries} attempts left)`);
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.warn(`Transient API error encountered (${errorMsg}). Retrying in ${delay}ms... (${retries} attempts left)`);
     await new Promise((resolve) => setTimeout(resolve, delay));
     return runWithRetry(fn, retries - 1, delay * 2); // Exponential backoff
   }

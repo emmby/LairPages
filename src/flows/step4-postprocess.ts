@@ -51,8 +51,8 @@ export function cleanLocation(loc: string | null | undefined): string | null {
   return cleaned;
 }
 
-export function cleanDescription(desc: string | null | undefined): string | null {
-  if (!desc) return null;
+export function cleanDescription(desc: string | null | undefined): string {
+  if (!desc) return '';
   
   // 1. Programmatically escape all literal markdown syntax characters
   let processed = desc

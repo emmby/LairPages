@@ -2,9 +2,9 @@ import { describe, test, expect } from 'vitest';
 import { cleanDescription, normalizeAndTruncateDescription } from '../src/flows/step4-postprocess.js';
 
 describe('cleanDescription formatting and escaping', () => {
-  test('returns null for null or undefined input', () => {
-    expect(cleanDescription(null)).toBeNull();
-    expect(cleanDescription(undefined)).toBeNull();
+  test('returns empty string for null or undefined input', () => {
+    expect(cleanDescription(null)).toBe('');
+    expect(cleanDescription(undefined)).toBe('');
   });
 
   test('escapes literal asterisks and backticks', () => {

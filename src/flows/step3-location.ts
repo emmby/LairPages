@@ -46,8 +46,8 @@ function escapeRegExp(string: string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-function applyMappings(text: string | null | undefined, mapping: Map<string, string>): string | null {
-  if (!text) return null;
+function applyMappings(text: string, mapping: Map<string, string>): string {
+  if (!text) return '';
   let result = text;
   // Sort mapping keys by length descending to match longest matches first
   const sortedKeys = Array.from(mapping.keys()).sort((a, b) => b.length - a.length);

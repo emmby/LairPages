@@ -6,7 +6,7 @@ export const FinalEventSchema = z.object({
   endTime: z.string().nullable().optional(),
   title: z.string(),
   location: z.string().nullable().optional(),
-  description: z.string().nullable().optional(),
+  description: z.string(),
 });
 
 export const FinalTrackSchema = z.object({

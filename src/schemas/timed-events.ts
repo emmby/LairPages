@@ -15,7 +15,7 @@ export const TimedEventSchema = z.object({
   endTime: z.string().nullable().optional(),
   title: z.string(),
   location: z.string().nullable().optional(),
-  description: z.string().nullable().optional(),
+  description: z.string(),
 });
 
 export const TrackTimedEventsSchema = z.object({

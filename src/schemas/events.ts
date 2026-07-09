@@ -25,7 +25,7 @@ export const RawEventSchema = z.object({
   rawTime: nonEmptyString.describe('Raw time range as shown in colB (e.g. "2:30-4:00 PM"). Must be non-empty.'),
   title: nonEmptyString.describe('Extracted event title. Must be non-empty.'),
   location: nullableNonEmptyString.describe('Extracted location text. Null if not specified.'),
-  description: nullableNonEmptyString.describe('Additional event details, rules, or lists. Null if none.'),
+  description: nonEmptyString.describe('Additional event details, rules, or lists. Verbatim copy of colC.'),
 });
 
 export const TrackEventsSchema = z.object({
