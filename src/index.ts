@@ -50,6 +50,9 @@ export async function processPdf(pdfPathArg: string, useCache: boolean): Promise
         }
       }
 
+      if (!step0Result?.metadata || typeof step0Result.metadata.year !== 'number' || typeof step0Result.metadata.camp !== 'string' || typeof step0Result.metadata.week !== 'number' || isNaN(step0Result.metadata.week)) {
+        throw new Error('Failed to extract valid metadata (year, camp, week) from PDF.');
+      }
       year = step0Result.metadata.year;
       camp = step0Result.metadata.camp;
       week = step0Result.metadata.week;
@@ -76,7 +79,13 @@ export async function processPdf(pdfPathArg: string, useCache: boolean): Promise
       year = parseInt(match[1], 10);
       camp = match[2];
       weekStr = match[3];
-      week = parseInt(weekStr.replace('week_', ''), 10);
+      const parsedWeek = parseInt(weekStr.replace('week_', ''), 10);
+      if (isNaN(parsedWeek)) {
+        console.error('Invalid week number in PDF path: ' + pdfPathArg);
+        writeLastRunStatus({ success: false, error: 'Invalid week number in PDF path: ' + pdfPathArg });
+        return false;
+      }
+      week = parsedWeek;
 
       const cachedStep0Path = path.resolve(process.cwd(), `.tmp/batch_step0/${camp}_${weekStr}_step0.json`);
       const localStep0Path = path.resolve(process.cwd(), `.tmp/${weekStr}_step0.json`);

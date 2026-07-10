@@ -1,26 +1,51 @@
-// Google Apps Script Configuration
+/**
+ * ============================================================================
+ * GOOGLE DRIVE SCHEDULE INGESTION WATCHER
+ * ============================================================================
+ * 
+ * INSTRUCTIONS FOR SETTING UP THIS SCRIPT:
+ * 
+ * 1. Go to Google Apps Script (https://script.google.com).
+ * 2. Click "New Project" and rename it (e.g. "Lair Schedule Ingest Watcher").
+ * 3. Paste the contents of this file into the editor, replacing all default code.
+ * 4. Configure Script Properties for Credentials (DO NOT hardcode them in the script):
+ *    - Click the gear icon (Project Settings) on the left sidebar.
+ *    - Under "Script Properties", click "Add script property" and add:
+ *      a. GITHUB_PAT : [Your GitHub Personal Access Token with repo write scope]
+ *      b. INBOX_FOLDER_ID : [The Google Drive Folder ID of your schedule upload inbox]
+ *      c. PROCESSED_FOLDER_ID (Optional) : [Google Drive Folder ID where processed PDFs go]
+ *         * Note: If PROCESSED_FOLDER_ID is omitted, a folder named "Processed" will
+ *                 automatically be created inside your Inbox folder.
+ * 5. Configure the Trigger to Run Periodically:
+ *    - Click the clock icon (Triggers) on the left sidebar.
+ *    - Click "+ Add Trigger" in the bottom right corner.
+ *    - Choose function to run: "checkAndUploadSchedules".
+ *    - Select event source: "Time-driven".
+ *    - Select type of time-based trigger: "Day timer" (recommend Daily in the morning, or "Hour timer" if needed).
+ *    - Click "Save" and authorize the script permissions with your Google Account.
+ * ============================================================================
+ */
+
+// Git Repository settings
 const GH_OWNER = 'emmby';
 const GH_REPO = 'LairPages';
 const GH_BRANCH = 'main';
-const GITHUB_PAT = 'YOUR_GITHUB_PERSONAL_ACCESS_TOKEN'; // Set in Script Properties for security!
-const INBOX_FOLDER_ID = 'YOUR_GOOGLE_DRIVE_INBOX_FOLDER_ID';
-const PROCESSED_FOLDER_ID = 'YOUR_GOOGLE_DRIVE_PROCESSED_FOLDER_ID'; // Optional, will create if empty
 
 /**
  * Main entry point. Configure this to run on a time-driven trigger (e.g. Daily).
  */
 function checkAndUploadSchedules() {
   const properties = PropertiesService.getScriptProperties();
-  const pat = properties.getProperty('GITHUB_PAT') || GITHUB_PAT;
-  const inboxFolderId = properties.getProperty('INBOX_FOLDER_ID') || INBOX_FOLDER_ID;
-  let processedFolderId = properties.getProperty('PROCESSED_FOLDER_ID') || PROCESSED_FOLDER_ID;
+  const pat = properties.getProperty('GITHUB_PAT');
+  const inboxFolderId = properties.getProperty('INBOX_FOLDER_ID');
+  let processedFolderId = properties.getProperty('PROCESSED_FOLDER_ID');
 
-  if (!pat || pat === 'YOUR_GITHUB_PERSONAL_ACCESS_TOKEN') {
-    Logger.log('Error: GitHub PAT not configured. Please add GITHUB_PAT to Script Properties.');
+  if (!pat) {
+    Logger.log('Error: GitHub PAT not configured. Please add GITHUB_PAT to Script Properties under Project Settings.');
     return;
   }
-  if (!inboxFolderId || inboxFolderId === 'YOUR_GOOGLE_DRIVE_INBOX_FOLDER_ID') {
-    Logger.log('Error: Google Drive Inbox Folder ID not configured. Please add INBOX_FOLDER_ID to Script Properties.');
+  if (!inboxFolderId) {
+    Logger.log('Error: Google Drive Inbox Folder ID not configured. Please add INBOX_FOLDER_ID to Script Properties under Project Settings.');
     return;
   }
 
@@ -28,7 +53,7 @@ function checkAndUploadSchedules() {
   const files = inboxFolder.getFiles();
   
   let processedFolder;
-  if (processedFolderId && processedFolderId !== 'YOUR_GOOGLE_DRIVE_PROCESSED_FOLDER_ID') {
+  if (processedFolderId) {
     processedFolder = DriveApp.getFolderById(processedFolderId);
   } else {
     // Create a "Processed" folder inside the Inbox folder if not specified
@@ -56,8 +81,12 @@ function checkAndUploadSchedules() {
         const fileBlob = file.getBlob();
         const base64Content = Utilities.base64Encode(fileBlob.getBytes());
         
-        // Clean filename for git path (replace spaces and special chars with underscores)
-        const gitSafeFileName = fileName.replace(/[^a-zA-Z0-9_.-]/g, '_');
+        // Clean filename and append Google Drive file ID to ensure uniqueness in the inbox
+        const fileId = file.getId();
+        const dotIndex = fileName.lastIndexOf('.');
+        const baseName = dotIndex !== -1 ? fileName.substring(0, dotIndex) : fileName;
+        const ext = dotIndex !== -1 ? fileName.substring(dotIndex) : '';
+        const gitSafeFileName = (baseName + '_' + fileId + ext).replace(/[^a-zA-Z0-9_.-]/g, '_');
         const gitPath = `schedules/inbox/${gitSafeFileName}`;
         
         // Upload to GitHub
