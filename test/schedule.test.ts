@@ -30,9 +30,11 @@ describe('Schedule Datetime & Schema Tests', () => {
   const scheduleDir = path.resolve(process.cwd(), 'schedules');
   let mapsDir = path.resolve(process.cwd(), '../Lair/assets/maps');
   if (!fs.existsSync(mapsDir)) {
-    // Try the worktrees sibling path
-    mapsDir = path.resolve(process.cwd(), '../../Lair/refactor-pdf-processing-engine/assets/maps');
+    // Try the worktrees sibling path matching the current folder name
+    const currentBranchName = path.basename(process.cwd());
+    mapsDir = path.resolve(process.cwd(), `../../Lair/${currentBranchName}/assets/maps`);
   }
+
 
   if (!fs.existsSync(mapsDir)) {
     throw new Error(
