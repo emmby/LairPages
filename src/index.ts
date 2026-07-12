@@ -256,7 +256,7 @@ async function main() {
   const globalStart = Date.now();
   const results: { pdf: string; success: boolean; durationSec: string }[] = [];
 
-  let anyFailed = false;
+  let failedCount = 0;
   for (const pdf of pdfPaths) {
     const singleStart = Date.now();
     let success = false;
@@ -269,8 +269,13 @@ async function main() {
     results.push({ pdf, success, durationSec: singleDuration });
 
     if (!success) {
-      console.error(`Pipeline failed for: ${pdf}. Moving to the next file.`);
-      anyFailed = true;
+      failedCount++;
+      console.error(`Pipeline failed for: ${pdf}.`);
+      if (failedCount >= 2) {
+        console.error(`Multiple PDF failures detected (${failedCount} failures). Aborting execution.`);
+        process.exit(1);
+      }
+      console.error(`Moving to the next file.`);
     }
   }
 
@@ -285,7 +290,7 @@ async function main() {
   console.log(`Total Execution Time: ${totalDurationSec}s`);
   console.log(`=============================================\n`);
 
-  if (anyFailed) {
+  if (failedCount > 0) {
     console.error(`One or more PDFs failed to process.`);
     process.exit(1);
   }
