@@ -8,6 +8,7 @@ import { Step3OutputSchema, LocationMappingResultsSchema, LocationMapping } from
 export const Step3InputSchema = z.object({
   camp: z.enum(['oski', 'blue', 'gold']),
   tracks: Step2OutputSchema.shape.tracks,
+  lairDir: z.string().optional(),
 });
 
 function loadMapLocations(mapsDir: string): Array<{ id: string; name: string }> {
@@ -71,11 +72,9 @@ export const step3LocationFlow = ai.defineFlow(
     outputSchema: Step3OutputSchema,
   },
   async (input) => {
-    // 1. Load map locations from sibling Lair folder
-    let mapsDir = path.resolve(process.cwd(), '../Lair/assets/maps');
-    if (!fs.existsSync(mapsDir)) {
-      mapsDir = path.resolve(process.cwd(), '../../Lair/refactor-pdf-processing-engine/assets/maps');
-    }
+    // 1. Load map locations from Lair folder (passed via input or standard sibling)
+    const baseLairDir = input.lairDir || path.resolve(process.cwd(), '../Lair');
+    const mapsDir = path.resolve(baseLairDir, 'assets/maps');
     console.log(`Loading map locations from: ${mapsDir}`);
     const knownLocations = loadMapLocations(mapsDir);
     console.log(`Loaded ${knownLocations.length} known locations.`);

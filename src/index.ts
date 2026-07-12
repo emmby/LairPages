@@ -8,7 +8,7 @@ import { step3LocationFlow } from './flows/step3-location.js';
 import { step4PostProcessFlow } from './flows/step4-postprocess.js';
 import { step5EvaluateFlow } from './flows/step5-evaluate.js';
 
-async function processPdf(pdfPathArg: string, useCache: boolean): Promise<boolean> {
+async function processPdf(pdfPathArg: string, useCache: boolean, lairDir?: string): Promise<boolean> {
   const startTime = Date.now();
   const pdfPath = path.resolve(process.cwd(), pdfPathArg);
   if (!fs.existsSync(pdfPath)) {
@@ -67,6 +67,7 @@ async function processPdf(pdfPathArg: string, useCache: boolean): Promise<boolea
   const step3Result = await step3LocationFlow({
     camp: step0Result.metadata.camp,
     tracks: step2Result.tracks,
+    lairDir: lairDir,
   });
 
   // Step 4: Post-processing
@@ -161,8 +162,11 @@ async function main() {
   const pdfPaths = args.filter(arg => !arg.startsWith('--'));
   const useCache = args.includes('--cache-step0') || !args.includes('--no-cache');
 
+  const lairDirArg = args.find(arg => arg.startsWith('--lair-dir='));
+  const lairDir = lairDirArg ? lairDirArg.split('=')[1] : undefined;
+
   if (pdfPaths.length === 0) {
-    console.error('Usage: npx tsx src/index.ts <path-to-pdf1> [path-to-pdf2] ... [--no-cache]');
+    console.error('Usage: npx tsx src/index.ts <path-to-pdf1> [path-to-pdf2] ... [--no-cache] [--lair-dir=/path/to/Lair]');
     process.exit(1);
   }
 
@@ -174,7 +178,7 @@ async function main() {
     const singleStart = Date.now();
     let success = false;
     try {
-      success = await processPdf(pdf, useCache);
+      success = await processPdf(pdf, useCache, lairDir);
     } catch (e) {
       console.error(`Error processing ${pdf}:`, e);
     }
