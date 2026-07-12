@@ -28,8 +28,16 @@ type EventType = z.infer<typeof EventSchema>;
 
 describe('Schedule Datetime & Schema Tests', () => {
   const scheduleDir = path.resolve(process.cwd(), 'schedules');
-  const baseLairDir = process.env.LAIR_DIR || path.resolve(process.cwd(), '../Lair');
+  const baseLairDir = process.env.LAIR_DIR || (() => {
+    const standardSibling = path.resolve(process.cwd(), '../Lair');
+    if (fs.existsSync(standardSibling)) {
+      return standardSibling;
+    }
+    const currentBranchName = path.basename(process.cwd());
+    return path.resolve(process.cwd(), `../../Lair/${currentBranchName}`);
+  })();
   const mapsDir = path.resolve(baseLairDir, 'assets/maps');
+
 
   if (!fs.existsSync(mapsDir)) {
     throw new Error(

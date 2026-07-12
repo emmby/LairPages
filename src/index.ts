@@ -8,153 +8,240 @@ import { step3LocationFlow } from './flows/step3-location.js';
 import { step4PostProcessFlow } from './flows/step4-postprocess.js';
 import { step5EvaluateFlow } from './flows/step5-evaluate.js';
 
-async function processPdf(pdfPathArg: string, useCache: boolean): Promise<boolean> {
+function writeLastRunStatus(status: { success: boolean; year?: number; camp?: string; week?: number; error?: string }) {
+  try {
+    const lastRunPath = path.resolve(process.cwd(), '.tmp/processpdf_lastrun.json');
+    fs.mkdirSync(path.dirname(lastRunPath), { recursive: true });
+    fs.writeFileSync(lastRunPath, JSON.stringify(status, null, 2), 'utf-8');
+  } catch (err: any) {
+    console.error(`Failed to write last run status to file: ${err.message || String(err)}`);
+  }
+}
+
+export async function processPdf(pdfPathArg: string, useCache: boolean): Promise<boolean> {
   const startTime = Date.now();
   const pdfPath = path.resolve(process.cwd(), pdfPathArg);
   if (!fs.existsSync(pdfPath)) {
     console.error(`PDF file not found at: ${pdfPath}`);
+    writeLastRunStatus({ success: false, error: `PDF file not found at: ${pdfPath}` });
     return false;
   }
 
-  // Parse camp and week from path (e.g. schedules/2026/oski/week_03.pdf)
-  const match = pdfPathArg.match(/schedules\/(\d{4})\/([^/]+)\/([^/.]+)\.pdf/);
-  if (!match) {
-    console.error(`Invalid PDF path format for ${pdfPathArg}. Expected: schedules/<year>/<camp>/<week>.pdf`);
-    return false;
-  }
+  const isInbox = pdfPathArg.includes('schedules/inbox/');
+  let year: number | undefined;
+  let camp: string | undefined;
+  let weekStr: string | undefined;
+  let week: number | undefined;
+  let step0Result: any;
 
-  const year = parseInt(match[1], 10);
-  const camp = match[2];
-  const weekStr = match[3]; // e.g. week_03
-  const week = parseInt(weekStr.replace('week_', ''), 10);
+  try {
+    if (isInbox) {
+      console.log(`[Inbox] Processing PDF from inbox: ${pdfPathArg}`);
+      const pdfBuffer = fs.readFileSync(pdfPath);
+      const fileHash = crypto.createHash('md5').update(pdfBuffer).digest('hex');
+      const hashCachePath = path.resolve(process.cwd(), `.tmp/step0_cache/${fileHash}.json`);
 
-  console.log(`\n=============================================`);
-  console.log(`Processing: ${camp.toUpperCase()} Year ${year} ${weekStr.toUpperCase()}...`);
-  console.log(`=============================================`);
+      if (useCache && fs.existsSync(hashCachePath)) {
+        console.log(`[Step 0] Using cached visual transcription from hash cache...`);
+        step0Result = JSON.parse(fs.readFileSync(hashCachePath, 'utf-8'));
+      } else {
+        console.log(`[Step 0] Transcribing PDF pages using Gemini visual grid OCR...`);
+        step0Result = await step0ExtractFlow({ pdfPath });
+        if (useCache) {
+          fs.mkdirSync(path.dirname(hashCachePath), { recursive: true });
+          fs.writeFileSync(hashCachePath, JSON.stringify(step0Result, null, 2), 'utf-8');
+        }
+      }
 
-  // Step 0: Transcription / Image Processing
-  let step0Result;
-  const cachedStep0Path = path.resolve(process.cwd(), `.tmp/batch_step0/${camp}_${weekStr}_step0.json`);
-  const localStep0Path = path.resolve(process.cwd(), `.tmp/${camp}_${weekStr}_step0.json`);
+      if (!step0Result?.metadata || typeof step0Result.metadata.year !== 'number' || typeof step0Result.metadata.camp !== 'string' || typeof step0Result.metadata.week !== 'number' || isNaN(step0Result.metadata.week)) {
+        throw new Error('Failed to extract valid metadata (year, camp, week) from PDF.');
+      }
+      year = step0Result.metadata.year;
+      camp = step0Result.metadata.camp;
+      week = step0Result.metadata.week;
+      weekStr = 'week_' + String(week).padStart(2, '0');
 
-  if (useCache && fs.existsSync(cachedStep0Path)) {
-    console.log(`[Step 0] Using cached visual transcription from batch directory...`);
-    step0Result = JSON.parse(fs.readFileSync(cachedStep0Path, 'utf-8'));
-  } else if (useCache && fs.existsSync(localStep0Path)) {
-    console.log(`[Step 0] Using cached visual transcription from local .tmp...`);
-    step0Result = JSON.parse(fs.readFileSync(localStep0Path, 'utf-8'));
-  } else {
-    console.log(`[Step 0] Transcribing PDF pages using Gemini visual grid OCR...`);
-    step0Result = await step0ExtractFlow({ pdfPath });
-    // Cache it locally
-    fs.mkdirSync(path.dirname(localStep0Path), { recursive: true });
-    fs.writeFileSync(localStep0Path, JSON.stringify(step0Result, null, 2), 'utf-8');
-  }
+      const targetPdfRelativePath = `schedules/${year}/${camp}/${weekStr}.pdf`;
+      const targetPdfPath = path.resolve(process.cwd(), targetPdfRelativePath);
 
-  // Step 1: Event Extraction
-  console.log(`[Step 1] Extracting individual events from transcribed tracks...`);
-  const step1Result = await step1EventsFlow(step0Result);
+      // Move PDF to final destination
+      fs.mkdirSync(path.dirname(targetPdfPath), { recursive: true });
+      fs.copyFileSync(pdfPath, targetPdfPath);
+      fs.unlinkSync(pdfPath);
+      console.log(`Moved inbox PDF from ${pdfPathArg} to ${targetPdfRelativePath}`);
 
-  // Step 2: Time Resolution
-  console.log(`[Step 2] Resolving event times to ISO-8601 timestamps...`);
-  const step2Result = await step2TimeFlow({
-    startDate: step0Result.metadata.startDate,
-    tracks: step1Result.tracks,
-  });
+    } else {
+      const match = pdfPathArg.match(/schedules\/(\d{4})\/([^/]+)\/([^/.]+)\.pdf/);
+      if (!match) {
+        console.error(`Invalid PDF path format for ${pdfPathArg}. Expected: schedules/<year>/<camp>/<week>.pdf`);
+        writeLastRunStatus({ success: false, error: `Invalid PDF path format: ${pdfPathArg}` });
+        return false;
+      }
 
-  // Step 3: Location Mapping
-  console.log(`[Step 3] Mapping locations and generating coordinates links...`);
-  const step3Result = await step3LocationFlow({
-    camp: step0Result.metadata.camp,
-    tracks: step2Result.tracks,
-  });
+      year = parseInt(match[1], 10);
+      camp = match[2];
+      weekStr = match[3];
+      const parsedWeek = parseInt(weekStr.replace('week_', ''), 10);
+      if (isNaN(parsedWeek)) {
+        console.error('Invalid week number in PDF path: ' + pdfPathArg);
+        writeLastRunStatus({ success: false, error: 'Invalid week number in PDF path: ' + pdfPathArg });
+        return false;
+      }
+      week = parsedWeek;
 
-  // Step 4: Post-processing
-  console.log(`[Step 4] Assembling final schedule JSON structure...`);
-  const step4Result = await step4PostProcessFlow({
-    step0: step0Result,
-    step3: step3Result,
-  });
+      const cachedStep0Path = path.resolve(process.cwd(), `.tmp/batch_step0/${camp}_${weekStr}_step0.json`);
+      const localStep0Path = path.resolve(process.cwd(), `.tmp/${camp}_${weekStr}_step0.json`);
 
-  // Step 5: LLM Evaluation
-  console.log(`[Step 5] Running LLM-as-judge audit...`);
-  const step5Result = await step5EvaluateFlow({
-    step0: step0Result,
-    step4: step4Result,
-  });
-
-  console.log('\n=============================================');
-  console.log('            EVALUATION REPORT               ');
-  console.log('=============================================');
-  console.log(`Score:  ${step5Result.score}/5`);
-  console.log(`Passed: ${step5Result.passed ? '✅ YES' : '❌ NO'}`);
-  console.log('---------------------------------------------');
-  console.log('Findings:');
-  if (step5Result.findings.length === 0) {
-    console.log('  No issues or warnings found.');
-  } else {
-    for (const finding of step5Result.findings) {
-      const icon = finding.severity === 'critical' ? '❌' : (finding.severity === 'warning' ? '⚠️' : 'ℹ️');
-      const context = finding.locationContext ? ` (${finding.locationContext})` : '';
-      console.log(`  ${icon} [${finding.severity.toUpperCase()}]${context}: ${finding.message}`);
-    }
-  }
-  console.log('=============================================\n');
-
-  if (!step5Result.passed) {
-    console.error(`Pipeline failed: Audit failed for ${pdfPathArg}! Please review critical issues above.`);
-    return false;
-  }
-
-  // Write final output file to schedules/2026/<camp>/<week>.json
-  const finalOutputPath = path.resolve(process.cwd(), `schedules/${year}/${camp}/${weekStr}.json`);
-  fs.mkdirSync(path.dirname(finalOutputPath), { recursive: true });
-  const finalJsonStr = JSON.stringify(step4Result, null, 2);
-  fs.writeFileSync(finalOutputPath, finalJsonStr, 'utf-8');
-  console.log(`Successfully wrote final schedule JSON to: ${finalOutputPath}`);
-
-  // Generate MD5 version hash (first 8 chars)
-  const md5Hash = crypto.createHash('md5').update(Buffer.from(finalJsonStr, 'utf-8')).digest('hex').substring(0, 8);
-  console.log(`Generated version MD5 hash: ${md5Hash}`);
-
-  // Update manifest.json
-  const manifestPath = path.resolve(process.cwd(), 'schedules/manifest.json');
-  if (fs.existsSync(manifestPath)) {
-    console.log(`Updating manifest.json...`);
-    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
-    const relativeFilePath = `2026/${camp}/${weekStr}.json`;
-
-    let entryFound = false;
-    for (const entry of manifest.schedules || []) {
-      if (entry.year === year && entry.camp === camp && entry.week === week) {
-        entry.file = relativeFilePath;
-        entry.version = md5Hash;
-        entryFound = true;
-        break;
+      if (useCache && fs.existsSync(cachedStep0Path)) {
+        console.log(`[Step 0] Using cached visual transcription from batch directory...`);
+        step0Result = JSON.parse(fs.readFileSync(cachedStep0Path, 'utf-8'));
+      } else if (useCache && fs.existsSync(localStep0Path)) {
+        console.log(`[Step 0] Using cached visual transcription from local .tmp...`);
+        step0Result = JSON.parse(fs.readFileSync(localStep0Path, 'utf-8'));
+      } else {
+        console.log(`[Step 0] Transcribing PDF pages using Gemini visual grid OCR...`);
+        step0Result = await step0ExtractFlow({ pdfPath });
+        // Cache it locally
+        fs.mkdirSync(path.dirname(localStep0Path), { recursive: true });
+        fs.writeFileSync(localStep0Path, JSON.stringify(step0Result, null, 2), 'utf-8');
       }
     }
 
-    if (!entryFound) {
-      manifest.schedules = manifest.schedules || [];
-      manifest.schedules.push({
+    console.log(`\n=============================================`);
+    console.log(`Processing: ${camp!.toUpperCase()} Year ${year} ${weekStr!.toUpperCase()}...`);
+    console.log(`=============================================`);
+
+    // Step 1: Event Extraction
+    console.log(`[Step 1] Extracting individual events from transcribed tracks...`);
+    const step1Result = await step1EventsFlow(step0Result);
+
+    // Step 2: Time Resolution
+    console.log(`[Step 2] Resolving event times to ISO-8601 timestamps...`);
+    const step2Result = await step2TimeFlow({
+      startDate: step0Result.metadata.startDate,
+      tracks: step1Result.tracks,
+    });
+
+    // Step 3: Location Mapping
+    console.log(`[Step 3] Mapping locations and generating coordinates links...`);
+    const step3Result = await step3LocationFlow({
+      camp: step0Result.metadata.camp,
+      tracks: step2Result.tracks,
+    });
+
+    // Step 4: Post-processing
+    console.log(`[Step 4] Assembling final schedule JSON structure...`);
+    const step4Result = await step4PostProcessFlow({
+      step0: step0Result,
+      step3: step3Result,
+    });
+
+    // Step 5: LLM Evaluation
+    console.log(`[Step 5] Running LLM-as-judge audit...`);
+    const step5Result = await step5EvaluateFlow({
+      step0: step0Result,
+      step4: step4Result,
+    });
+
+    console.log('\n=============================================');
+    console.log('            EVALUATION REPORT               ');
+    console.log('=============================================');
+    console.log(`Score:  ${step5Result.score}/5`);
+    console.log(`Passed: ${step5Result.passed ? '✅ YES' : '❌ NO'}`);
+    console.log('---------------------------------------------');
+    console.log('Findings:');
+    if (step5Result.findings.length === 0) {
+      console.log('  No issues or warnings found.');
+    } else {
+      for (const finding of step5Result.findings) {
+        const icon = finding.severity === 'critical' ? '❌' : (finding.severity === 'warning' ? '⚠️' : 'ℹ️');
+        const context = finding.locationContext ? ` (${finding.locationContext})` : '';
+        console.log(`  ${icon} [${finding.severity.toUpperCase()}]${context}: ${finding.message}`);
+      }
+    }
+    console.log('=============================================\n');
+
+    if (!step5Result.passed) {
+      console.error(`Pipeline failed: Audit failed for ${pdfPathArg}! Please review critical issues above.`);
+      writeLastRunStatus({
+        success: false,
         year,
         camp,
         week,
-        file: relativeFilePath,
-        version: md5Hash,
+        error: `Audit failed with score ${step5Result.score}/5`
       });
+      return false;
     }
 
-    fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), 'utf-8');
-    console.log(`Successfully updated manifest.json.`);
-  } else {
-    console.warn(`manifest.json not found at ${manifestPath}. Skipping manifest update.`);
-  }
+    // Write final output file to schedules/2026/<camp>/<week>.json
+    const finalOutputPath = path.resolve(process.cwd(), `schedules/${year}/${camp}/${weekStr}.json`);
+    fs.mkdirSync(path.dirname(finalOutputPath), { recursive: true });
+    const finalJsonStr = JSON.stringify(step4Result, null, 2);
+    fs.writeFileSync(finalOutputPath, finalJsonStr, 'utf-8');
+    console.log(`Successfully wrote final schedule JSON to: ${finalOutputPath}`);
 
-  const durationSec = ((Date.now() - startTime) / 1000).toFixed(1);
-  console.log(`Processed ${pdfPathArg} successfully in ${durationSec}s!`);
-  return true;
+    // Generate MD5 version hash (first 8 chars)
+    const md5Hash = crypto.createHash('md5').update(Buffer.from(finalJsonStr, 'utf-8')).digest('hex').substring(0, 8);
+    console.log(`Generated version MD5 hash: ${md5Hash}`);
+
+    // Update manifest.json
+    const manifestPath = path.resolve(process.cwd(), 'schedules/manifest.json');
+    if (fs.existsSync(manifestPath)) {
+      console.log(`Updating manifest.json...`);
+      const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+      const relativeFilePath = `${year}/${camp}/${weekStr}.json`;
+
+      let entryFound = false;
+      for (const entry of manifest.schedules || []) {
+        if (entry.year === year && entry.camp === camp && entry.week === week) {
+          entry.file = relativeFilePath;
+          entry.version = md5Hash;
+          entryFound = true;
+          break;
+        }
+      }
+
+      if (!entryFound) {
+        manifest.schedules = manifest.schedules || [];
+        manifest.schedules.push({
+          year,
+          camp,
+          week,
+          file: relativeFilePath,
+          version: md5Hash,
+        });
+      }
+
+      fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), 'utf-8');
+      console.log(`Successfully updated manifest.json.`);
+    } else {
+      console.warn(`manifest.json not found at ${manifestPath}. Skipping manifest update.`);
+    }
+
+    const durationSec = ((Date.now() - startTime) / 1000).toFixed(1);
+    console.log(`Processed ${pdfPathArg} successfully in ${durationSec}s!`);
+
+    writeLastRunStatus({
+      success: true,
+      year,
+      camp,
+      week
+    });
+    return true;
+
+  } catch (err: any) {
+    console.error(`Pipeline failed with error during processing of ${pdfPathArg}:`, err);
+    writeLastRunStatus({
+      success: false,
+      year,
+      camp,
+      week,
+      error: err.message || String(err)
+    });
+    return false;
+  }
 }
+
 
 async function main() {
   const args = process.argv.slice(2);
