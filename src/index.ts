@@ -88,7 +88,7 @@ export async function processPdf(pdfPathArg: string, useCache: boolean): Promise
       week = parsedWeek;
 
       const cachedStep0Path = path.resolve(process.cwd(), `.tmp/batch_step0/${camp}_${weekStr}_step0.json`);
-      const localStep0Path = path.resolve(process.cwd(), `.tmp/${weekStr}_step0.json`);
+      const localStep0Path = path.resolve(process.cwd(), `.tmp/${camp}_${weekStr}_step0.json`);
 
       if (useCache && fs.existsSync(cachedStep0Path)) {
         console.log(`[Step 0] Using cached visual transcription from batch directory...`);
@@ -254,15 +254,21 @@ async function main() {
   const globalStart = Date.now();
   const results: { pdf: string; success: boolean; durationSec: string }[] = [];
 
+  let anyFailed = false;
   for (const pdf of pdfPaths) {
     const singleStart = Date.now();
-    const success = await processPdf(pdf, useCache);
+    let success = false;
+    try {
+      success = await processPdf(pdf, useCache);
+    } catch (e) {
+      console.error(`Error processing ${pdf}:`, e);
+    }
     const singleDuration = ((Date.now() - singleStart) / 1000).toFixed(1);
     results.push({ pdf, success, durationSec: singleDuration });
 
     if (!success) {
-      console.error(`Pipeline halted due to failure in: ${pdf}`);
-      process.exit(1);
+      console.error(`Pipeline failed for: ${pdf}. Moving to the next file.`);
+      anyFailed = true;
     }
   }
 
@@ -276,6 +282,11 @@ async function main() {
   console.log(`---------------------------------------------`);
   console.log(`Total Execution Time: ${totalDurationSec}s`);
   console.log(`=============================================\n`);
+
+  if (anyFailed) {
+    console.error(`One or more PDFs failed to process.`);
+    process.exit(1);
+  }
 }
 
 main().catch(err => {

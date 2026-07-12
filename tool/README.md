@@ -40,6 +40,19 @@ To force a full transcription run directly from the PDF pages (running visual OC
 npx tsx src/index.ts schedules/2026/oski/week_03.pdf --no-cache
 ```
 
+#### Specifying Lair Directory Path
+If your `Lair` repository (which contains the map location assets in `assets/maps`) is located in a custom directory (e.g. when working with Git worktrees), you can specify its path using the `LAIR_DIR` environment variable.
+
+For running the conversion pipeline:
+```bash
+LAIR_DIR=/path/to/Lair npx tsx src/index.ts schedules/2026/oski/week_03.pdf
+```
+
+For running tests:
+```bash
+LAIR_DIR=/path/to/Lair npm test
+```
+
 #### Automated Validation
 After generating the schedule JSON, the pipeline runs an automated **LLM-as-judge audit** (Step 5) checking completeness and correctness. If it passes, it updates `schedules/manifest.json` with the MD5 version hash.
 
