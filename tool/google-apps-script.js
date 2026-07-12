@@ -111,6 +111,34 @@ function checkAndUploadSchedules() {
 }
 
 /**
+ * Helper to fetch the SHA of an existing file on GitHub if it exists.
+ */
+function getFileSha(pat, gitPath) {
+  const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${gitPath}?ref=${GH_BRANCH}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${pat}`,
+      'Accept': 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28'
+    },
+    muteHttpExceptions: true
+  };
+  
+  try {
+    const response = UrlFetchApp.fetch(url, options);
+    const responseCode = response.getResponseCode();
+    if (responseCode === 200) {
+      const data = JSON.parse(response.getContentText());
+      return data.sha;
+    }
+  } catch (err) {
+    Logger.log(`Error checking file existence on GitHub: ${err.toString()}`);
+  }
+  return null;
+}
+
+/**
  * Helper to upload a base64 file to GitHub using the contents REST API.
  */
 function uploadToGitHub(pat, gitPath, base64Content, commitMessage) {
@@ -121,6 +149,12 @@ function uploadToGitHub(pat, gitPath, base64Content, commitMessage) {
     content: base64Content,
     branch: GH_BRANCH
   };
+  
+  // Retrieve existing SHA if the file already exists on GitHub to prevent 422 errors
+  const sha = getFileSha(pat, gitPath);
+  if (sha) {
+    payload.sha = sha;
+  }
   
   const options = {
     method: 'PUT',

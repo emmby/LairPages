@@ -49,8 +49,12 @@ jobs:
         run: |
           cd LairPages
           
-          # Find all PDFs in schedules/inbox
-          files=$(find schedules/inbox -maxdepth 1 -name "*.pdf" | sort)
+          # Find all PDFs in schedules/inbox if the directory exists
+          if [ -d "schedules/inbox" ]; then
+            files=$(find schedules/inbox -maxdepth 1 -name "*.pdf" | sort)
+          else
+            files=""
+          fi
           if [ -z "$files" ]; then
             echo "No inbox PDFs to process."
             exit 0

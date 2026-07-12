@@ -9,9 +9,13 @@ import { step4PostProcessFlow } from './flows/step4-postprocess.js';
 import { step5EvaluateFlow } from './flows/step5-evaluate.js';
 
 function writeLastRunStatus(status: { success: boolean; year?: number; camp?: string; week?: number; error?: string }) {
-  const lastRunPath = path.resolve(process.cwd(), '.tmp/processpdf_lastrun.json');
-  fs.mkdirSync(path.dirname(lastRunPath), { recursive: true });
-  fs.writeFileSync(lastRunPath, JSON.stringify(status, null, 2), 'utf-8');
+  try {
+    const lastRunPath = path.resolve(process.cwd(), '.tmp/processpdf_lastrun.json');
+    fs.mkdirSync(path.dirname(lastRunPath), { recursive: true });
+    fs.writeFileSync(lastRunPath, JSON.stringify(status, null, 2), 'utf-8');
+  } catch (err: any) {
+    console.error(`Failed to write last run status to file: ${err.message || String(err)}`);
+  }
 }
 
 export async function processPdf(pdfPathArg: string, useCache: boolean): Promise<boolean> {
@@ -29,7 +33,6 @@ export async function processPdf(pdfPathArg: string, useCache: boolean): Promise
   let weekStr: string | undefined;
   let week: number | undefined;
   let step0Result: any;
-  let actualPdfPath = pdfPath;
 
   try {
     if (isInbox) {
@@ -66,7 +69,6 @@ export async function processPdf(pdfPathArg: string, useCache: boolean): Promise
       fs.copyFileSync(pdfPath, targetPdfPath);
       fs.unlinkSync(pdfPath);
       console.log(`Moved inbox PDF from ${pdfPathArg} to ${targetPdfRelativePath}`);
-      actualPdfPath = targetPdfPath;
 
     } else {
       const match = pdfPathArg.match(/schedules\/(\d{4})\/([^/]+)\/([^/.]+)\.pdf/);

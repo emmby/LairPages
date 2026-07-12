@@ -35,7 +35,7 @@ We have implemented an automated end-to-end ingestion pipeline to allow non-tech
 #### 1. Google Apps Script Setup
 1. Go to [Google Apps Script](https://script.google.com).
 2. Create a new project named **Lair Schedule Ingest Watcher**.
-3. Copy the script from [tool/google-apps-script.js](file:///Users/mike/.gemini/antigravity/worktrees/LairPages/automate-pdf-ingestion-workflow/tool/google-apps-script.js) and paste it into the editor (replacing all default code).
+3. Copy the script from [tool/google-apps-script.js](tool/google-apps-script.js) and paste it into the editor (replacing all default code).
 4. Click the gear icon (**Project Settings**) on the left sidebar.
 5. Under **Script Properties**, add the following settings:
    - `GITHUB_PAT`: A GitHub Personal Access Token (classic) with `repo` scope to authorize commits.
@@ -72,7 +72,7 @@ npx tsx src/index.ts schedules/2026/oski/week_03.pdf
 npx tsx src/index.ts schedules/2026/oski/week_03.pdf --no-cache
 ```
 
-For more details on manual conversion parameters, see the [Tool README](file:///Users/mike/.gemini/antigravity/worktrees/LairPages/automate-pdf-ingestion-workflow/tool/README.md).
+For more details on manual conversion parameters, see the [Tool README](tool/README.md).
 
 ---
 
