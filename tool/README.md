@@ -41,14 +41,14 @@ npx tsx src/index.ts schedules/2026/oski/week_03.pdf --no-cache
 ```
 
 #### Specifying Lair Directory Path
-If your `Lair` repository (which contains the map location assets in `assets/maps`) is located in a custom directory (e.g. when working with Git worktrees), you can specify its path using the `--lair-dir` flag:
+If your `Lair` repository (which contains the map location assets in `assets/maps`) is located in a custom directory (e.g. when working with Git worktrees), you can specify its path using the `LAIR_DIR` environment variable.
 
+For running the conversion pipeline:
 ```bash
-npx tsx src/index.ts schedules/2026/oski/week_03.pdf --lair-dir=/path/to/Lair
+LAIR_DIR=/path/to/Lair npx tsx src/index.ts schedules/2026/oski/week_03.pdf
 ```
 
-For running tests in a custom directory environment, specify the path using the `LAIR_DIR` environment variable:
-
+For running tests:
 ```bash
 LAIR_DIR=/path/to/Lair npm test
 ```
