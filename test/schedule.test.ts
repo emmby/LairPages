@@ -28,16 +28,13 @@ type EventType = z.infer<typeof EventSchema>;
 
 describe('Schedule Datetime & Schema Tests', () => {
   const scheduleDir = path.resolve(process.cwd(), 'schedules');
-  let mapsDir = path.resolve(process.cwd(), '../Lair/assets/maps');
-  if (!fs.existsSync(mapsDir)) {
-    // Try the worktrees sibling path
-    mapsDir = path.resolve(process.cwd(), '../../Lair/refactor-pdf-processing-engine/assets/maps');
-  }
+  const baseLairDir = process.env.LAIR_DIR || path.resolve(process.cwd(), '../Lair');
+  const mapsDir = path.resolve(baseLairDir, 'assets/maps');
 
   if (!fs.existsSync(mapsDir)) {
     throw new Error(
-      `Sibling Lair repository map assets directory does not exist at either standard path or worktree path. ` +
-      `Ensure the Lair repository is checked out adjacent to LairPages so location IDs can be validated.`
+      `Sibling Lair repository map assets directory does not exist at: ${mapsDir}. ` +
+      `Ensure the Lair repository is checked out adjacent to LairPages, or set the LAIR_DIR environment variable.`
     );
   }
 
