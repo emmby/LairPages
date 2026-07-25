@@ -2,6 +2,8 @@ import { describe, test, expect } from 'vitest';
 import * as fs from 'fs';
 import * as path from 'path';
 
+import { getLairMapsDir } from '../src/lib/lair-path.js';
+
 // Zod schemas for validation
 import { z } from 'zod';
 
@@ -28,21 +30,7 @@ type EventType = z.infer<typeof EventSchema>;
 
 describe('Schedule Datetime & Schema Tests', () => {
   const scheduleDir = path.resolve(process.cwd(), 'schedules');
-  const baseLairDir = process.env.LAIR_DIR || (() => {
-    const standardSibling = path.resolve(process.cwd(), '../Lair');
-    if (fs.existsSync(standardSibling)) {
-      return standardSibling;
-    }
-    const currentBranchName = path.basename(process.cwd());
-    return path.resolve(process.cwd(), `../../Lair/${currentBranchName}`);
-  })();
-  const mapsDir = (() => {
-    const clientMaps = path.resolve(baseLairDir, 'client/assets/maps');
-    if (fs.existsSync(clientMaps)) {
-      return clientMaps;
-    }
-    return path.resolve(baseLairDir, 'assets/maps');
-  })();
+  const mapsDir = getLairMapsDir();
 
 
   if (!fs.existsSync(mapsDir)) {

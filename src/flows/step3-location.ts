@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { z } from 'zod';
 import { ai, runWithRetry } from '../lib/genkit.js';
+import { getLairMapsDir } from '../lib/lair-path.js';
 import { Step2OutputSchema } from '../schemas/timed-events.js';
 import { Step3OutputSchema, LocationMappingResultsSchema, LocationMapping } from '../schemas/located-events.js';
 
@@ -71,16 +72,8 @@ export const step3LocationFlow = ai.defineFlow(
     outputSchema: Step3OutputSchema,
   },
   async (input) => {
-    // 1. Load map locations from Lair folder (via LAIR_DIR env var, standard sibling, or worktree sibling)
-    const baseLairDir = process.env.LAIR_DIR || (() => {
-      const standardSibling = path.resolve(process.cwd(), '../Lair');
-      if (fs.existsSync(standardSibling)) {
-        return standardSibling;
-      }
-      const currentBranchName = path.basename(process.cwd());
-      return path.resolve(process.cwd(), `../../Lair/${currentBranchName}`);
-    })();
-    const mapsDir = path.resolve(baseLairDir, 'assets/maps');
+    // 1. Load map locations from Lair folder
+    const mapsDir = getLairMapsDir();
     console.log(`Loading map locations from: ${mapsDir}`);
     const knownLocations = loadMapLocations(mapsDir);
     console.log(`Loaded ${knownLocations.length} known locations.`);
