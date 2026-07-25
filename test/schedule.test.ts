@@ -36,7 +36,13 @@ describe('Schedule Datetime & Schema Tests', () => {
     const currentBranchName = path.basename(process.cwd());
     return path.resolve(process.cwd(), `../../Lair/${currentBranchName}`);
   })();
-  const mapsDir = path.resolve(baseLairDir, 'assets/maps');
+  const mapsDir = (() => {
+    const clientMaps = path.resolve(baseLairDir, 'client/assets/maps');
+    if (fs.existsSync(clientMaps)) {
+      return clientMaps;
+    }
+    return path.resolve(baseLairDir, 'assets/maps');
+  })();
 
 
   if (!fs.existsSync(mapsDir)) {
