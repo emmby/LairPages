@@ -139,20 +139,29 @@ jobs:
                              --body "Successfully processed and validated schedule from $(basename "$file")." \
                              --head "$branch_name" \
                              --base main
+                if [ -f ".tmp/processpdf_summary.md" ]; then
+                  gh pr comment "$branch_name" --body-file ".tmp/processpdf_summary.md" || echo "Failed to add PR comment"
+                fi
                 gh pr merge "$branch_name" --merge --delete-branch
               else
                 echo "Parsing succeeded but tests failed. Creating open PR for review..."
                 gh pr create --title "[FAILED] Auto-ingest schedule: $(basename "$file")" \
-                             --body "Schedule was processed, but failed validation tests (e.g. location mapping or time boundaries). Please inspect the test logs on the PR." \
+                             --body "Schedule was processed, but failed validation tests (e.g. location mapping or time boundaries). Please inspect the audit report below and test logs on the PR." \
                              --head "$branch_name" \
                              --base main
+                if [ -f ".tmp/processpdf_summary.md" ]; then
+                  gh pr comment "$branch_name" --body-file ".tmp/processpdf_summary.md" || echo "Failed to add PR comment"
+                fi
               fi
             else
               echo "Parsing failed. Creating open PR for review..."
               gh pr create --title "[FAILED] Auto-ingest schedule: $(basename "$file")" \
-                           --body "Parsing pipeline failed. Please check the logs of the ingestion workflow run." \
+                           --body "Parsing pipeline failed. Please check the audit report below and workflow logs for details." \
                            --head "$branch_name" \
                            --base main
+              if [ -f ".tmp/processpdf_summary.md" ]; then
+                gh pr comment "$branch_name" --body-file ".tmp/processpdf_summary.md" || echo "Failed to add PR comment"
+              fi
             fi
             
             # Switch back to main, reset, and sync before next file

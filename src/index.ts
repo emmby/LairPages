@@ -8,11 +8,58 @@ import { step3LocationFlow } from './flows/step3-location.js';
 import { step4PostProcessFlow } from './flows/step4-postprocess.js';
 import { step5EvaluateFlow } from './flows/step5-evaluate.js';
 
-function writeLastRunStatus(status: { success: boolean; year?: number; camp?: string; week?: number; error?: string }) {
+interface LastRunStatus {
+  success: boolean;
+  pdfPath?: string;
+  year?: number;
+  camp?: string;
+  week?: number;
+  error?: string;
+  evalScore?: number;
+  evalPassed?: boolean;
+  evalFindings?: { severity: string; message: string; locationContext?: string }[];
+  durationSec?: string;
+}
+
+function writeLastRunStatus(status: LastRunStatus) {
   try {
     const lastRunPath = path.resolve(process.cwd(), '.tmp/processpdf_lastrun.json');
+    const summaryMdPath = path.resolve(process.cwd(), '.tmp/processpdf_summary.md');
     fs.mkdirSync(path.dirname(lastRunPath), { recursive: true });
     fs.writeFileSync(lastRunPath, JSON.stringify(status, null, 2), 'utf-8');
+
+    const statusIcon = status.success ? '✅' : '❌';
+    const statusText = status.success ? 'Success' : 'Failed';
+    const campName = status.camp ? status.camp.toUpperCase() : 'Unknown Camp';
+    const yearStr = status.year ? String(status.year) : 'Unknown Year';
+    const weekStr = status.week ? `Week ${status.week}` : 'Unknown Week';
+    const scoreStr = typeof status.evalScore === 'number' ? `${status.evalScore}/5` : 'N/A';
+    const durationStr = status.durationSec ? `${status.durationSec}s` : 'N/A';
+    const pdfFile = status.pdfPath ? path.basename(status.pdfPath) : 'PDF';
+
+    let md = `## 📋 PDF Schedule Ingestion Report\n\n`;
+    md += `- **Source PDF**: \`${pdfFile}\`\n`;
+    md += `- **Parsed Schedule**: ${campName} (${yearStr} ${weekStr})\n`;
+    md += `- **Pipeline Result**: ${statusIcon} **${statusText}**\n`;
+    md += `- **LLM Audit Score**: **${scoreStr}** (${status.evalPassed ? 'Passed' : 'Failed / Unchecked'})\n`;
+    md += `- **Execution Time**: ${durationStr}\n\n`;
+
+    if (status.error) {
+      md += `### ⚠️ Error Details\n\`\`\`\n${status.error}\n\`\`\`\n\n`;
+    }
+
+    md += `### 🔍 Audit Findings\n`;
+    if (!status.evalFindings || status.evalFindings.length === 0) {
+      md += `*No audit issues or warnings found.*\n`;
+    } else {
+      for (const finding of status.evalFindings) {
+        const icon = finding.severity === 'critical' ? '❌' : (finding.severity === 'warning' ? '⚠️' : 'ℹ️');
+        const context = finding.locationContext ? ` (${finding.locationContext})` : '';
+        md += `- ${icon} **[${finding.severity.toUpperCase()}]**${context}: ${finding.message}\n`;
+      }
+    }
+
+    fs.writeFileSync(summaryMdPath, md, 'utf-8');
   } catch (err: any) {
     console.error(`Failed to write last run status to file: ${err.message || String(err)}`);
   }
@@ -23,7 +70,7 @@ export async function processPdf(pdfPathArg: string, useCache: boolean): Promise
   const pdfPath = path.resolve(process.cwd(), pdfPathArg);
   if (!fs.existsSync(pdfPath)) {
     console.error(`PDF file not found at: ${pdfPath}`);
-    writeLastRunStatus({ success: false, error: `PDF file not found at: ${pdfPath}` });
+    writeLastRunStatus({ success: false, pdfPath: pdfPathArg, error: `PDF file not found at: ${pdfPath}` });
     return false;
   }
 
@@ -163,11 +210,17 @@ export async function processPdf(pdfPathArg: string, useCache: boolean): Promise
 
     if (!step5Result.passed) {
       console.error(`Pipeline failed: Audit failed for ${pdfPathArg}! Please review critical issues above.`);
+      const durationSec = ((Date.now() - startTime) / 1000).toFixed(1);
       writeLastRunStatus({
         success: false,
+        pdfPath: pdfPathArg,
         year,
         camp,
         week,
+        evalScore: step5Result.score,
+        evalPassed: step5Result.passed,
+        evalFindings: step5Result.findings,
+        durationSec,
         error: `Audit failed with score ${step5Result.score}/5`
       });
       return false;
@@ -223,19 +276,27 @@ export async function processPdf(pdfPathArg: string, useCache: boolean): Promise
 
     writeLastRunStatus({
       success: true,
+      pdfPath: pdfPathArg,
       year,
       camp,
-      week
+      week,
+      evalScore: step5Result.score,
+      evalPassed: step5Result.passed,
+      evalFindings: step5Result.findings,
+      durationSec
     });
     return true;
 
   } catch (err: any) {
     console.error(`Pipeline failed with error during processing of ${pdfPathArg}:`, err);
+    const durationSec = ((Date.now() - startTime) / 1000).toFixed(1);
     writeLastRunStatus({
       success: false,
+      pdfPath: pdfPathArg,
       year,
       camp,
       week,
+      durationSec,
       error: err.message || String(err)
     });
     return false;
