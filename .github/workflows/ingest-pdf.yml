@@ -142,7 +142,7 @@ jobs:
                 if [ -f ".tmp/processpdf_summary.md" ]; then
                   gh pr comment "$branch_name" --body-file ".tmp/processpdf_summary.md" || echo "Failed to add PR comment"
                 fi
-                gh pr merge "$branch_name" --merge --delete-branch
+                gh pr merge "$branch_name" --auto --merge --delete-branch
               else
                 echo "Parsing succeeded but tests failed. Creating open PR for review..."
                 gh pr create --title "[FAILED] Auto-ingest schedule: $(basename "$file")" \
