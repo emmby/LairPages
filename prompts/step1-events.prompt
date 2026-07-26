@@ -41,6 +41,7 @@ Extraction Rules:
 6. **Exclude Non-Events**: Omit warnings, notes, or instructions that do not have a scheduled time or time range associated with them (such as kiln deadlines, booking site URLs, or policy announcements).
 7. **Preserve formatting**: Keep literal markdown styling (like bold text `**` or list items) in description fields exactly as shown. Escape asterisks or backticks if they are literal text.
 8. **Verbatim Description**: For every extracted event, you MUST set the `description` field to the exact, complete text of the original cell (`colC`) from which the event was extracted. Preserve all words, sentences, punctuation, and markdown formatting (like asterisks or list items) exactly as shown in `colC`. Do NOT summarize, simplify, edit, or omit any text, and do not make it null.
+9. **Row Independence & Anti-Context-Bleed**: Treat each cell/row independently when expanding recurring schedules. Do NOT inherit or bleed day restrictions or time exceptions from adjacent/neighboring table rows (for example, if one category like "Wellness Center" lists restricted hours on Wednesday, do NOT drop Wednesday when expanding a separate category like "Medical: Monday-Friday" unless Medical explicitly specifies a Wednesday exception).
 
 Input Tracks:
 ```json
