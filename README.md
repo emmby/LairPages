@@ -1,5 +1,8 @@
 # LairPages
 
+> [!TIP]
+> Add new schedules at https://github.com/emmby/LairPages/upload/main/schedules/inbox
+
 Public static asset hosting and automated ingestion pipeline for the Lair schedule application.
 
 This repository hosts the static JSON schedules and the global manifest under the `schedules/` directory, served via GitHub Pages at:
