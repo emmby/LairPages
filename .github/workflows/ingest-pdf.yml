@@ -70,6 +70,10 @@ jobs:
             echo "----------------------------------------"
             echo "Processing: $file"
             echo "----------------------------------------"
+            rm -rf .tmp
+            git checkout main
+            git fetch origin main
+            git reset --hard origin/main
             
             # Run conversion
             set +e
@@ -146,6 +150,31 @@ jobs:
                     gh pr comment "$branch_name" --body-file ".tmp/processpdf_summary.md" || echo "Failed to add PR comment"
                   fi
                   gh pr merge "$branch_name" --auto --merge --delete-branch
+
+                  echo "Waiting for PR on $branch_name to auto-merge into main..."
+                  merged=false
+                  for i in {1..60}; do
+                    pr_state=$(gh pr view "$branch_name" --json state --jq '.state' 2>/dev/null || echo "UNKNOWN")
+                    if [ "$pr_state" = "MERGED" ]; then
+                      echo "PR $branch_name successfully merged into main."
+                      merged=true
+                      break
+                    elif [ "$pr_state" = "CLOSED" ]; then
+                      echo "PR $branch_name was closed without merging."
+                      break
+                    fi
+                    sleep 5
+                  done
+
+                  if [ "$merged" = "true" ]; then
+                    git checkout main
+                    git fetch origin main
+                    git reset --hard origin/main
+                  else
+                    echo "WARNING: PR $branch_name did not merge within 300 seconds or was closed. Leaving PR open and continuing."
+                    git checkout main
+                    git reset --hard origin/main
+                  fi
                 else
                   echo "Parsing succeeded but tests failed. Creating open PR for review..."
                   gh pr create --title "[FAILED] Auto-ingest schedule: $(basename "$file")" \
@@ -170,6 +199,6 @@ jobs:
             
             # Switch back to main, reset, and sync before next file
             git checkout main
+            git fetch origin main
             git reset --hard origin/main
-            git pull --rebase origin main
           done

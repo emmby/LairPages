@@ -12,15 +12,13 @@ permissions:
   pages: write
   id-token: write
 
-# Allow one concurrent deployment
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
 jobs:
   # 1. Validation Job
   test:
     runs-on: ubuntu-latest
+    concurrency:
+      group: "validate-pr-${{ github.event.pull_request.number || github.ref }}"
+      cancel-in-progress: true
     steps:
       - name: Checkout LairPages
         uses: actions/checkout@v4
@@ -55,6 +53,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: test  # Enforces that tests must pass first
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
     steps:
       - name: Checkout LairPages
         uses: actions/checkout@v4
