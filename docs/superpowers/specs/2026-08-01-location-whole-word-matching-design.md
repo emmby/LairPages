@@ -17,17 +17,18 @@ Update `resolveEventLocation` in `src/flows/step3-location.ts` to perform whole-
    - If `location` is `null`, `undefined`, or empty, return as-is.
    - If `mappingMap` contains an exact full-string match for `cleanLoc.toLowerCase()`, return the mapped value directly.
 
-2. **Key Preparation**:
-   - Sort keys from `mappingMap` by string length in descending order. This ensures longer phrases (e.g. `"gold pool"`) match and replace before shorter sub-phrases (e.g. `"pool"`).
+2. **Key Preparation (Upfront)**:
+   - Extract and sort all keys from `mappingMap` by string length in descending order (`sortedKeys`). This ensures longer phrases (e.g. `"gold pool"`) match and replace before shorter sub-phrases (e.g. `"pool"`).
 
-3. **Markdown Link Protection & Matching**:
-   - Parse `location` into segments:
-     - Markdown link segments (`\[[^\]]+\]\([^)]+\)`)
-     - Plain text segments
-   - For each plain text segment and each sorted key in `mappingMap`:
-     - Construct a whole-word RegExp: `new RegExp(`\\b${escapeRegExp(key)}\\b`, 'gi')`.
-     - Replace matching whole-word occurrences in plain text segments with the mapped markdown value from `mappingMap`.
-   - Re-assemble plain text and markdown link segments into the resulting location string.
+3. **Sequential Matching & Markdown Link Protection**:
+   - For each key in `sortedKeys`:
+     - Parse the current `location` string into segments:
+       - Markdown link segments (`\[[^\]]+\]\([^)]+\)`)
+       - Plain text segments
+     - For each plain text segment:
+       - Construct whole-word RegExp: `new RegExp(`\\b${escapeRegExp(key)}\\b`, 'gi')`.
+       - Replace matching whole-word occurrences with the mapped markdown value from `mappingMap`.
+     - Re-assemble plain text and markdown link segments into the updated `location` string before processing the next key.
 
 4. **Word Boundary Behavior**:
    - `\bdh\b` matches `"DH"` in `"Found near the DH"`.
