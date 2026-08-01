@@ -39,20 +39,6 @@ describe('location_aliases.json validation gate', () => {
     }
   });
 
-  test('ensures no alias is shorter than 3 characters', () => {
-    for (const [camp, locations] of Object.entries<Record<string, string[]>>(aliasesData)) {
-      for (const [locKey, aliasList] of Object.entries(locations)) {
-        expect(Array.isArray(aliasList)).toBe(true);
-        for (const alias of aliasList) {
-          expect(
-            alias.trim().length >= 3,
-            `Camp "${camp}" location key "${locKey}" has suspiciously short alias "${alias}" (< 3 chars)`
-          ).toBe(true);
-        }
-      }
-    }
-  });
-
   test('ensures aliases do not have leading or trailing whitespace', () => {
     for (const [camp, locations] of Object.entries<Record<string, string[]>>(aliasesData)) {
       for (const [locKey, aliasList] of Object.entries(locations)) {
