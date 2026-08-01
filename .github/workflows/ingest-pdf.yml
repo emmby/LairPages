@@ -54,12 +54,11 @@ jobs:
           cd LairPages
           
           # Find all PDFs in schedules/inbox if the directory exists
+          files=()
           if [ -d "schedules/inbox" ]; then
-            files=$(find schedules/inbox -maxdepth 1 -name "*.pdf" | sort)
-          else
-            files=""
+            mapfile -t files < <(find schedules/inbox -maxdepth 1 -name "*.pdf" | sort)
           fi
-          if [ -z "$files" ]; then
+          if [ ${#files[@]} -eq 0 ]; then
             echo "No inbox PDFs to process."
             exit 0
           fi
@@ -67,7 +66,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          for file in $files; do
+          for file in "${files[@]}"; do
             echo "----------------------------------------"
             echo "Processing: $file"
             echo "----------------------------------------"
@@ -122,45 +121,50 @@ jobs:
             # Commit the changes (suppress error if nothing to commit)
             git diff --cached --quiet || git commit -m "Auto-ingest schedule: $(basename "$file")"
             
-            # Push the branch to remote
-            git push origin "$branch_name" --force
-            
-            # Test & PR Decisions
-            if [ "$success" = "true" ]; then
-              # Run test suite to validate map locations, dates etc.
-              set +e
-              npm test
-              test_status=$?
-              set -e
-              
-              if [ $test_status -eq 0 ]; then
-                echo "Parsing and tests succeeded. Creating and auto-merging PR..."
-                gh pr create --title "Auto-ingest schedule: $(basename "$file")" \
-                             --body "Successfully processed and validated schedule from $(basename "$file")." \
-                             --head "$branch_name" \
-                             --base main
-                if [ -f ".tmp/processpdf_summary.md" ]; then
-                  gh pr comment "$branch_name" --body-file ".tmp/processpdf_summary.md" || echo "Failed to add PR comment"
-                fi
-                gh pr merge "$branch_name" --auto --merge --delete-branch
-              else
-                echo "Parsing succeeded but tests failed. Creating open PR for review..."
-                gh pr create --title "[FAILED] Auto-ingest schedule: $(basename "$file")" \
-                             --body "Schedule was processed, but failed validation tests (e.g. location mapping or time boundaries). Please inspect the audit report below and test logs on the PR." \
-                             --head "$branch_name" \
-                             --base main
-                if [ -f ".tmp/processpdf_summary.md" ]; then
-                  gh pr comment "$branch_name" --body-file ".tmp/processpdf_summary.md" || echo "Failed to add PR comment"
-                fi
-              fi
+            commit_count=$(git rev-list --count main.."$branch_name")
+            if [ "$commit_count" -eq 0 ]; then
+              echo "No commits generated for $(basename "$file"). Skipping branch push and PR creation."
             else
-              echo "Parsing failed. Creating open PR for review..."
-              gh pr create --title "[FAILED] Auto-ingest schedule: $(basename "$file")" \
-                           --body "Parsing pipeline failed. Please check the audit report below and workflow logs for details." \
-                           --head "$branch_name" \
-                           --base main
-              if [ -f ".tmp/processpdf_summary.md" ]; then
-                gh pr comment "$branch_name" --body-file ".tmp/processpdf_summary.md" || echo "Failed to add PR comment"
+              # Push the branch to remote
+              git push origin "$branch_name" --force
+              
+              # Test & PR Decisions
+              if [ "$success" = "true" ]; then
+                # Run test suite to validate map locations, dates etc.
+                set +e
+                npm test
+                test_status=$?
+                set -e
+                
+                if [ $test_status -eq 0 ]; then
+                  echo "Parsing and tests succeeded. Creating and auto-merging PR..."
+                  gh pr create --title "Auto-ingest schedule: $(basename "$file")" \
+                               --body "Successfully processed and validated schedule from $(basename "$file")." \
+                               --head "$branch_name" \
+                               --base main
+                  if [ -f ".tmp/processpdf_summary.md" ]; then
+                    gh pr comment "$branch_name" --body-file ".tmp/processpdf_summary.md" || echo "Failed to add PR comment"
+                  fi
+                  gh pr merge "$branch_name" --auto --merge --delete-branch
+                else
+                  echo "Parsing succeeded but tests failed. Creating open PR for review..."
+                  gh pr create --title "[FAILED] Auto-ingest schedule: $(basename "$file")" \
+                               --body "Schedule was processed, but failed validation tests (e.g. location mapping or time boundaries). Please inspect the audit report below and test logs on the PR." \
+                               --head "$branch_name" \
+                               --base main
+                  if [ -f ".tmp/processpdf_summary.md" ]; then
+                    gh pr comment "$branch_name" --body-file ".tmp/processpdf_summary.md" || echo "Failed to add PR comment"
+                  fi
+                fi
+              else
+                echo "Parsing failed. Creating open PR for review..."
+                gh pr create --title "[FAILED] Auto-ingest schedule: $(basename "$file")" \
+                             --body "Parsing pipeline failed. Please check the audit report below and workflow logs for details." \
+                             --head "$branch_name" \
+                             --base main
+                if [ -f ".tmp/processpdf_summary.md" ]; then
+                  gh pr comment "$branch_name" --body-file ".tmp/processpdf_summary.md" || echo "Failed to add PR comment"
+                fi
               fi
             fi
             
