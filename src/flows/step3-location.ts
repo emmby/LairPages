@@ -45,11 +45,51 @@ function loadMapLocations(mapsDir: string): Array<{ id: string; name: string }> 
 
 
 
+function escapeRegExp(str: string): string {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 export function resolveEventLocation(location: string | null | undefined, mappingMap: Map<string, string>): string | null | undefined {
   if (!location) return location;
   const cleanLoc = location.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').trim();
-  const mappedVal = mappingMap.get(cleanLoc.toLowerCase());
-  return mappedVal || location;
+
+  // Fast path: exact match on full location string
+  const exactMatch = mappingMap.get(cleanLoc.toLowerCase());
+  if (exactMatch) return exactMatch;
+
+  // Sort keys by length descending so longer phrases match first
+  const sortedKeys = Array.from(mappingMap.keys()).sort((a, b) => b.length - a.length);
+
+  let currentLoc = location;
+
+  for (const key of sortedKeys) {
+    const mappedVal = mappingMap.get(key);
+    if (!mappedVal) continue;
+
+    const keyRegex = new RegExp(`\\b${escapeRegExp(key)}\\b`, 'gi');
+
+    // Split string into markdown link segments and plain text segments
+    const linkRegex = /\[[^\]]+\]\([^)]+\)/g;
+    const parts: string[] = [];
+    let lastIndex = 0;
+    let match: RegExpExecArray | null;
+
+    while ((match = linkRegex.exec(currentLoc)) !== null) {
+      if (match.index > lastIndex) {
+        parts.push(currentLoc.substring(lastIndex, match.index).replace(keyRegex, mappedVal));
+      }
+      parts.push(match[0]); // preserve existing markdown link intact
+      lastIndex = match.index + match[0].length;
+    }
+
+    if (lastIndex < currentLoc.length) {
+      parts.push(currentLoc.substring(lastIndex).replace(keyRegex, mappedVal));
+    }
+
+    currentLoc = parts.join('');
+  }
+
+  return currentLoc;
 }
 
 export const step3LocationFlow = ai.defineFlow(
