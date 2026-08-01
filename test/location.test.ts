@@ -1,11 +1,5 @@
 import { describe, test, expect } from 'vitest';
-
-function resolveEventLocation(location: string | null | undefined, mappingMap: Map<string, string>): string | null | undefined {
-  if (!location) return location;
-  const cleanLoc = location.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').trim();
-  const mappedVal = mappingMap.get(cleanLoc.toLowerCase());
-  return mappedVal || location;
-}
+import { resolveEventLocation } from '../src/flows/step3-location.js';
 
 describe('Location Resolution Logic', () => {
   const mockMappingMap = new Map<string, string>([

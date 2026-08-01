@@ -13,9 +13,21 @@ describe('location_aliases.json validation gate', () => {
     expect(aliasesData).toHaveProperty('gold');
   });
 
+  test('ensures all alias lists are valid arrays', () => {
+    for (const [camp, locations] of Object.entries<Record<string, string[]>>(aliasesData)) {
+      for (const [locKey, aliasList] of Object.entries(locations)) {
+        expect(
+          Array.isArray(aliasList),
+          `Camp "${camp}" location key "${locKey}" alias list must be an array`
+        ).toBe(true);
+      }
+    }
+  });
+
   test('ensures no alias matches a reserved camp name', () => {
     for (const [camp, locations] of Object.entries<Record<string, string[]>>(aliasesData)) {
       for (const [locKey, aliasList] of Object.entries(locations)) {
+        expect(Array.isArray(aliasList)).toBe(true);
         for (const alias of aliasList) {
           const cleanAlias = alias.trim().toLowerCase();
           expect(
@@ -30,6 +42,7 @@ describe('location_aliases.json validation gate', () => {
   test('ensures no alias is shorter than 3 characters', () => {
     for (const [camp, locations] of Object.entries<Record<string, string[]>>(aliasesData)) {
       for (const [locKey, aliasList] of Object.entries(locations)) {
+        expect(Array.isArray(aliasList)).toBe(true);
         for (const alias of aliasList) {
           expect(
             alias.trim().length >= 3,
@@ -43,6 +56,7 @@ describe('location_aliases.json validation gate', () => {
   test('ensures aliases do not have leading or trailing whitespace', () => {
     for (const [camp, locations] of Object.entries<Record<string, string[]>>(aliasesData)) {
       for (const [locKey, aliasList] of Object.entries(locations)) {
+        expect(Array.isArray(aliasList)).toBe(true);
         for (const alias of aliasList) {
           expect(alias).toBe(alias.trim());
         }

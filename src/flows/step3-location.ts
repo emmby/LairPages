@@ -45,6 +45,13 @@ function loadMapLocations(mapsDir: string): Array<{ id: string; name: string }> 
 
 
 
+export function resolveEventLocation(location: string | null | undefined, mappingMap: Map<string, string>): string | null | undefined {
+  if (!location) return location;
+  const cleanLoc = location.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').trim();
+  const mappedVal = mappingMap.get(cleanLoc.toLowerCase());
+  return mappedVal || location;
+}
+
 export const step3LocationFlow = ai.defineFlow(
   {
     name: 'step3Location',
@@ -115,17 +122,12 @@ export const step3LocationFlow = ai.defineFlow(
       }
     });
 
+
+
     // 5. Re-assemble tracks, mapping location fields only (descriptions remain untouched)
     const mappedTracks = input.tracks.map(track => {
       const mappedEvents = track.events.map(event => {
-        let mappedLoc = event.location;
-        if (event.location) {
-          const cleanLoc = event.location.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').trim();
-          const mappedVal = mappingMap.get(cleanLoc.toLowerCase());
-          if (mappedVal) {
-            mappedLoc = mappedVal;
-          }
-        }
+        const mappedLoc = resolveEventLocation(event.location, mappingMap);
 
         return {
           startTime: event.startTime,
