@@ -43,26 +43,13 @@ function loadMapLocations(mapsDir: string): Array<{ id: string; name: string }> 
 
 
 
-function escapeRegExp(string: string) {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
 
-function applyMappings(text: string, mapping: Map<string, string>): string {
-  if (!text) return '';
-  let result = text;
-  // Sort mapping keys by length descending to match longest matches first
-  const sortedKeys = Array.from(mapping.keys()).sort((a, b) => b.length - a.length);
-  for (const key of sortedKeys) {
-    const val = mapping.get(key);
-    if (val && val !== key) {
-      const pattern = new RegExp('(\\[[^\\]]+\\]\\([^)]+\\))|(?<!\\w)' + escapeRegExp(key) + '(?!\\w)', 'gi');
-      result = result.replace(pattern, (match, link) => {
-        if (link) return link;
-        return val;
-      });
-    }
-  }
-  return result;
+
+export function resolveEventLocation(location: string | null | undefined, mappingMap: Map<string, string>): string | null | undefined {
+  if (!location) return location;
+  const cleanLoc = location.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').trim();
+  const mappedVal = mappingMap.get(cleanLoc.toLowerCase());
+  return mappedVal || location;
 }
 
 export const step3LocationFlow = ai.defineFlow(
@@ -135,28 +122,19 @@ export const step3LocationFlow = ai.defineFlow(
       }
     });
 
-    // 5. Re-assemble tracks, mapping both location and description fields
+
+
+    // 5. Re-assemble tracks, mapping location fields only (descriptions remain untouched)
     const mappedTracks = input.tracks.map(track => {
       const mappedEvents = track.events.map(event => {
-        // Map the location field
-        let mappedLoc = event.location;
-        if (event.location) {
-          const cleanLoc = event.location.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').trim();
-          const mappedVal = mappingMap.get(cleanLoc.toLowerCase());
-          if (mappedVal) {
-            mappedLoc = mappedVal;
-          }
-        }
-
-        // Map any location references in description
-        const mappedDesc = applyMappings(event.description, mappingMap);
+        const mappedLoc = resolveEventLocation(event.location, mappingMap);
 
         return {
           startTime: event.startTime,
           endTime: event.endTime,
           title: event.title,
           location: mappedLoc,
-          description: mappedDesc,
+          description: event.description,
         };
       });
 
