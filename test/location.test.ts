@@ -50,6 +50,24 @@ describe('Location Resolution Logic', () => {
     expect(resolveEventLocation('Volleyball Court / Court', mappingMap)).toBe('[Volleyball Court](maplocation://blue/sports_courts) / [Court](maplocation://blue/court)');
   });
 
+  test('handles location keys containing parentheses or punctuation', () => {
+    const mappingMap = new Map<string, string>([
+      ['pool (main)', '[Pool (Main)](maplocation://blue/pool)'],
+      ['st. mark\'s', '[St. Mark\'s](maplocation://blue/st_marks)'],
+    ]);
+
+    expect(resolveEventLocation('Meet at Pool (Main) for swimming', mappingMap)).toBe('Meet at [Pool (Main)](maplocation://blue/pool) for swimming');
+    expect(resolveEventLocation('At St. Mark\'s hall', mappingMap)).toBe('At [St. Mark\'s](maplocation://blue/st_marks) hall');
+  });
+
+  test('handles multiple occurrences of the same location key in a single phrase', () => {
+    const mappingMap = new Map<string, string>([
+      ['dh', '[DH](maplocation://blue/dining_hall)'],
+    ]);
+
+    expect(resolveEventLocation('DH in morning and DH in evening', mappingMap)).toBe('[DH](maplocation://blue/dining_hall) in morning and [DH](maplocation://blue/dining_hall) in evening');
+  });
+
   test('ensures event description prose is never modified by location mapping', () => {
     const originalDescription = 'Panning for Gold in the Creek! Dress in Blue or Gold.';
     // Descriptions are passed through as-is, ensuring no regex corruption occurs

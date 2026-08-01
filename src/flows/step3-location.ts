@@ -66,7 +66,7 @@ export function resolveEventLocation(location: string | null | undefined, mappin
     const mappedVal = mappingMap.get(key);
     if (!mappedVal) continue;
 
-    const keyRegex = new RegExp(`\\b${escapeRegExp(key)}\\b`, 'gi');
+    const keyRegex = new RegExp(`(?<!\\w)${escapeRegExp(key)}(?!\\w)`, 'gi');
 
     // Split string into markdown link segments and plain text segments
     const linkRegex = /\[[^\]]+\]\([^)]+\)/g;
