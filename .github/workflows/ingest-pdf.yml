@@ -71,6 +71,9 @@ jobs:
             echo "Processing: $file"
             echo "----------------------------------------"
             rm -rf .tmp
+            git checkout main
+            git fetch origin main
+            git reset --hard origin/main
             
             # Run conversion
             set +e
