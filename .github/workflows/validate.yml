@@ -14,7 +14,7 @@ permissions:
 
 # Allow one concurrent deployment
 concurrency:
-  group: "pages"
+  group: "validate-pr-${{ github.event.pull_request.number || github.sha }}"
   cancel-in-progress: true
 
 jobs:
