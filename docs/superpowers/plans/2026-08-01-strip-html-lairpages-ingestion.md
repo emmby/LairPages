@@ -21,14 +21,14 @@
 
 **Files:**
 - Modify: `src/flows/step4-postprocess.ts`
-- Modify: `test/step4-postprocess.test.ts`
+- Modify: `test/postprocess.test.ts`
 
 **Interfaces:**
 - Produces: `cleanBanner(banner: string | null | undefined): string | null` helper in `src/flows/step4-postprocess.ts` used by `step4PostProcessFlow`.
 
 - [ ] **Step 1: Write failing unit tests for banner HTML conversion**
 
-Add tests to `test/step4-postprocess.test.ts` verifying `cleanBanner` and `step4PostProcessFlow` convert `<b>`, `<i>`, and `<br/>` HTML tags in track banners to Markdown.
+Add tests to `test/postprocess.test.ts` verifying `cleanBanner` and `step4PostProcessFlow` convert `<b>`, `<i>`, and `<br/>` HTML tags in track banners to Markdown.
 
 ```typescript
 describe('cleanBanner', () => {
@@ -53,7 +53,7 @@ describe('cleanBanner', () => {
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `npx tsx --test test/step4-postprocess.test.ts`
+Run: `npx tsx --test test/postprocess.test.ts`
 Expected: FAIL with `cleanBanner is not defined` or assertion error.
 
 - [ ] **Step 3: Implement `cleanBanner` in `src/flows/step4-postprocess.ts`**
@@ -86,13 +86,13 @@ const banner = matchingStep0Track?.banner ? cleanBanner(matchingStep0Track.banne
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `npx tsx --test test/step4-postprocess.test.ts`
+Run: `npx tsx --test test/postprocess.test.ts`
 Expected: PASS
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add src/flows/step4-postprocess.ts test/step4-postprocess.test.ts
+git add src/flows/step4-postprocess.ts test/postprocess.test.ts
 git commit -m "feat: convert track banner HTML to Markdown in step4 post-processing"
 ```
 
@@ -127,9 +127,11 @@ git commit -m "fix: re-process ingested 2026 schedule banners to Markdown"
 
 ### Task 3: Update Flutter `TrackBanner` Widget in `Lair` to Render Markdown
 
+*Note: Task 3 files belong to the separate `emmby/Lair` repository.*
+
 **Files:**
 - Modify: `client/lib/src/ui/components/track_banner.dart`
-- Modify: `client/test/calendar_test.dart`
+- Modify: `client/test/track_banner_test.dart`
 
 **Interfaces:**
 - Consumes: Cleaned Markdown banner strings from schedule JSON data.

@@ -31,7 +31,9 @@ This feature will:
 
 ---
 
-### 2. Mobile App Client (`Lair`)
+### 2. Mobile App Client (`Lair` repository)
+
+*Note: Mobile app changes live in the separate `emmby/Lair` repository.*
 
 #### `client/lib/src/ui/components/track_banner.dart`
 - Replace the current `Text(bannerMessage, style: ...)` with a `MarkdownBody` widget.
@@ -44,8 +46,8 @@ This feature will:
 ## Verification Plan
 
 ### Automated Tests
-- **`LairPages` Tests**: Add unit tests in `test/step4-postprocess.test.ts` verifying that track banners containing `<b>`, `<i>`, and `<br/>` tags are cleanly converted to Markdown strings without retaining HTML tags.
-- **`Lair` Widget Tests**: Update or add widget tests in `client/test/` to verify `TrackBanner` correctly renders Markdown text.
+- **`LairPages` Tests**: Add unit tests in `test/postprocess.test.ts` verifying that track banners containing `<b>`, `<i>`, and `<br/>` tags are cleanly converted to Markdown strings without retaining HTML tags.
+- **`Lair` Widget Tests**: Update or add widget tests in `client/test/track_banner_test.dart` in the `Lair` repository to verify `TrackBanner` correctly renders Markdown text.
 
 ### Manual Verification
 - Inspect generated `schedules/2026/oski/week_09.json` to verify that `<b>` tags in the Nature/Hiking banner are converted to Markdown `**`.
