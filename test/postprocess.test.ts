@@ -1,5 +1,24 @@
 import { describe, test, expect } from 'vitest';
-import { cleanDescription, normalizeAndTruncateDescription } from '../src/flows/step4-postprocess.js';
+import { cleanBanner, cleanDescription, normalizeAndTruncateDescription } from '../src/flows/step4-postprocess.js';
+
+describe('cleanBanner', () => {
+  test('converts bold HTML tags to markdown', () => {
+    expect(cleanBanner('<b>Adult Swim</b>')).toBe('**Adult Swim**');
+  });
+
+  test('converts italic HTML tags to markdown', () => {
+    expect(cleanBanner('<i>Note:</i> swim at your own risk')).toBe('_Note:_ swim at your own risk');
+  });
+
+  test('converts line breaks to newlines or spaces', () => {
+    expect(cleanBanner('Line 1<br/>Line 2')).toBe('Line 1\nLine 2');
+  });
+
+  test('returns null for null or empty banner', () => {
+    expect(cleanBanner(null)).toBeNull();
+    expect(cleanBanner('')).toBeNull();
+  });
+});
 
 describe('cleanDescription formatting and escaping', () => {
   test('returns empty string for null or undefined input', () => {

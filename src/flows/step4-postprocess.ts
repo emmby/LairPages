@@ -70,6 +70,23 @@ export function cleanDescription(desc: string | null | undefined): string {
   return processed.replace(/\[([^\]]+)\]\((maplocation:\/\/[^)]+)\)/g, cleanLocationLink);
 }
 
+export function cleanBanner(banner: string | null | undefined): string | null {
+  if (!banner || banner.trim().length === 0) return null;
+
+  let processed = banner
+    .replace(/\*/g, '\\*')
+    .replace(/`/g, '\\`');
+
+  processed = processed
+    .replace(/<b\b[^>]*>([\s\S]*?)<\/b>/gi, '**$1**')
+    .replace(/<strong\b[^>]*>([\s\S]*?)<\/strong>/gi, '**$1**')
+    .replace(/<i\b[^>]*>([\s\S]*?)<\/i>/gi, '_$1_')
+    .replace(/<em\b[^>]*>([\s\S]*?)<\/em>/gi, '_$1_')
+    .replace(/<br\s*\/?>/gi, '\n');
+
+  return processed.trim();
+}
+
 export function normalizeAndTruncateDescription(desc: string | null | undefined): string {
   if (!desc || desc.trim().length === 0) {
     throw new Error('Event description is empty, null, or undefined; cannot generate stable event ID.');
@@ -97,7 +114,7 @@ export const step4PostProcessFlow = ai.defineFlow(
         (t) => t.name.toLowerCase() === step3Track.trackName.toLowerCase() ||
                (t.name.toLowerCase() === 'all camp activities' && step3Track.trackName.toLowerCase() === 'all-camp activities')
       );
-      const banner = matchingStep0Track?.banner || null;
+      const banner = matchingStep0Track?.banner ? cleanBanner(matchingStep0Track.banner) : null;
 
       // 2. Normalize track name casing
       const normalizedTrackName = step3Track.trackName.replace(/\ball[\s-]*camp\b/gi, 'All-camp');
