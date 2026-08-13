@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as crypto from 'crypto';
+import { fileURLToPath } from 'url';
 import { step0ExtractFlow } from './flows/step0-extract.js';
 import { step1EventsFlow } from './flows/step1-events.js';
 import { step2TimeFlow } from './flows/step2-time.js';
@@ -183,6 +184,51 @@ export async function processPdf(pdfPathArg: string, useCache: boolean): Promise
       step3: step3Result,
     });
 
+    // Write final output file to schedules/<year>/<camp>/<week>.json before Step 5 evaluation gate
+    const finalOutputPath = path.resolve(process.cwd(), `schedules/${year}/${camp}/${weekStr}.json`);
+    fs.mkdirSync(path.dirname(finalOutputPath), { recursive: true });
+    const finalJsonStr = JSON.stringify(step4Result, null, 2);
+    fs.writeFileSync(finalOutputPath, finalJsonStr, 'utf-8');
+    console.log(`Successfully wrote final schedule JSON to: ${finalOutputPath}`);
+
+    // Generate MD5 version hash (first 8 chars)
+    const md5Hash = crypto.createHash('md5').update(Buffer.from(finalJsonStr, 'utf-8')).digest('hex').substring(0, 8);
+    console.log(`Generated version MD5 hash: ${md5Hash}`);
+
+    // Update manifest.json before Step 5 evaluation gate
+    const manifestPath = path.resolve(process.cwd(), 'schedules/manifest.json');
+    if (fs.existsSync(manifestPath)) {
+      console.log(`Updating manifest.json...`);
+      const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+      const relativeFilePath = `${year}/${camp}/${weekStr}.json`;
+
+      let entryFound = false;
+      for (const entry of manifest.schedules || []) {
+        if (entry.year === year && entry.camp === camp && entry.week === week) {
+          entry.file = relativeFilePath;
+          entry.version = md5Hash;
+          entryFound = true;
+          break;
+        }
+      }
+
+      if (!entryFound) {
+        manifest.schedules = manifest.schedules || [];
+        manifest.schedules.push({
+          year,
+          camp,
+          week,
+          file: relativeFilePath,
+          version: md5Hash,
+        });
+      }
+
+      fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), 'utf-8');
+      console.log(`Successfully updated manifest.json.`);
+    } else {
+      console.warn(`manifest.json not found at ${manifestPath}. Skipping manifest update.`);
+    }
+
     // Step 5: LLM Evaluation
     console.log(`[Step 5] Running LLM-as-judge audit...`);
     const step5Result = await step5EvaluateFlow({
@@ -224,51 +270,6 @@ export async function processPdf(pdfPathArg: string, useCache: boolean): Promise
         error: `Audit failed with score ${step5Result.score}/5`
       });
       return false;
-    }
-
-    // Write final output file to schedules/2026/<camp>/<week>.json
-    const finalOutputPath = path.resolve(process.cwd(), `schedules/${year}/${camp}/${weekStr}.json`);
-    fs.mkdirSync(path.dirname(finalOutputPath), { recursive: true });
-    const finalJsonStr = JSON.stringify(step4Result, null, 2);
-    fs.writeFileSync(finalOutputPath, finalJsonStr, 'utf-8');
-    console.log(`Successfully wrote final schedule JSON to: ${finalOutputPath}`);
-
-    // Generate MD5 version hash (first 8 chars)
-    const md5Hash = crypto.createHash('md5').update(Buffer.from(finalJsonStr, 'utf-8')).digest('hex').substring(0, 8);
-    console.log(`Generated version MD5 hash: ${md5Hash}`);
-
-    // Update manifest.json
-    const manifestPath = path.resolve(process.cwd(), 'schedules/manifest.json');
-    if (fs.existsSync(manifestPath)) {
-      console.log(`Updating manifest.json...`);
-      const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
-      const relativeFilePath = `${year}/${camp}/${weekStr}.json`;
-
-      let entryFound = false;
-      for (const entry of manifest.schedules || []) {
-        if (entry.year === year && entry.camp === camp && entry.week === week) {
-          entry.file = relativeFilePath;
-          entry.version = md5Hash;
-          entryFound = true;
-          break;
-        }
-      }
-
-      if (!entryFound) {
-        manifest.schedules = manifest.schedules || [];
-        manifest.schedules.push({
-          year,
-          camp,
-          week,
-          file: relativeFilePath,
-          version: md5Hash,
-        });
-      }
-
-      fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), 'utf-8');
-      console.log(`Successfully updated manifest.json.`);
-    } else {
-      console.warn(`manifest.json not found at ${manifestPath}. Skipping manifest update.`);
     }
 
     const durationSec = ((Date.now() - startTime) / 1000).toFixed(1);
@@ -352,7 +353,15 @@ async function main() {
   }
 }
 
-main().catch(err => {
-  console.error('Pipeline failed with error:', err);
-  process.exit(1);
-});
+const isDirectExecution = typeof process !== 'undefined' && process.argv[1] && (
+  (import.meta.url && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) ||
+  process.argv[1].endsWith('/src/index.ts') ||
+  process.argv[1].endsWith('/src/index.js')
+);
+
+if (isDirectExecution) {
+  main().catch(err => {
+    console.error('Pipeline failed with error:', err);
+    process.exit(1);
+  });
+}
