@@ -12,35 +12,7 @@ const { mockFsState, mockStep5EvaluateFlow } = vi.hoisted(() => ({
 // Mock fs
 vi.mock('fs', async (importOriginal) => {
   const actual = await importOriginal<typeof import('fs')>();
-  return {
-    ...actual,
-    default: {
-      ...actual,
-      existsSync: (p: any) => {
-        const norm = String(p);
-        if (norm.endsWith('week_01.pdf') || norm.endsWith('manifest.json')) return true;
-        return actual.existsSync(p);
-      },
-      readFileSync: (p: any, opts: any) => {
-        const norm = String(p);
-        if (norm.endsWith('manifest.json')) {
-          return JSON.stringify({
-            camps: [{ id: 'testcamp', name: 'Test Camp' }],
-            schedules: [],
-          });
-        }
-        if (norm.endsWith('week_01.pdf')) {
-          return Buffer.from('dummy pdf binary');
-        }
-        return actual.readFileSync(p, opts);
-      },
-      writeFileSync: (p: any, data: any) => {
-        mockFsState.writtenFiles[String(p)] = String(data);
-      },
-      mkdirSync: () => undefined,
-      copyFileSync: () => undefined,
-      unlinkSync: () => undefined,
-    },
+  const fsOverrides = {
     existsSync: (p: any) => {
       const norm = String(p);
       if (norm.endsWith('week_01.pdf') || norm.endsWith('manifest.json')) return true;
@@ -65,6 +37,15 @@ vi.mock('fs', async (importOriginal) => {
     mkdirSync: () => undefined,
     copyFileSync: () => undefined,
     unlinkSync: () => undefined,
+  };
+
+  return {
+    ...actual,
+    ...fsOverrides,
+    default: {
+      ...actual,
+      ...fsOverrides,
+    },
   };
 });
 

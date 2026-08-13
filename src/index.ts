@@ -353,11 +353,8 @@ async function main() {
   }
 }
 
-const isDirectExecution = typeof process !== 'undefined' && process.argv[1] && (
-  (import.meta.url && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) ||
-  process.argv[1].endsWith('/src/index.ts') ||
-  process.argv[1].endsWith('/src/index.js')
-);
+const isDirectExecution = typeof process !== 'undefined' && Boolean(process.argv[1]) &&
+  fileURLToPath(import.meta.url) === path.resolve(process.argv[1]);
 
 if (isDirectExecution) {
   main().catch(err => {
